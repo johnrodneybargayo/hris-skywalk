@@ -1,0 +1,204 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.form_background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+.form-container label {
+    margin-bottom: 5px;
+}
+
+.form-container input {
+    margin-bottom: 10px;
+}
+
+h1.title-hr {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: #fff;
+    margin-bottom: 45rem;
+    font-family: 'Anton', sans-serif;
+    font-weight: 500;
+    font-size: 60px;
+}
+
+
+.image-placeholder {
+    background-color: #ccc;
+    width: 50%;
+    height: 100vh;
+    border-radius: 20px 0px 0px 20px;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+    animation: slideShow 15s infinite;
+
+}
+
+@keyframes slideShow {
+    0% {
+        background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0e3b56173550493.64921f77d7d10.png');
+    }
+
+    33.33% {
+        background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/32332e173550493.64921f77d8a07.png');
+    }
+
+    66.66% {
+        background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/58cd51173550493.64921f77d7075.png');
+    }
+
+    100% {
+        background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0e3b56173550493.64921f77d7d10.png');
+    }
+}
+
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #240046;
+    overflow: hidden;
+}
+
+.logo {
+    margin-left: 33%;
+    margin-top: -42%;
+    position: absolute;
+}
+
+img {
+    height: auto;
+    max-width: 15%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px;
+    margin-left: 5px;
+    margin-right: 20px;
+    margin-top: 15px;
+}
+
+p.forgot-pass {
+    font-size: 16px;
+    font-family: 'Satoshi';
+    font-weight: 300;
+    line-height: 1.5;
+    margin-left: 20px;
+}
+
+/*checkbox to switch from sign up to login*/
+#chk {
+    display: none;
+}
+
+/*Login*/
+.login {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.login label {
+    margin: 25% 0 5%;
+}
+
+#passwd {
+    margin-top: -26px;
+}
+
+label {
+    color: #fff;
+    font-size: 2rem;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+.input {
+    width: 100%;
+    height: 35px;
+    background: #e0dede;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
+/*Register*/
+.register {
+    background: #eee;
+    border-radius: 90% / 10%;
+    transform: translateY(5%);
+    transition: .8s ease-in-out;
+}
+
+.register label {
+    color: #573b8a;
+    transform: scale(.6);
+}
+
+#chk:checked~.register {
+    transform: translateY(-60%);
+}
+
+#chk:checked~.register label {
+    transform: scale(1);
+    margin: 10% 0 5%;
+}
+
+#chk:checked~.login label {
+    transform: scale(.6);
+    margin: 5% 0 5%;
+}
+
+/*Button*/
+.form button {
+    width: 85%;
+    height: 50px;
+    margin: 12px auto 10%;
+    color: #fff;
+    background: #573b8a;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s ease-in;
+}
+
+.form button:hover {
+    background-color: #6d44b8;
+}
