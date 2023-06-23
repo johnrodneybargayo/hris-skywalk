@@ -4,8 +4,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
 const rootElement = document.getElementById('root');
-ReactDOM.hydrateRoot(rootElement,
+ReactDOM.render(
   <Router>
     <App />
-  </Router>
+  </Router>,
+  rootElement
 );
