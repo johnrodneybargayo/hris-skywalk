@@ -1,11 +1,12 @@
 import React from 'react';
-import LoginPage from './pages/LoginPage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './routes';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <LoginPage />
-    </div>
+    <Router>
+      <Routes />
+    </Router>
   );
 };
 
