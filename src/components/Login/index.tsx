@@ -1,41 +1,43 @@
+// LoginForm.tsx
+
 import React, { useState } from 'react';
 import './styles.scss';
 
-interface LoginFormProps {
-  onLogin: (email: string, password: string) => void;
-}
-
-const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
+    console.log(`${email} has been verified! Welcome back!`);
+
     try {
-      // Make a POST request to the login endpoint on the backend server
-      const response = await fetch('/sign-in', {
+      const response = await fetch('http://localhost:3000/sign-in', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
       });
 
       if (response.ok) {
         // Login successful
-        // Perform any necessary actions (e.g., redirect to dashboard)
         console.log('Login successful');
         window.location.href = '/dashboard';
+      } else if (response.status === 404) {
+        // Email or password not found in the database
+        console.log('Email or password incorrect or not registered');
       } else {
-        // Login failed
+        // Other server errors
         const data = await response.json();
-        console.log('Login failed:', data.message);
-        window.location.href = '/404Error';
+        console.log('Server error:', data.error);
       }
     } catch (error) {
       console.error('An error occurred during login:', error);
-      window.location.href = '/404Error';
     }
   };
 
@@ -52,7 +54,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           <div className="main">
             <input type="checkbox" id="chk" aria-hidden="true" />
             <div className="login">
-              <form className="form" onSubmit={handleSubmit}>
+              <form className="form" onSubmit={handleSubmit} method="POST">
                 <label htmlFor="chk" aria-hidden="true">
                   HRIS Sign in
                 </label>
