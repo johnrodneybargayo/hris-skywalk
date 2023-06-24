@@ -1,17 +1,18 @@
-/* eslint react/prop-types: 0 */
-
 import React from 'react';
-import { Route, RouteProps } from 'react-router-dom';
+import { Route, RouteProps, RouteComponentProps } from 'react-router-dom';
 
-interface PublicRouteProps extends RouteProps {
-  component: React.ComponentType<any>;
-}
+type PublicRouteProps = {
+  component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
+} & RouteProps;
 
-const PublicRoute: React.FC<PublicRouteProps> = ({ component: Component, ...rest }) => {
+const PublicRoute: React.FC<PublicRouteProps> = ({
+  component: Component,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
-      render={(props) => (
+      render={(props: RouteComponentProps<any>) => (
         <>
           <Component {...props} />
         </>
