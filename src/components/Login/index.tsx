@@ -1,5 +1,3 @@
-// LoginForm.tsx
-
 import React, { useState } from 'react';
 import './styles.scss';
 
@@ -25,14 +23,13 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
       });
 
       if (response.ok) {
-        // Login successful
+
         console.log('Login successful');
         window.location.href = '/dashboard';
       } else if (response.status === 404) {
-        // Email or password not found in the database
+ 
         console.log('Email or password incorrect or not registered');
       } else {
-        // Other server errors
         const data = await response.json();
         console.log('Server error:', data.error);
       }
