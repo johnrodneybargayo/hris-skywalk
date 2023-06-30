@@ -8,7 +8,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:3000/sign-in', {
+      const response = await fetch('http://hrsystem-dev.empireonecontactcenter.com/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
