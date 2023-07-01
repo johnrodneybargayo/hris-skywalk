@@ -11,7 +11,7 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
     console.log(`${email} has been verified! Welcome back!`);
 
     try {
-      const response = await fetch('http://hrsystem-dev.empireonecontactcenter.com/sign-in', {
+      const response = await fetch('https://hris-armada.vercel.app/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

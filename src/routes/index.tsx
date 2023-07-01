@@ -11,6 +11,7 @@ const Routes: React.FC = () => {
 
   return (
     <Switch>
+      <PublicRoute exact path="/" component={LoginPage} />
       <PublicRoute exact path="/sign-in" component={LoginPage} />
       <PublicRoute exact path="/index" component={LoginPage} />
       <PublicRoute exact path="/sign-up" component={SignUpPage} />
