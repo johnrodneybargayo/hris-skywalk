@@ -1,0 +1,96 @@
+.dashboard {
+    background-color: rgb(238, 242, 246);
+    width: 97%;
+    min-height: calc(100vh - 88px);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .dashboard.half-width {
+    width: 85%;
+  }
+  
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    position: relative;
+    top: 8rem;
+    margin-right: auto;
+  
+  }
+  
+  .dashboard-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .tiles {
+    width: 380px;
+    height: 169px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+  }
+  
+  
+  .tiles::before {
+    content: "";
+    position: absolute;
+    top: -124px;
+    right: -4px;
+  }
+  
+  .tiles::after {
+    content: "";
+    position: absolute;
+    top: -104px;
+    right: -95px;
+  }
+  
+  .tiles::before {
+    width: 210px;
+    height: 210px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+  }
+  
+  .tiles::after {
+    width: 211px;
+    height: 211px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+  }
+  
+  .tiles .title-tile {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
