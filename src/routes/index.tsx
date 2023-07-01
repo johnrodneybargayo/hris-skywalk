@@ -5,6 +5,7 @@ import { Page404Error } from '../pages/404Error/index';
 import LoginPage from '../pages/Login';
 import SignUpPage from '../pages/SignUp';
 import DashboardPage from '../pages/dashboard'
+import RecruitmentPage from '../pages/recruitment';
 
 const Routes: React.FC = () => {
 
@@ -16,6 +17,7 @@ const Routes: React.FC = () => {
       <PublicRoute exact path="/index" component={LoginPage} />
       <PublicRoute exact path="/sign-up" component={SignUpPage} />
       <PublicRoute exact path="/dashboard" component={DashboardPage} />
+      <PublicRoute exact path="/dashboard" component={RecruitmentPage} />
 
       <PublicRoute path="/404Error" component={Page404Error} />
 
