@@ -11,7 +11,8 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
     console.log(`${email} has been verified! Welcome back!`);
 
     try {
-      const response = await fetch('https://hris-armada.vercel.app:3000/sign-in', {
+      //const response = await fetch('http://localhost:3000/sign-in', {
+      const response = await fetch('/api/auth/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,11 +24,9 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
       });
 
       if (response.ok) {
-
         console.log('Login successful');
         window.location.href = '/dashboard';
       } else if (response.status === 404) {
- 
         console.log('Email or password incorrect or not registered');
       } else {
         const data = await response.json();
