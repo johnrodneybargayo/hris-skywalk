@@ -8,7 +8,8 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const response = await fetch('https://hris-armada.vercel.app:3000/sign-in', {
+       //const response = await fetch('http://localhost:3000/sign-in', {
+       const response = await fetch('/api/auth/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
