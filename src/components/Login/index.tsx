@@ -12,7 +12,7 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
 
     try {
       //const response = await fetch('http://localhost:3000/sign-in', {
-      const response = await fetch('/api/auth/sign-in', {
+      const response = await fetch('https://hris-force.netlify.app/api/auth/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
