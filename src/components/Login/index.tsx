@@ -11,7 +11,7 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
     console.log(`${email} has been verified! Welcome back!`);
 
     try {
-      //const response = await fetch('http://localhost:3000/sign-in', {
+
       const response = await fetch('https://hris-force.netlify.app/sign-in', { 
         method: 'POST',
         headers: {
