@@ -17,7 +17,7 @@ const Routes: React.FC = () => {
       <PublicRoute exact path="/index" component={LoginPage} />
       <PublicRoute exact path="/sign-up" component={SignUpPage} />
       <PublicRoute exact path="/dashboard" component={DashboardPage} />
-      <PublicRoute exact path="/dashboard" component={RecruitmentPage} />
+      <PublicRoute exact path="/recruitment" component={RecruitmentPage} />
 
       <PublicRoute path="/404Error" component={Page404Error} />
 

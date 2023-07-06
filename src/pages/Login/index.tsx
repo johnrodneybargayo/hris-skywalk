@@ -8,8 +8,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-
-       const response = await fetch('https://hris-force.netlify.app/sign-in', {
+      const response = await fetch('https://hrsystem-back.empireonecontactcenter.com/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,16 +27,16 @@ const LoginPage: React.FC = () => {
           // Login failed
           setError(data.message);
         }
+      } else if (response.status === 404) {
+        // Login failed (email or password incorrect)
+        setError('Email or password incorrect');
       } else {
+        // Other server errors
         setError('An error occurred during login');
-        // Redirect to the error 404 page
-        history.push('/404Error');
       }
     } catch (error) {
       console.error('Error occurred during login:', error);
       setError('An error occurred during login');
-      // Redirect to the error 404 page
-      history.push('/404Error');
     }
   };
 
