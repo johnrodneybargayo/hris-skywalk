@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import Sidepanel from '../../components/Sidepanel';
 import Loader from '../../components/Loader';
+import Dropdown from '../../components/Dropdown';
 import './styles.scss';
 
 const RecruitmentPage = () => {
@@ -34,38 +35,17 @@ const RecruitmentPage = () => {
           <Header togglePanel={togglePanel} />
           <Sidepanel isOpen={isPanelOpen} />
           <div className={`dashboard ${isDashboardHalfWidth ? '' : 'half-width'}`}>
-            <div className="dashboard-container">
-              <div className="dashboard-tile">
-                <button className="tiles">
-                  <p className="title-tile">Recruitment</p>
-                </button>
+            <div className="recruitment-container">
+              <div className="recruitment-tile">
+                <h1>RECRUITMENT</h1>
               </div>
-              <div className="dashboard-tile">
-                <button className="tiles">
-                  <p className="title-tile">All Employees</p>
-                </button>
+              <div className="sources-container">
+                <h1 className='title-sources'>Sources</h1>
+                <div className="dropdown-container">
+                  <Dropdown />
+                </div>
+
               </div>
-              <div className="dashboard-tile">
-                <button className="tiles">
-                  <p className="title-tile">Compensation</p>
-                </button>
-              </div>
-              <div className="dashboard-tile">
-                <button className="tiles">
-                  <p className="title-tile">Employee relation</p>
-                </button>
-              </div>
-              <div className="dashboard-tile">
-                <button className="tiles">
-                  <p className="title-tile">Career Path</p>
-                </button>
-              </div>
-              <div className="dashboard-tile">
-                <button className="tiles">
-                  <p className="title-tile">Learning &amp; Development</p>
-                </button>
-              </div>
-              {/* Add more dashboard tiles here */}
             </div>
           </div>
         </>
