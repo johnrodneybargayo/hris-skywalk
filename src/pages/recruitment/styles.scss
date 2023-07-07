@@ -60,7 +60,7 @@
 }
 
 h1.title-sources {
-  font-size: 25px;
+  font-size: 15px;
   font-family: Satoshi;
   font-weight: 700;
   color: #451397;
@@ -70,4 +70,63 @@ h1.title-sources {
 .dropdown-container {
   display: flex;
   justify-content: center;
+}
+
+.box-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  flex-direction: column;
+  font-family: Satoshi;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 0.5;
+}
+
+.label-progress {
+  font-size: 15px;
+  font-family: Satoshi;
+  font-weight: 700;
+  color: #451397;
+  padding-top: 13px;
+  padding-left: 8px;
+}
+
+
+.tiles-container {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: fixed;
+  top: 175px;
+  left: 38rem;
+}
+
+.tile {
+  background-color: #3e3298;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  width: 145px;
+  font-family: Satoshi;
+  font-size: 15px;
+  font-weight: 600;
+  color: aliceblue;
+}
+
+.tile i {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.tile h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.tile .number {
+  font-size: 24px;
+  font-weight: bold;
 }
