@@ -8,7 +8,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
+      const response = await fetch('https://empireone-global-inc.uc.r.appspot.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
