@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Sidepanel from '../../components/Sidepanel';
 import Loader from '../../components/Loader';
 import Dropdown from '../../components/Dropdown';
+import ProgressBar from '../../components/ProgressBar';
 import './styles.scss';
 
 const RecruitmentPage = () => {
@@ -44,7 +45,36 @@ const RecruitmentPage = () => {
                 <div className="dropdown-container">
                   <Dropdown />
                 </div>
+                <div className='box-container'>
+                  <ProgressBar value={45} maxValue={100} color=" rgb(127 48 176)" />
+                  <ProgressBar value={50} maxValue={100} color=" rgb(191 70 70" />
+                  <ProgressBar value={15} maxValue={100} color=" rgb(147 255 87)" />
+                  <ProgressBar value={85} maxValue={100} color=" rgb(87 117 255)" />
+                  <ProgressBar value={25} maxValue={100} color=" rgb(0 255 154)" />
+                </div>
+                <div className='tiles-container'>
 
+                  <div className="tile">
+                    <i className="fas fa-interview"></i>
+                    <h3>Interview</h3>
+                    <p className="number">10</p>
+                  </div>
+                  <div className="tile">
+                    <i className="fas fa-clipboard-check"></i>
+                    <h3>Onboarding</h3>
+                    <p className="number">5</p>
+                  </div>
+                  <div className="tile">
+                    <i className="fas fa-list"></i>
+                    <h3>Shortlisting</h3>
+                    <p className="number">20</p>
+                  </div>
+                  <div className="tile">
+                    <i className="fas fa-check-circle"></i>
+                    <h3>Hired</h3>
+                    <p className="number">15</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,39 +1,23 @@
+// LoginForm.jsx
 import React, { useState } from 'react';
 import './styles.scss';
 
 const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }> = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(`${email} has been verified! Welcome back!`);
+    setError(''); // Reset the error message
 
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
-      //const response = await fetch('https://hrsystem-back.empireonecontactcenter.com/sign-in', { 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      if (response.ok) {
-        console.log('Login successful');
-        window.location.href = '/dashboard';
-      } else if (response.status === 404) {
-        console.log('Email or password incorrect or not registered');
-      } else {
-        const data = await response.json();
-        console.log('Server error:', data.error);
-      }
+      // Call the onLogin function passed from the parent component
+      onLogin(email, password);
     } catch (error) {
       console.error('An error occurred during login:', error);
+      setError('An error occurred during login');
     }
   };
 
@@ -97,6 +81,7 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
                 <button>Submit</button>
               </form>
             </div>
+            {error && <p>{error}</p>}
           </div>
         </div>
       </div>

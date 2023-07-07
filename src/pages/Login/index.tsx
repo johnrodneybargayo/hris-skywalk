@@ -8,37 +8,38 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
+      const response = await fetch('http://localhost:3000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
+      console.log('Response:', response); // Add this logging statement
+  
       if (response.ok) {
         const data = await response.json();
-        if (data.success) {
-          // Login successful
+        if (data.token) {
           console.log('Login successful');
-          // Redirect to the dashboard page
+          localStorage.setItem('accessToken', data.token);
           history.push('/dashboard');
         } else {
-          // Login failed
-          setError(data.message);
+          setError(data.error);
         }
-      } else if (response.status === 404) {
-        // Login failed (email or password incorrect)
-        setError('Email or password incorrect');
       } else {
-        // Other server errors
-        setError('An error occurred during login');
+        const errorData = await response.json();
+        setError(errorData.error || 'An error occurred during login');
       }
     } catch (error) {
       console.error('Error occurred during login:', error);
       setError('An error occurred during login');
     }
   };
+  
+  
+
+
 
   return (
     <div>
