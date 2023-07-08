@@ -8,13 +8,17 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
+      const token = localStorage.getItem('accessToken');
+  
       const response = await fetch('https://empireone-global-inc.uc.r.appspot.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ email, password }),
       });
+  
   
       console.log('Response:', response); // Add this logging statement
   
