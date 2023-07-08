@@ -92,7 +92,6 @@ h1.title-sources {
   padding-left: 8px;
 }
 
-
 .tiles-container {
   display: grid;
   grid-template-columns: repeat(2, 2fr);
@@ -109,24 +108,40 @@ h1.title-sources {
   padding: 20px;
   text-align: center;
   border-radius: 8px;
-  width: 145px;
+  width: 195px;
   font-family: Satoshi;
   font-size: 15px;
   font-weight: 600;
   color: aliceblue;
+  transition: transform 0.3s ease-in-out;
+}
+
+.tile:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  color: #ffffff; /* Change the color when hovered */
 }
 
 .tile i {
   font-size: 36px;
   margin-bottom: 10px;
+  transition: color 0.3s ease-in-out; /* Add transition for the color change */
+}
+
+.tile:hover i {
+  color: #d9fa21; /* Change the color of the icon when the tile is hovered */
 }
 
 .tile h3 {
   font-size: 18px;
   margin-bottom: 8px;
+  padding: 0;
+  margin-top: 0;
 }
 
 .tile .number {
   font-size: 24px;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
