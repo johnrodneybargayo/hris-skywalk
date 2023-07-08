@@ -1,9 +1,9 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
 
-.dashboard {
+.dashboard-recruitment {
   background-color: rgb(238, 242, 246);
   width: 97%;
-  min-height: calc(100vh - 88px);
+  min-height: calc(150vh - 150px);
   flex-grow: 1;
   padding: 20px;
   max-width: 100%;
@@ -14,7 +14,7 @@
   transition: width 0.3s ease-in-out;
 }
 
-.dashboard.half-width {
+.dashboard-recruitment.half-width {
   width: 85%;
 }
 
@@ -25,10 +25,21 @@
   height: 100vh;
 }
 
-.dashboard {
+.dashboard-recruitment {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 80px;
+}
+
+
+.dashboard-container-recruitment {
+  display: flex;
+  position: relative;
+  top: -45rem;
+  margin-right: auto;
+  left: -17rem;
 }
 
 .recruitment-container {
@@ -48,15 +59,15 @@
 }
 
 .sources-container {
-  border: solid 1px;
+  background: rgba(29,0,222,.278);
+  border: 1px solid rgba(76,0,229,.38);
   border-radius: 20px;
+  height: 75vh;
+  padding: 10px;
   position: absolute;
   top: 88px;
-  width: 100%;
-  padding: 10px;
-  height: 40vh;
-  border-color: rgb(76 0 229 / 38%);
-  background: #1d00de47;
+  width: 25rem;
+  left: 0rem;
 }
 
 h1.title-sources {
@@ -88,20 +99,18 @@ h1.title-sources {
   font-family: Satoshi;
   font-weight: 700;
   color: #451397;
-  padding-top: 13px;
-  padding-left: 8px;
+  padding-top: 10px;
+  padding-left: 5px;
 }
 
-.tiles-container {
-  display: grid;
-  grid-template-columns: repeat(2, 2fr);
-  grid-gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  position: fixed;
-  top: 175px;
-  left: 38rem;
+p.label-box-progress {
+  font-size: 15px;
+  font-family: Satoshi;
+  font-weight: 500;
+  line-height: 0.5;
 }
+
+
 
 .tile {
   background-color: #3e3298;
@@ -144,4 +153,9 @@ h1.title-sources {
   font-weight: bold;
   margin: 0;
   padding: 0;
+}
+
+.recruitment-tile-2 {
+  position: relative;
+  bottom: 120px;
 }

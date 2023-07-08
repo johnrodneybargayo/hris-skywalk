@@ -1,89 +1,75 @@
 .banner {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .logo-column {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-banner {
-    margin-right: 10px;
-    max-width: 15%;
-  }
-  
-  .side-panel-btn,
-  .settings-icon,
-  .notification-icon,
-  .profile-icon {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #333;
-  }
-  
-  .title-column_2 {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    left: 109rem;
-  }
-  
-  .title-column {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    left: 8rem;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-    margin: 0 10px;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.4375em;
-    font-family: Roboto, sans-serif;
-    color: rgb(54, 65, 82);
-    box-sizing: border-box;
-    cursor: text;
-    position: relative;
-    margin-left: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 16px;
-    outline: none;
-    border: 1px solid #ccc;
-  
-    &:hover {
-      border-color: blue;
-    }
-  
-    input {
-      border: none;
-      outline: none;
-      padding: 5px;
-    }
-  }
-  
-  .search-icon {
-    margin-left: 5px;
-    position: relative;
-    left: 3px;
-  }
-  
-  .settings-icon,
-  .notification-icon,
-  .profile-icon {
-    margin-left: 10px;
-  }
-  
-  .settings-icon:hover,
-  .notification-icon:hover,
-  .profile-icon:hover {
-    color: #666;
-  }
-  
+  position: fixed; /* Add position fixed to make the banner fixed */
+  top: 0; /* Adjust the top position as needed */
+  left: 0; /* Adjust the left position as needed */
+  z-index: 999; /* Set a high z-index value */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #ffffff; /* Set white background color */
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-banner {
+  height: 40px;
+  margin-right: 10px; /* Add margin between logo and other items */
+  max-width: 30%;
+}
+
+.side-panel-btn {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px; /* Add margin between side-panel-btn and search-bar */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.266); /* Add border with opacity */
+}
+
+
+.search-bar input[type="text"] {
+  border: none;
+  outline: none;
+  padding: 5px;
+}
+
+.search-icon {
+  margin-left: 5px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-left: 90rem;
+}
+
+.notification-icon,
+.profile-icon,
+.settings-icon {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px; /* Add margin between icons */
+}
+
+/* Additional styles for the icons (replace with your own) */
+.side-panel-btn,
+.notification-icon,
+.profile-icon,
+.settings-icon {
+  color: #333;
+  font-size: 16px;
+}

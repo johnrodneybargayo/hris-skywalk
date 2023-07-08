@@ -12,14 +12,14 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ value, maxValue, color }) => 
   const barStyle = {
     width: `${progress}%`,
     backgroundColor: color,
-    height: '35px',
+    height: '45px',
     transition: 'width 0.5s ease',
     borderRadius: '15px',
   };
 
   return (
     <div>
-      <div style={{ width: '100%', height: '35px', backgroundColor: '#f1f1f1', borderRadius: '15px' }}>
+      <div style={{ width: '100%', height: '45px', backgroundColor: '#f1f1f1', borderRadius: '15px' }}>
         <div style={barStyle}><p className='label-progress'>{`${progress}%`}</p></div>
       </div>
       

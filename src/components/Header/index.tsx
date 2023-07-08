@@ -9,14 +9,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ togglePanel }) => {
   return (
     <div className="banner">
-      <div className="logo-column">
+      <div className="left-section">
         <img
           className="logo-banner"
           src="https://empireonecontactcenter.com/wp-content/uploads/2023/03/Contact-Center-logo.png"
           alt="Logo"
         />
-      </div>
-      <div className="title-column">
         <button className="side-panel-btn" onClick={togglePanel}>
           <FaBars />
         </button>
@@ -25,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ togglePanel }) => {
           <FaSearch className="search-icon" />
         </div>
       </div>
-      <div className="title-column_2">
+      <div className="right-section">
         <button className="notification-icon">
           <FaBell />
         </button>
