@@ -9,19 +9,20 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (email: string, password: string) => {
     try {
       const token = localStorage.getItem('accessToken');
-  
+      const apiKey = 'AIzaSyAI1NsFZrRaBSRCtj8TkIxA3Mg-qYFDRzg'; // Replace with your actual API key
+
       const response = await fetch('https://empireone-global-inc.uc.r.appspot.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
+          'X-API-Key': apiKey,
         },
         body: JSON.stringify({ email, password }),
       });
-  
-  
+
       console.log('Response:', response); // Add this logging statement
-  
+
       if (response.ok) {
         const data = await response.json();
         if (data.token) {
@@ -40,10 +41,6 @@ const LoginPage: React.FC = () => {
       setError('An error occurred during login');
     }
   };
-  
-  
-
-
 
   return (
     <div>
