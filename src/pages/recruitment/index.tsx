@@ -4,6 +4,9 @@ import Sidepanel from '../../components/Sidepanel';
 import Loader from '../../components/Loader';
 import Dropdown from '../../components/Dropdown';
 import ProgressBar from '../../components/ProgressBar';
+import Applications from '../../components/Applications';
+import { faClipboardCheck, faList, faCheckCircle, faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './styles.scss';
 
 const RecruitmentPage = () => {
@@ -55,25 +58,31 @@ const RecruitmentPage = () => {
                 <div className='tiles-container'>
 
                   <div className="tile">
-                    <i className="fas fa-interview"></i>
+                    <i className="fas fa-interview"><FontAwesomeIcon icon={faClipboardQuestion} /></i>
                     <h3>Interview</h3>
                     <p className="number">10</p>
                   </div>
                   <div className="tile">
-                    <i className="fas fa-clipboard-check"></i>
+                    <i className="fas fa-clipboard-check"><FontAwesomeIcon icon={faClipboardCheck} />
+                    </i>
                     <h3>Onboarding</h3>
                     <p className="number">5</p>
                   </div>
                   <div className="tile">
-                    <i className="fas fa-list"></i>
+                    <i className="fas fa-list"><FontAwesomeIcon icon={faList} /></i>
                     <h3>Shortlisting</h3>
                     <p className="number">20</p>
                   </div>
                   <div className="tile">
-                    <i className="fas fa-check-circle"></i>
+                    <i className="fa-check-circle"><FontAwesomeIcon icon={faCheckCircle} /></i>
                     <h3>Hired</h3>
                     <p className="number">15</p>
                   </div>
+                </div>
+                <div className="tile-appbox">
+                  <>
+                    <Applications />
+                  </>
                 </div>
               </div>
             </div>
