@@ -1,7 +1,7 @@
 .dashboard {
   background-color: rgb(238, 242, 246);
   width: 97%;
-  min-height: calc(100vh - 88px);
+  min-height: calc(150vh - 150px);
   flex-grow: 1;
   padding: 20px;
   max-width: 100%;
@@ -27,6 +27,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 80px;
 }
 
 .dashboard-container {
@@ -35,8 +37,13 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
   position: relative;
-  top: 8rem;
+  top: -5rem;
   margin-right: auto;
+
+  .banner-container {
+    z-index: 9999;
+    /* Set a high z-index value to bring the banner to the front */
+  }
 
 }
 

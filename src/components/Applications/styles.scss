@@ -60,7 +60,8 @@
 
 .small-box-1,
 .small-box-2,
-.small-box-3 {
+.small-box-3,
+.small-box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,6 +72,7 @@
 .small-box-1,
 .small-box-2,
 .small-box-3,
+.small-box,
 .label,
 .number-app {
     align-items: center;
@@ -109,13 +111,12 @@
 }
 
 .tile-appbox {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     padding: 10px;
     position: relative;
-    left: 27.3rem;
-    bottom: 1rem;
-
+    left: 27rem;
+    bottom: 43rem;
 }
 
 
@@ -127,4 +128,51 @@ label {
     color: #451397;
     padding-top: 13px;
     padding-left: 8px;
+}
+
+.label-tile-appbox-2-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: -2rem;
+}
+
+
+.small-box {
+    position: relative;
+}
+
+.small-box::before,
+.small-box::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    bottom: 0;
+    left: 150px;
+    width: 1px;
+    height: 60px;
+    background-color: #ececec;
+}
+
+.small-box::after {
+    left: -26px;
+}
+
+.small-box:hover,
+.small-box:hover,
+.small-box:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+p.label-app-2 {
+    position: relative;
+    top: 16px;
+}
+
+.label-tile-appbox-2 {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: -2rem;
 }

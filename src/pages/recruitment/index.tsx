@@ -5,8 +5,7 @@ import Loader from '../../components/Loader';
 import Dropdown from '../../components/Dropdown';
 import ProgressBar from '../../components/ProgressBar';
 import Applications from '../../components/Applications';
-import { faClipboardCheck, faList, faCheckCircle, faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TilesContainer from '../../components/RecruitmentList';
 import './styles.scss';
 
 const RecruitmentPage = () => {
@@ -38,51 +37,35 @@ const RecruitmentPage = () => {
         <>
           <Header togglePanel={togglePanel} />
           <Sidepanel isOpen={isPanelOpen} />
-          <div className={`dashboard ${isDashboardHalfWidth ? '' : 'half-width'}`}>
-            <div className="recruitment-container">
-              <div className="recruitment-tile">
-                <h1>RECRUITMENT</h1>
-              </div>
-              <div className="sources-container">
-                <h1 className='title-sources'>Sources</h1>
-                <div className="dropdown-container">
-                  <Dropdown />
+          <div className={`dashboard-recruitment ${isDashboardHalfWidth ? '' : 'half-width'}`}>
+            <div className="dashboard-container-recruitment">
+              <div className="recruitment-container">
+                <div className="recruitment-tile">
+                  <h1>RECRUITMENT</h1>
                 </div>
-                <div className='box-container'>
-                  <ProgressBar value={45} maxValue={100} color=" rgb(127 48 176)" />
-                  <ProgressBar value={50} maxValue={100} color=" rgb(191 70 70" />
-                  <ProgressBar value={15} maxValue={100} color=" rgb(147 255 87)" />
-                  <ProgressBar value={85} maxValue={100} color=" rgb(87 117 255)" />
-                  <ProgressBar value={25} maxValue={100} color=" rgb(0 255 154)" />
-                </div>
-                <div className='tiles-container'>
-
-                  <div className="tile">
-                    <i className="fas fa-interview"><FontAwesomeIcon icon={faClipboardQuestion} /></i>
-                    <h3>Interview</h3>
-                    <p className="number">10</p>
+                <div className="sources-container">
+                  <h1 className='title-sources'>Sources</h1>
+                  <div className="dropdown-container">
+                    <Dropdown />
                   </div>
-                  <div className="tile">
-                    <i className="fas fa-clipboard-check"><FontAwesomeIcon icon={faClipboardCheck} />
-                    </i>
-                    <h3>Onboarding</h3>
-                    <p className="number">5</p>
+                  <div className='box-container'>
+                    <p className='label-box-progress'>EmpireOne Contact Center</p>
+                    <ProgressBar value={45} maxValue={100} color=" rgb(127 48 176)" />
+                    <p className='label-box-progress'>Facebook Page</p>
+                    <ProgressBar value={50} maxValue={100} color=" rgb(191 70 70" />
+                    <p className='label-box-progress'>Refferal</p>
+                    <ProgressBar value={11} maxValue={100} color=" rgb(147 255 87)" />
+                    <p className='label-box-progress'>JobStreet</p>
+                    <ProgressBar value={84} maxValue={100} color=" rgb(87 117 255)" />
+                    <p className='label-box-progress'>Mynimo</p>
+                    <ProgressBar value={25} maxValue={100} color=" rgb(0 255 154)" />
+                    <p className='label-box-progress'>LinkedIn</p>
+                    <ProgressBar value={30} maxValue={100} color=" rgb(10 215 14)" />
                   </div>
-                  <div className="tile">
-                    <i className="fas fa-list"><FontAwesomeIcon icon={faList} /></i>
-                    <h3>Shortlisting</h3>
-                    <p className="number">20</p>
-                  </div>
-                  <div className="tile">
-                    <i className="fa-check-circle"><FontAwesomeIcon icon={faCheckCircle} /></i>
-                    <h3>Hired</h3>
-                    <p className="number">15</p>
-                  </div>
-                </div>
-                <div className="tile-appbox">
-                  <>
+                  <TilesContainer />
+                  <div className="tile-appbox">
                     <Applications />
-                  </>
+                  </div>
                 </div>
               </div>
             </div>
