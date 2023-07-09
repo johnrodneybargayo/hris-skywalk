@@ -32,14 +32,14 @@ const ApplicationBox = () => {
           <div className="shape shape3"></div>
           <div className="small-box-1">
             <p className="number-app">16</p>
-            <p className="label-app">Receive</p>
+            <p className="label-app">Male</p>
           </div>
           <div className="small-box">
             <p className="label-app-2">GENDER RATIO</p>
           </div>
           <div className="small-box-3">
             <p className="number-app">10</p>
-            <p className="label-app">Failed</p>
+            <p className="label-app">Female</p>
           </div>
         </div>
       </div>
