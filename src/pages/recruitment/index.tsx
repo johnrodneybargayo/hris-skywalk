@@ -5,6 +5,8 @@ import Loader from '../../components/Loader';
 import Dropdown from '../../components/Dropdown';
 import ProgressBar from '../../components/ProgressBar';
 import Applications from '../../components/Applications';
+import Interview from '../../components/Interviews';
+import Chart from '../../components/Chart';
 import TilesContainer from '../../components/RecruitmentList';
 import './styles.scss';
 
@@ -66,13 +68,35 @@ const RecruitmentPage = () => {
                   <div className="tile-appbox">
                     <Applications />
                   </div>
+                  <div className="interviews-box-container">
+                    <div className="interviews-box">
+                      <h2>Interviews</h2>
+                      <div className="interview-scrollable">
+                        <Interview candidate="John Doe" />
+                        <Interview candidate="Jane Smith" />
+                        <Interview candidate="Michael Johnson" />
+                        <Interview candidate="John Doe" />
+                      </div>
+                      <div className="button-74-container">
+                        <button className="button-74">
+                          <span className="button-icon">+</span>
+                          Add Candidates
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='chart-container-1'>
+                  <h1 className='chart-label'>Job Statistic</h1>
+                  <Chart />
                 </div>
               </div>
             </div>
           </div>
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 
