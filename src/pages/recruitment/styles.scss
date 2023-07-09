@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 80px;
+  top: 55px;
 }
 
 
@@ -59,15 +59,20 @@
 }
 
 .sources-container {
-  background: rgba(29,0,222,.278);
-  border: 1px solid rgba(76,0,229,.38);
+  background: rgba(29, 0, 222, .278);
+  border: 1px solid rgba(76, 0, 229, .38);
   border-radius: 20px;
   height: 75vh;
   padding: 10px;
   position: absolute;
   top: 88px;
   width: 25rem;
-  left: 0rem;
+  left: 2rem;
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px,
+    rgba(240, 46, 170, 0.3) -10px 10px,
+    rgba(240, 46, 170, 0.2) -15px 15px,
+    rgba(240, 46, 170, 0.1) -20px 20px,
+    rgba(240, 46, 170, 0.05) -25px 25px;
 }
 
 h1.title-sources {
@@ -92,6 +97,7 @@ h1.title-sources {
   font-size: 15px;
   font-weight: 600;
   line-height: 0.5;
+
 }
 
 .label-progress {
@@ -99,8 +105,8 @@ h1.title-sources {
   font-family: Satoshi;
   font-weight: 700;
   color: #451397;
-  padding-top: 10px;
-  padding-left: 5px;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
 p.label-box-progress {
@@ -108,6 +114,12 @@ p.label-box-progress {
   font-family: Satoshi;
   font-weight: 500;
   line-height: 0.5;
+}
+
+.interviews-box-container {
+  position: relative;
+  top: -83rem;
+  left: 65rem;
 }
 
 
@@ -128,17 +140,20 @@ p.label-box-progress {
 .tile:hover {
   transform: translateY(-5px);
   cursor: pointer;
-  color: #ffffff; /* Change the color when hovered */
+  color: #ffffff;
+  /* Change the color when hovered */
 }
 
 .tile i {
   font-size: 36px;
   margin-bottom: 10px;
-  transition: color 0.3s ease-in-out; /* Add transition for the color change */
+  transition: color 0.3s ease-in-out;
+  /* Add transition for the color change */
 }
 
 .tile:hover i {
-  color: #d9fa21; /* Change the color of the icon when the tile is hovered */
+  color: #d9fa21;
+  /* Change the color of the icon when the tile is hovered */
 }
 
 .tile h3 {
@@ -158,4 +173,140 @@ p.label-box-progress {
 .recruitment-tile-2 {
   position: relative;
   bottom: 120px;
+}
+
+.interviews-box {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #451397;
+  color: #007bff;
+  font-family: Satoshi;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 0.5;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
+    rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px,
+    rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.interviews-box h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.interviews-box {
+  padding-bottom: 10px;
+}
+
+.interview-scrollable {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+
+.interview:hover {
+  background-color: #eaeaea;
+}
+
+.candidate {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.edit-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.edit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+.button-74 {
+  background-color: #a79fce;
+  border: #3e3298;
+  border-radius: 30px;
+  box-shadow: #3e3298 4px 4px 0 0;
+  color: #3e3298;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Satoshi;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #3e3298 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+.button-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #3e3298;
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
+  font-family: Satoshi;
+}
+
+.button-74-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.Chart-container {
+  position: relative;
+  top: 55rem;
+  left: -9rem;
+  border: solid 1px #6425c557;
+  border-radius: 15px;
+  width: 45vw;
+}
+
+h1.chart-label {
+  font-family: Satoshi;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 0.5;
+  margin-left: 22px;
+  margin-right: 22px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
 }
