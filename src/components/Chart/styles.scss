@@ -2,13 +2,18 @@
 
 .chart-container-1 {
   position: relative;
+  max-height: 26rem;
   top: 52rem;
-  left: -16rem;
+  left: -106.7rem;
   border: solid 1px rgba(100, 37, 197, 0.3411764706);
   border-radius: 15px;
   width: 65rem;
   background: #451397;
-  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px,
+    rgba(240, 46, 170, 0.3) -10px 10px,
+    rgba(240, 46, 170, 0.2) -15px 15px,
+    rgba(240, 46, 170, 0.1) -20px 20px,
+    rgba(240, 46, 170, 0.05) -25px 25px;
   overflow: hidden;
 }
 
@@ -36,7 +41,7 @@
   background: linear-gradient(297deg, #90CAF9 0%, rgba(144, 202, 249, 0) 100%);
 }
 
-.chart-container-1 .shape1 {
+.chart-container-1 .shape1-chart {
   position: absolute;
   top: -69px;
   left: -134px;
@@ -46,7 +51,7 @@
   border-radius: 50%;
 }
 
-.chart-container-1 .shape2 {
+.chart-container-1 .shape2-chart {
   position: absolute;
   top: 18rem;
   left: 60rem;

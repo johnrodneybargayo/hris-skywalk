@@ -7,9 +7,9 @@ const ApplicationBox = () => {
       <div className='label-tile-appbox'>
         <label>Applications</label>
         <div className="application-box">
-          <div className="shape shape1"></div>
-          <div className="shape shape2"></div>
-          <div className="shape shape3"></div>
+          <div className="shape shape1-app"></div>
+          <div className="shape shape2-app"></div>
+          <div className="shape shape3-app"></div>
           <div className="small-box-1">
             <p className="number-app">16</p>
             <p className="label-app">Receive</p>
@@ -27,9 +27,9 @@ const ApplicationBox = () => {
 
       <div className='label-tile-appbox-2'>
         <div className="application-box">
-          <div className="shape shape1"></div>
-          <div className="shape shape2"></div>
-          <div className="shape shape3"></div>
+          <div className="shape-app shape1-app"></div>
+          <div className="shape-app shape2-app"></div>
+          <div className="shape-app shape3-app"></div>
           <div className="small-box-1">
             <p className="number-app">16</p>
             <p className="label-app">Male</p>

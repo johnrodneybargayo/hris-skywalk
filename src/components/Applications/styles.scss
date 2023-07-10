@@ -22,8 +22,8 @@
 
 .application-box::before,
 .application-box::after,
-.application-box .shape1,
-.application-box .shape2 {
+.application-box .shape1-app,
+.application-box .shape2-app {
     content: '';
     position: absolute;
     width: 100px;
@@ -40,20 +40,20 @@
 }
 
 .application-box::after {
-    bottom: 31px;
+    bottom: 87px;
     right: -24px;
     background-color: #a292dc;
     opacity: 0.1;
 }
 
-.application-box .shape1 {
+.application-box .shape1-app {
     top: 60px;
     left: -32px;
     background-color: #d3cfe4;
     opacity: 0.1;
 }
 
-.application-box .shape2 {
+.application-box .shape2-app {
     bottom: 60px;
     right: -40px;
     background-color: #a292dc;
@@ -118,10 +118,10 @@
     justify-content: center;
     padding: 10px;
     position: relative;
-    left: 30rem;
-    bottom: 42rem;
+    left: -14.9rem;
+    bottom: -27rem;
+    max-width: 47%;
 }
-
 
 label {
     display: flex;
