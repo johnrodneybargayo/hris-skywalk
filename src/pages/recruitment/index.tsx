@@ -71,10 +71,6 @@ const RecruitmentPage = () => {
                     <p className='label-box-progress'>LinkedIn</p>
                     <ProgressBar value={30} maxValue={100} color=" rgb(10 215 14)" />
                   </div>
-                  {/* Shape 1 */}
-                  <div className="shape1"></div>
-                  {/* Shape 2 */}
-                  <div className="shape2"></div>
                 </div>
                 <TilesContainer />
                 <div className="tile-appbox">
