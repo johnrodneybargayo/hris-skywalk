@@ -11,8 +11,8 @@ const LoginPage: React.FC = () => {
       const token = localStorage.getItem('accessToken');
       const apiKey = 'AIzaSyAI1NsFZrRaBSRCtj8TkIxA3Mg-qYFDRzg'; // Replace with your actual API key
 
-      //const response = await fetch('https://empireone-global-inc.uc.r.appspot.com/api/login', {
-        const response = await fetch('http://localhost:8080/api/login', {  
+      const response = await fetch('https://empireone-global-inc.uc.r.appspot.com/api/login', {
+        //const response = await fetch('http://localhost:8080/api/login', {  
       method: 'POST',
         headers: {
           'Content-Type': 'application/json',
