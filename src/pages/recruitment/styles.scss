@@ -31,6 +31,7 @@
   align-items: center;
   position: relative;
   top: 55px;
+  overflow: hidden;
 }
 
 
@@ -59,11 +60,13 @@
 }
 
 .sources-container {
-  background: rgba(29, 0, 222, .278);
-  border: 1px solid rgba(76, 0, 229, .38);
+  background: linear-gradient(323deg, #0703ff, #c4cbff);
+  border: 1px solid rgba(76, 0, 229, 0.38);
   border-radius: 20px;
-  height: 75vh;
-  padding: 10px;
+  height: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
   position: absolute;
   top: 88px;
   width: 25rem;
@@ -73,6 +76,39 @@
     rgba(240, 46, 170, 0.2) -15px 15px,
     rgba(240, 46, 170, 0.1) -20px 20px,
     rgba(240, 46, 170, 0.05) -25px 25px;
+}
+
+/* Shape 1 */
+.sources-container .shape1 {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 32, 255, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+  border-radius: 50%;
+  border-radius: 10px;
+
+}
+
+/* Shape 2 */
+.sources-container .shape2 {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 32, 255, 0.17);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+  border-radius: 50%;
+  border-radius: 10px;
 }
 
 h1.title-sources {
@@ -118,11 +154,10 @@ p.label-box-progress {
 
 .interviews-box-container {
   position: relative;
-  top: -83rem;
-  left: 65rem;
+  top: 5.4rem;
+  left: -11rem;
+  width: 29rem;
 }
-
-
 
 .tile {
   background-color: #3e3298;
@@ -202,13 +237,13 @@ p.label-box-progress {
 
 .interviews-box {
   padding-bottom: 10px;
+  height: 31rem;
 }
 
 .interview-scrollable {
-  max-height: 200px;
-  overflow-y: auto;
+  height: 25rem;
+  overflow: auto;
 }
-
 
 .interview:hover {
   background-color: #eaeaea;
@@ -287,6 +322,8 @@ p.label-box-progress {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  position: relative;
+  top: -4.5rem;
 }
 
 h1.chart-label {
@@ -300,4 +337,69 @@ h1.chart-label {
   display: flex;
   justify-content: center;
   color: #fff;
+}
+
+h1.job-header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.job-postings-container {
+  font-family: "Satoshi";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 0.5;
+  color: var(--grey-900, #212121);
+  position: relative;
+  padding: 15px;
+  top: 40rem;
+  right: 105rem;
+  background: var(--amber-50, #FFF8E1); /* Use custom CSS variable for background color */
+  border: 1px solid #000000;
+  border-radius: 15px;
+  width: 28rem;
+  display: inline-block;
+  overflow: hidden;
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
+    rgba(240, 46, 170, 0.3) 10px 10px,
+    rgba(240, 46, 170, 0.2) 15px 15px,
+    rgba(240, 46, 170, 0.1) 20px 20px,
+    rgba(240, 46, 170, 0.05) 25px 25px;
+}
+
+.job-postings-container::before,
+.job-postings-container::after,
+.circle-shape {
+  content: '';
+  position: absolute;
+  width: 211px;
+  height: 211px;
+  border-radius: 100%;
+  border: 19px var(--blue-500, #2196F3);
+}
+
+.job-postings-container::before {
+  top: -105px;
+  left: -105px;
+  border: 10px solid var(--blue-500, #2196F3);
+}
+
+.job-postings-container::after {
+  bottom: -127px;
+  right: -124px;
+  border: 10px solid var(--blue-500, #2196F3);
+}
+
+.shape1-job {
+  top: 31rem;
+  right: -2rem;
+  border: 3px solid var(--blue-500, #2196F3);
+}
+
+.shape2-job {
+  bottom: 32rem;
+  left: -3rem;
+  border: 3px solid var(--blue-500, #2196F3);
 }
