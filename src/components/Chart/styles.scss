@@ -69,12 +69,13 @@ $color: #9baec8 #d9e1e8 #2b90d9 #8ec0e4 #cadbe9 #6aafe6 #d6ecfa #a5dff9 #dae9f4 
   .igData#{$i} {
     background: nth($color, $i);
     height: 0px;
-    left: $width/($dataNum+1) * $i - 10;
-    -webkit-animation: showBar#{$i} 1.2s $i*.1s forwards;
-    -moz-animation: showBar#{$i} 1.2s $i*.1s forwards;
-    animation: showBar#{$i} 1.2s $i*.1s forwards;
+    left: calc(#{$width} / (#{$dataNum} + 1) * #{$i} - 10);
+    -webkit-animation: showBar#{$i} 1.2s $i * .1s forwards;
+    -moz-animation: showBar#{$i} 1.2s $i * .1s forwards;
+    animation: showBar#{$i} 1.2s $i * .1s forwards;
   }
 }
+
 
 .igData:before {
   position: absolute;
