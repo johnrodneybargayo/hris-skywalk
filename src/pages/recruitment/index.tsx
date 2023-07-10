@@ -86,10 +86,13 @@ const RecruitmentPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className='chart-container-1'>
-                  <h1 className='chart-label'>Job Statistic</h1>
+                <div className="chart-container-1">
+                  <h1 className="chart-label">Job Statistic</h1>
                   <Chart />
+                  <div className="shape1"></div>
+                  <div className="shape2"></div>
                 </div>
+
               </div>
             </div>
           </div>
