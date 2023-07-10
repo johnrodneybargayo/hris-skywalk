@@ -35,7 +35,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "netlify:build": "npm run build",
+    "netlify:deploy": "echo 'Deploying to Netlify'",
+    "netlify:postdeploy": "echo 'Post deployment steps'",
+    "netlify:build:functions": "echo 'Building Netlify functions'",
+    "netlify:serve:functions": "echo 'Serving Netlify functions'"
   },
   "eslintConfig": {
     "extends": [
