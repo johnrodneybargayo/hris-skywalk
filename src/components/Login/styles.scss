@@ -497,6 +497,13 @@ label {
         right: 14rem;
     }
 
+    .register {
+        background: #eee;
+        border-radius: 90%/10%;
+        transform: translateY(-10%);
+        transition: 0.8s ease-in-out;
+    }
+
     .login label {
         margin: 15% 0 5%;
         color: #fff;
