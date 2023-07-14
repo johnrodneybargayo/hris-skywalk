@@ -35,7 +35,7 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
             <input type="checkbox" id="chk" aria-hidden="true" />
             <div className="login">
               <form className="form" onSubmit={handleSubmit} method="POST">
-                <label htmlFor="chk" aria-hidden="true">
+                <label className="label-login" htmlFor="chk" aria-hidden="true">
                   HRIS Sign in
                 </label>
                 <input
@@ -70,7 +70,7 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
 
             <div className="register">
               <form className="form">
-                <label htmlFor="chk" aria-hidden="true">
+                <label htmlFor="chk" aria-hidden="true" className="label-forgot-pass">
                   Password Reset
                 </label>
                 <p className="forgot-pass">
