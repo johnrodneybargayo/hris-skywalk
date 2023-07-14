@@ -482,7 +482,7 @@ label {
 
     label#remeber {
         position: absolute;
-        top: 16.4rem;
+        top: 18.4rem;
         font-size: 25px;
         right: 90px;
     }
@@ -493,7 +493,7 @@ label {
         margin-left: 36rem;
         margin-top: -18px;
         position: relative;
-        top: 0px;
+        top: 26px;
         right: 14rem;
     }
 
@@ -505,5 +505,25 @@ label {
     .login label {
         margin: 15% 0 5%;
         color: #fff;
+    }
+
+    .logo {
+        margin-left: 33%;
+        margin-top: -54%;
+        position: absolute;
+    }
+
+    input#email {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 35px;
+    }
+
+    input#passwd {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 35px;
     }
 }
