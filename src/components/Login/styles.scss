@@ -505,17 +505,14 @@ label {
     }
 
     .login label {
-        margin: 15% 0 5%;
+        margin: 5% 0 5%;
         color: #fff;
     }
 
-    input#email {
-        position: relative;
-        top: 35px;
-    }
 
-    input#passwd {
-        position: relative;
-        top: 35px;
+    .logo {
+        margin-left: 33%;
+        margin-top: -35%;
+        position: absolute;
     }
 }
