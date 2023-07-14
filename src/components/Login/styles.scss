@@ -475,7 +475,7 @@ label {
     }
 }
 
-@media (min-width: 1280px) {
+@media (max-width: 1280px) {
     .image-placeholder {
         width: 100%;
     }
@@ -497,32 +497,17 @@ label {
         right: 14rem;
     }
 
-    #chk:checked~.register label {
-        transform: scale(1);
-        margin: 5% 0 5%;
-    }
-
     .login label {
         margin: 15% 0 5%;
         color: #fff;
     }
 
-    .logo {
-        margin-left: 33%;
-        margin-top: -54%;
-        position: absolute;
-    }
-
     input#email {
-        display: flex;
-        justify-content: center;
         position: relative;
         top: 35px;
     }
 
     input#passwd {
-        display: flex;
-        justify-content: center;
         position: relative;
         top: 35px;
     }
