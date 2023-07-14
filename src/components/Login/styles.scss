@@ -415,18 +415,17 @@ label {
 
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
 
-
-
-        img.logo {
-            display: flex;
-            z-index: 999;
-            justify-content: center;
-            left: 2rem;
-            top: 17rem;
-            width: 20%;
-            height: 5%;
-            max-width: 20%;
+        .image-placeholder {
+            width: 100%;
         }
+
+        .logo {
+            margin-left: 33%;
+            margin-top: -42%;
+            position: absolute;
+            top: 28rem;
+        }
+
     
         .form {
             display: flex;
@@ -464,7 +463,14 @@ label {
         input#remember-me {
             display: flex;
             align-items: center;
-            margin-left: 17rem;
+            margin-left: 15rem;
             margin-top: -25.5px;
+        }
+
+        .register {
+            background: #eee;
+            border-radius: 90%/10%;
+            transform: translateY(15%);
+            transition: 0.8s ease-in-out;
         }
     }
