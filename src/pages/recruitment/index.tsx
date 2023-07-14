@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Sidepanel from '../../components/Sidepanel';
 import Loader from '../../components/Loader';
@@ -12,9 +13,11 @@ import TilesContainer from '../../components/RecruitmentList';
 import './styles.scss';
 
 const RecruitmentPage = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isDashboardHalfWidth, setIsDashboardHalfWidth] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -28,13 +31,17 @@ const RecruitmentPage = () => {
   ];
 
   useEffect(() => {
-    // Simulate a delay of 2 seconds = 2000 before marking loading as complete
     const timeout = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
 
     return () => clearTimeout(timeout);
   }, []);
+
+  useEffect(() => {
+    const pathname = history.location.pathname;
+    setActiveSection(pathname.replace('/', ''));
+  }, [history.location.pathname]);
 
   return (
     <div className="dashboard-page">
@@ -45,7 +52,7 @@ const RecruitmentPage = () => {
       ) : (
         <>
           <Header togglePanel={togglePanel} />
-          <Sidepanel isOpen={isPanelOpen} />
+          <Sidepanel isOpen={isPanelOpen} active={activeSection} />
           <div className={`dashboard-recruitment ${isDashboardHalfWidth ? '' : 'half-width'}`}>
             <div className="dashboard-container-recruitment">
               <div className="recruitment-container">
@@ -112,14 +119,12 @@ const RecruitmentPage = () => {
                   <div className="circle-shape shape1-job"></div>
                   <div className="circle-shape shape2-job"></div>
                 </div>
-
               </div>
             </div>
           </div>
         </>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 };
 
