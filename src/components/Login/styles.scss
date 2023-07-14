@@ -408,18 +408,5 @@ label {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
-    .image-placeholder {
-        display: none;
-    }
 
-    img.logo {
-        display: flex;
-        z-index: 999;
-        justify-content: center;
-        left: 3rem;
-        top: 26rem;
-        width: 20%;
-        height: 5%;
-        max-width: 20%;
-    }
 }
