@@ -44,13 +44,22 @@
     z-index: 9999;
     /* Set a high z-index value to bring the banner to the front */
   }
-
 }
 
 .dashboard-tile {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 12px;
+  border: none;
+  transition: transform 0.3s ease-in-out; /* Add transition for non-hover state */
+
+  /* Added hover effect */
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .tiles {
@@ -65,14 +74,29 @@
   box-shadow: none;
   background-image: none;
   padding: 18px;
-}
 
+  /* Added transition for smoother hover effect */
+  transition: transform 0.5s linear;
+  cursor: pointer;
+
+  /* Updated position for the shapes on hover */
+  &:hover::before {
+    top: -74px;
+    right: -104px;
+  }
+
+  &:hover::after {
+    top: -94px;
+    right: -195px;
+  }
+}
 
 .tiles::before {
   content: "";
   position: absolute;
   top: -124px;
   right: -4px;
+  transition: top 0.5s ease-in-out, right 0.5s ease-in-out; /* Add transition for the shapes on hover */
 }
 
 .tiles::after {
@@ -80,6 +104,7 @@
   position: absolute;
   top: -104px;
   right: -95px;
+  transition: top 0.5s ease-in-out, right 0.5s ease-in-out; /* Add transition for the shapes on hover */
 }
 
 .tiles::before {
