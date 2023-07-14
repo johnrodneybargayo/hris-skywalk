@@ -24,8 +24,8 @@ label#remeber {
 input#remember-me {
     display: flex;
     align-items: center;
-    margin-left: 38rem;
-    margin-top: -26px;
+    margin-left: 36rem;
+    margin-top: -18px;
 }
 
 .form_background {
@@ -145,6 +145,7 @@ p.forgot-pass {
 
 .login label {
     margin: 25% 0 5%;
+    color: #fff;
 }
 
 #passwd {
@@ -182,7 +183,8 @@ label {
 
 .register label {
     color: #573b8a;
-    transform: scale(.6);
+    transform: scale(0.6);
+    font-size: 4rem;
 }
 
 #chk:checked~.register {
@@ -216,4 +218,586 @@ label {
 
 .form button:hover {
     background-color: #6d44b8;
+}
+
+
+
+@media only screen and (max-width: 390px) {
+    .form-container {
+        position: relative;
+    }
+
+    .logo {
+        margin-left: 29%;
+        margin-top: -70%;
+        position: absolute;
+        top: 25rem;
+        left: 35px;
+        z-index: 999;
+        width: 20rem;
+    }
+
+    .login label {
+        margin: 25% 0 5%;
+        color: #fff;
+    }
+
+    img {
+        height: auto;
+        max-width: 25%;
+    }
+
+    input#remember-me {
+        display: flex;
+        align-items: center;
+        margin-left: 28rem;
+        margin-top: -21px;
+        top: -1.1rem;
+        position: relative;
+        left: -20rem;
+    }
+
+    label#remeber {
+        position: absolute;
+        top: 18.4rem;
+        font-size: 20px;
+        right: 78px;
+        color: #fff;
+    }
+
+    .register label {
+        color: #573b8a;
+        transform: scale(0.6);
+        font-size: 40px;
+        position: relative;
+        top: -31px;
+    }
+
+}
+
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {
+    .form-container {
+        width: 100%;
+
+    }
+
+    label {
+        display: flex;
+        font-size: 25px;
+        font-family: Satoshi;
+        font-weight: 700;
+        color: #fff;
+        padding-top: 13px;
+        padding-left: 8px;
+    }
+
+    .login {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .input {
+        width: 75%;
+        height: 35px;
+        background: #e0dede;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        margin-left: 38px;
+    }
+
+
+    label#remeber {
+        position: absolute;
+        top: 19.4rem;
+        font-size: 25px;
+        right: 78px;
+        color: #fff;
+    }
+
+    input#remember-me {
+        display: flex;
+        align-items: center;
+        margin-left: 28rem;
+        margin-top: -21px;
+        top: 0rem;
+        position: relative;
+        left: -21rem;
+    }
+
+    .register label {
+        color: #573b8a;
+        transform: scale(0.6);
+        font-size: 45px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 38px;
+        margin-left: 5px;
+        margin-right: 20px;
+        margin-top: 5px;
+        padding-top: 84px;
+    }
+
+    #chk:checked~.register label {
+        transform: scale(1);
+    }
+
+    .register {
+        background: #eee;
+        border-radius: 90%/10%;
+        transform: translateY(5%);
+        transition: 0.8s ease-in-out;
+        padding-bottom: 12rem;
+        padding-top: 2rem;
+    }
+
+    .logo {
+        margin-left: 29%;
+        margin-top: -70%;
+        position: absolute;
+        top: 27rem;
+        left: 35px;
+        z-index: 999;
+        width: 15rem;
+    }
+
+    img {
+        height: auto;
+        max-width: 25%;
+    }
+
+    .login label {
+        color: #fff;
+    }
+}
+
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+    .form-container {
+        width: 50%;
+    }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (max-width: 768px) {
+    .form-container {
+        width: 50%;
+    }
+
+    .login {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .login label {
+        margin: 10% 0 5%;
+        color: #fff;
+        top: 2rem;
+        position: relative;
+    }
+
+    .input {
+        width: 80%;
+        height: 40px;
+        background: #e0dede;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        margin-left: 67px;
+    }
+
+    label#remeber {
+        position: absolute;
+        top: 20.2rem;
+        font-size: 25px;
+        right: 7rem;
+        color: #fff;
+    }
+
+    input#remember-me {
+        display: flex;
+        align-items: center;
+        margin-left: 44rem;
+        top: -1.5rem;
+        position: relative;
+        left: -17rem;
+    }
+
+    .logo {
+        margin-left: 33%;
+        margin-top: -42%;
+        position: absolute;
+        top: 27rem;
+        left: 35px;
+        z-index: 999;
+        width: 15rem;
+
+    }
+
+    img {
+        height: auto;
+        max-width: 25%;
+    }
+
+    .register label {
+        color: #573b8a;
+        transform: scale(0.6);
+        font-size: 4rem;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin-left: 5px;
+        margin-right: 20px;
+        margin-top: 5px;
+        padding-top: 53px;
+        padding-bottom: 6rem;
+    }
+
+    #chk:checked~.register label {
+        transform: scale(1);
+        margin: 0 0 0%;
+    }
+
+    .register {
+        background: #eee;
+        border-radius: 90%/10%;
+        transform: translateY(5%);
+        transition: 0.8s ease-in-out;
+        padding-bottom: 20rem;
+        padding-top: 2rem;
+    }
+
+    .form button {
+        width: 25%;
+        height: 55px;
+        margin: -22px auto -6%;
+        color: #fff;
+        background: #573b8a;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.2s ease-in;
+    }
+
+    p.forgot-pass {
+        font-size: 25px;
+        font-family: "Satoshi";
+        font-weight: 400;
+        line-height: 1.5;
+        margin-left: 20px;
+    }
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (max-width: 889px) {
+    .form-container {
+        position: relative;
+    }
+}
+
+
+/* Extra big screen devices (912px and above) */
+@media only screen and (max-width: 912px) {
+
+    .image-placeholder {
+        background-color: #ccc;
+        width: 70rem;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s ease-in-out;
+        animation: slideShow 15s infinite;
+    }
+
+    .form-container {
+        width: 50%;
+        position: relative;
+        padding: 0;
+    }
+
+    .login {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .login label {
+        margin: 10% 0 5%;
+        color: #fff;
+        top: 2rem;
+        position: relative;
+    }
+
+    .input {
+        width: 80%;
+        height: 40px;
+        background: #e0dede;
+        padding: 10px;
+        font-size: 2rem;
+        font-family: 'Satoshi';
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        margin-left: 67px;
+    }
+
+    label#remeber {
+        position: absolute;
+        top: 30.2rem;
+        font-size: 25px;
+        right: 9rem;
+        color: #fff;
+    }
+
+    input#email {
+        font-size: 26px;
+    }
+
+    input#passwd {
+        font-size: 30px;
+        position: relative;
+        top: -6rem;
+    }
+
+    input#remember-me {
+        display: flex;
+        align-items: center;
+        margin-left: 44rem;
+        top: -13.8rem;
+        position: relative;
+        left: -10rem;
+        width: 20px;
+        height: 20px;
+    }
+
+    .logo {
+        margin-left: 33%;
+        margin-top: -42%;
+        position: absolute;
+        top: 27rem;
+        left: 35px;
+        z-index: 999;
+        width: 15rem;
+
+    }
+
+    img {
+        height: auto;
+        max-width: 25%;
+    }
+
+    .register label {
+        color: #573b8a;
+        transform: scale(0.6);
+        font-size: 5rem;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 165px;
+        margin-left: 5px;
+        margin-right: 20px;
+        margin-top: 5px;
+        padding-top: 53px;
+        padding-bottom: 6rem;
+    }
+
+    #chk:checked~.register label {
+        transform: scale(1);
+        margin: 0 0 0%;
+    }
+
+    .register {
+        background: #eee;
+        border-radius: 90%/10%;
+        transform: translateY(5%);
+        transition: 0.8s ease-in-out;
+        padding-bottom: 26rem;
+        padding-top: 2rem;
+    }
+
+    .form button {
+        width: 30%;
+        height: 75px;
+        margin: -22px auto -6%;
+        color: #fff;
+        background: #573b8a;
+        font-size: 2rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+        top: -20rem;
+        transition: 0.2s ease-in;
+    }
+
+    p.forgot-pass {
+        font-size: 25px;
+        font-family: "Satoshi";
+        font-weight: 400;
+        line-height: 1.5;
+        margin-left: 20px;
+    }
+}
+
+
+/* Extra big screen devices (912px and above) */
+@media only screen and (max-width: 1200px) {
+
+    .image-placeholder {
+        background-color: #ccc;
+        width: 70rem;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 0.5s ease-in-out;
+        animation: slideShow 15s infinite;
+    }
+
+    .form-container {
+        width: 100%;
+        position: absolute;
+        padding: 0;
+    }
+
+    .login {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .login label {
+        margin: 10% 0 5%;
+        color: #fff;
+        top: 2rem;
+        position: relative;
+    }
+
+    .input {
+        width: 80%;
+        height: 40px;
+        background: #e0dede;
+        padding: 10px;
+        font-size: 2rem;
+        font-family: 'Satoshi';
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        margin-left: 67px;
+    }
+
+    label#remeber {
+        position: absolute;
+        top: 30.2rem;
+        font-size: 25px;
+        right: 9rem;
+        color: #fff;
+    }
+
+    input#email {
+        font-size: 26px;
+    }
+
+    input#passwd {
+        font-size: 30px;
+        position: relative;
+        top: -6rem;
+    }
+
+    input#remember-me {
+        display: flex;
+        align-items: center;
+        margin-left: 44rem;
+        top: -13.8rem;
+        position: relative;
+        left: -10rem;
+        width: 20px;
+        height: 20px;
+    }
+
+    .logo {
+        margin-left: 33%;
+        margin-top: -42%;
+        position: absolute;
+        top: 27rem;
+        left: 35px;
+        z-index: 999;
+        width: 15rem;
+
+    }
+
+    img {
+        height: auto;
+        max-width: 25%;
+    }
+
+    .register label {
+        color: #573b8a;
+        transform: scale(0.6);
+        font-size: 5rem;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 165px;
+        margin-left: 5px;
+        margin-right: 20px;
+        margin-top: 5px;
+        padding-top: 53px;
+        padding-bottom: 6rem;
+    }
+
+    #chk:checked~.register label {
+        transform: scale(1);
+        margin: 0 0 0%;
+    }
+
+    .register {
+        background: #eee;
+        border-radius: 90%/10%;
+        transform: translateY(5%);
+        transition: 0.8s ease-in-out;
+        padding-bottom: 26rem;
+        padding-top: 2rem;
+    }
+
+    .form button {
+        width: 30%;
+        height: 75px;
+        margin: -22px auto -6%;
+        color: #fff;
+        background: #573b8a;
+        font-size: 2rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+        top: -20rem;
+        transition: 0.2s ease-in;
+    }
+
+    p.forgot-pass {
+        font-size: 25px;
+        font-family: "Satoshi";
+        font-weight: 400;
+        line-height: 1.5;
+        margin-left: 20px;
+    }
 }
