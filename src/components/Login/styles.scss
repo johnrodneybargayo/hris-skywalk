@@ -496,4 +496,14 @@ label {
         top: 0px;
         right: 14rem;
     }
+
+    #chk:checked~.register label {
+        transform: scale(1);
+        margin: 5% 0 5%;
+    }
+
+    .login label {
+        margin: 15% 0 5%;
+        color: #fff;
+    }
 }
