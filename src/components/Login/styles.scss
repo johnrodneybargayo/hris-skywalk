@@ -289,62 +289,6 @@ label {
     }
 }
 
-@media only screen and (min-width: 767px) {
-    .image-placeholder {
-        display: none;
-    }
-
-    img.logo {
-        display: flex;
-        z-index: 999;
-        justify-content: center;
-        left: 2rem;
-        top: 17rem;
-        width: 20%;
-        height: 5%;
-        max-width: 20%;
-    }
-
-    .form {
-        display: flex;
-        flex-direction: column;
-        gap: 35px;
-        padding: 20px;
-        margin-left: 5px;
-        margin-right: 20px;
-        margin-top: -8px;
-    }
-
-    #chk:checked~.register label {
-        transform: scale(1);
-        margin: 0 0 5%;
-    }
-
-    .register label {
-        font-size: 35px;
-        font-family: 'Satoshi';
-        font-weight: 700;
-        line-height: 1.5;
-    }
-
-    #chk:checked~.register {
-        transform: translateY(-73%);
-    }
-
-    label#remeber {
-        position: absolute;
-        top: 14rem;
-        font-size: 25px;
-        right: 3rem;
-    }
-
-    input#remember-me {
-        display: flex;
-        align-items: center;
-        margin-left: 17rem;
-        margin-top: -25.5px;
-    }
-}
 
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -409,4 +353,56 @@ label {
 
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
 
+
+
+    img.logo {
+        display: flex;
+        z-index: 999;
+        justify-content: center;
+        left: 2rem;
+        top: 17rem;
+        width: 20%;
+        height: 5%;
+        max-width: 20%;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+        padding: 20px;
+        margin-left: 5px;
+        margin-right: 20px;
+        margin-top: -8px;
+    }
+
+    #chk:checked~.register label {
+        transform: scale(1);
+        margin: 0 0 5%;
+    }
+
+    .register label {
+        font-size: 35px;
+        font-family: 'Satoshi';
+        font-weight: 700;
+        line-height: 1.5;
+    }
+
+    #chk:checked~.register {
+        transform: translateY(-73%);
+    }
+
+    label#remeber {
+        position: absolute;
+        top: 14rem;
+        font-size: 25px;
+        right: 3rem;
+    }
+
+    input#remember-me {
+        display: flex;
+        align-items: center;
+        margin-left: 17rem;
+        margin-top: -25.5px;
+    }
 }
