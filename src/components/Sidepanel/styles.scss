@@ -14,23 +14,23 @@
 }
 
 .sidepanel-backdrop {
-  display: none;
+    display: none;
 }
 
 @media only screen and (max-width: 390px) {
-  .sidepanel-backdrop {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    inset: 0px;
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-tap-highlight-color: transparent;
-    z-index: -1;
-  }
+    .sidepanel-backdrop {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        inset: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+        -webkit-tap-highlight-color: transparent;
+        z-index: -1;
+    }
 }
 
-  
+
 
 .label-dashboard {
     margin: 10px 0px 0.35em;
@@ -90,3 +90,11 @@
     border-radius: 12px;
 
 }
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+
+    .sidepanel-backdrop {
+       display: none;
+    }
+}
+

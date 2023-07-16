@@ -202,7 +202,7 @@
     margin-left: auto;
     margin-right: 0;
     border-radius: 12px 12px 0px 0px;
-    z-index: 1;
+    z-index: -999;
     transition: width 0.3s ease-in-out;
   }
 
@@ -298,7 +298,7 @@
     margin-left: auto;
     margin-right: 0;
     border-radius: 12px 12px 0px 0px;
-    z-index: 1;
+    z-index: -999;
     transition: width 0.3s ease-in-out;
   }
 
@@ -391,7 +391,7 @@
     margin-left: auto;
     margin-right: 0;
     border-radius: 12px 12px 0px 0px;
-    z-index: 1;
+    z-index: -999;
     transition: width 0.3s ease-in-out;
   }
 
@@ -556,26 +556,29 @@
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .dashboard-container.flex {
+
+  .right-section {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 87rem;
   }
 
   .dashboard-container.grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     width: 340px;
     height: 100%;
     position: relative;
-    top: -12rem;
+    top: -11.6rem;
     margin-right: auto;
     flex-direction: column;
-    z-index: -999;
+    z-index: 1;
+    transition: width 0.6s ease-in-out;
   }
 
   .dashboard.panel-open {
-    max-width: 60%;
+    max-width: 75%;
     transition: max-width 0.3s ease-in-out;
   }
 
@@ -584,7 +587,7 @@
     transition: max-width 0.5s ease-in-out;
 
     .tiles {
-      width: 360px;
+      width: 375px;
       height: 100px;
       border-radius: 12px;
       border: none;
@@ -603,11 +606,11 @@
   .dashboard-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 340px;
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
     height: 100%;
     position: relative;
-    top: -12rem;
+    top: -8rem;
     margin-right: auto;
     flex-direction: column;
     z-index: 1;
@@ -615,7 +618,7 @@
   }
 
   .tiles {
-    width: 460px;
+    width: 440px;
     height: 100px;
     border-radius: 12px;
     border: none;
@@ -646,23 +649,165 @@
 
   .dashboard {
     background-color: rgb(238, 242, 246);
+    width: 97%;
     min-height: calc(150vh - 150px);
     flex-grow: 1;
     padding: 20px;
-    max-width: 100%;
+    position: relative;
+    max-width: 81%;
     margin-top: 5px;
     margin-left: auto;
     margin-right: 0;
     border-radius: 12px 12px 0px 0px;
-    z-index: 1;
-    transition: width 0.5s ease-in-out, max-width 0.5s ease-in-out;
-    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+
   }
 
   .panel-content {
     padding: 8px;
     background: #fff;
     height: 100vh;
+  }
+
+  .sidepanel.open {
+    transform: translateX(0);
+  }
+
+  .sidepanel {
+    position: fixed;
+    top: 59px;
+    left: 0;
+    width: 250px;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  button.btn-dashboard.active,
+  .btn-recruitment,
+  .btn-cdoc,
+  .btn-compensation,
+  .btn-ER,
+  .btn-CP,
+  .btn-LD,
+  .btn-payroll {
+    height: 50px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1934px) {
+  .right-section {
+    display: flex;
+    align-items: center;
+    margin-left: 87rem;
+}
+
+  .dashboard-container.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -11.6rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: 1;
+    transition: width 0.6s ease-in-out;
+  }
+
+  .dashboard.panel-open {
+    max-width: 84.5%;
+    transition: max-width 0.3s ease-in-out;
+}
+
+  .dashboard.panel-closed {
+    max-width: 100%;
+    transition: max-width 0.5s ease-in-out;
+
+    .tiles {
+      width: 375px;
+      height: 100px;
+      border-radius: 12px;
+      border: none;
+      background-color: rgb(94, 53, 177);
+      color: rgb(255, 255, 255);
+      overflow: hidden;
+      position: relative;
+      box-shadow: none;
+      background-image: none;
+      padding: 18px;
+      transition: transform 0.5s linear;
+      cursor: pointer;
+    }
+  }
+
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    position: relative;
+    top: -8rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: 1;
+    transition: width 0.6s ease-in-out;
+  }
+
+  .tiles {
+    width: 440px;
+    height: 100px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+    transition: transform 0.5s linear;
+    cursor: pointer;
+    /* Added transition for smoother hover effect */
+    transition: transform 0.5s linear;
+    cursor: pointer;
+
+    /* Updated position for the shapes on hover */
+    &:hover::before {
+      top: -74px;
+      right: -104px;
+    }
+
+    &:hover::after {
+      top: -94px;
+      right: -195px;
+    }
+  }
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    width: 97%;
+    min-height: calc(150vh - 150px);
+    flex-grow: 1;
+    padding: 20px;
+    position: relative;
+    max-width: 81%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    transition: width 0.3s ease-in-out;
+
+  }
+
+  .panel-content {
+    padding: 8px;
+    background: #fff;
+    height: 100vh;
+  }
+
+  .sidepanel.open {
+    transform: translateX(0);
   }
 
   .sidepanel {
