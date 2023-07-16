@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaBars, FaSearch, FaCog, FaBell, FaUser } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBars, FaSearch, FaCog, FaBell, FaUser, FaTimes } from 'react-icons/fa';
 import './styles.scss';
 
 interface HeaderProps {
@@ -7,6 +7,16 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ togglePanel }) => {
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const handleIconClick = () => {
+    setShowSearchBar(!showSearchBar);
+  };
+
+  const handleSearchClose = () => {
+    setShowSearchBar(false);
+  };
+
   return (
     <div className="banner">
       <div className="left-section">
@@ -18,9 +28,13 @@ const Header: React.FC<HeaderProps> = ({ togglePanel }) => {
         <button className="side-panel-btn" onClick={togglePanel}>
           <FaBars />
         </button>
-        <div className="search-bar">
+        <div className={`search-bar ${showSearchBar ? 'show-search-bar' : ''}`}>
           <input type="text" placeholder="Search" />
-          <FaSearch className="search-icon" />
+          {showSearchBar ? (
+            <FaTimes className="close-icon" onClick={handleSearchClose} />
+          ) : (
+            <FaSearch className="search-icon" onClick={handleIconClick} />
+          )}
         </div>
       </div>
       <div className="right-section">

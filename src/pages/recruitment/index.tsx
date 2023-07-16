@@ -43,6 +43,11 @@ const RecruitmentPage = () => {
     setActiveSection(pathname.replace('/', ''));
   }, [history.location.pathname]);
 
+  const handlePanelClose = () => {
+    setIsPanelOpen(false);
+    setIsDashboardHalfWidth(false);
+  };
+
   return (
     <div className="dashboard-page">
       {isLoading ? (
@@ -52,7 +57,7 @@ const RecruitmentPage = () => {
       ) : (
         <>
           <Header togglePanel={togglePanel} />
-          <Sidepanel isOpen={isPanelOpen} active={activeSection} />
+          <Sidepanel isOpen={isPanelOpen} active={activeSection} onClose={handlePanelClose} />
           <div className={`dashboard-recruitment ${isDashboardHalfWidth ? '' : 'half-width'}`}>
             <div className="dashboard-container-recruitment">
               <div className="recruitment-container">
