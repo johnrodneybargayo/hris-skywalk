@@ -4,13 +4,33 @@
     left: 0;
     width: 250px;
     height: 100vh;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.2s ease-in-out;
     transform: translateX(-100%);
 }
 
 .sidepanel.open {
     transform: translateX(0);
+
 }
+
+.sidepanel-backdrop {
+  display: none;
+}
+
+@media only screen and (max-width: 390px) {
+  .sidepanel-backdrop {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    z-index: -1;
+  }
+}
+
+  
 
 .label-dashboard {
     margin: 10px 0px 0.35em;
@@ -26,6 +46,8 @@
 
 .panel-content {
     padding: 20px;
+    background: #fff;
+    height: inherit;
 }
 
 .panel-content button {
@@ -68,4 +90,3 @@
     border-radius: 12px;
 
 }
-

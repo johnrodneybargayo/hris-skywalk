@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Sidepanel from '../../components/Sidepanel';
@@ -10,6 +10,7 @@ const DashboardPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isDashboardHalfWidth, setIsDashboardHalfWidth] = useState(false);
+  const dashboardRef = useRef<HTMLDivElement>(null);
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -18,6 +19,11 @@ const DashboardPage = () => {
 
   const handleTileClick = () => {
     history.push('/recruitment');
+  };
+
+  const handlePanelClose = () => {
+    setIsPanelOpen(false);
+    setIsDashboardHalfWidth(false);
   };
 
   useEffect(() => {
@@ -29,6 +35,24 @@ const DashboardPage = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        dashboardRef.current &&
+        !dashboardRef.current.contains(event.target as Node) &&
+        isPanelOpen
+      ) {
+        handlePanelClose();
+      }
+    };
+
+    window.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      window.removeEventListener('click', handleOutsideClick);
+    };
+  }, [isPanelOpen]);
+
   return (
     <div className="dashboard-page">
       {isLoading ? (
@@ -38,9 +62,9 @@ const DashboardPage = () => {
       ) : (
         <>
           <Header togglePanel={togglePanel} />
-          <Sidepanel isOpen={isPanelOpen} active={'dashboard'} />
-          <div className={`dashboard ${isDashboardHalfWidth ? '' : 'half-width'}`}>
-            <div className="dashboard-container">
+          <Sidepanel isOpen={isPanelOpen} active={'dashboard'} onClose={handlePanelClose} />
+          <div className={`dashboard ${isDashboardHalfWidth ? 'half-width' : ''} ${isPanelOpen ? 'panel-open' : 'panel-closed'}`} ref={dashboardRef}>
+            <div className={`dashboard-container ${isPanelOpen ? 'flex' : 'grid'}`}>
               <div className="dashboard-tile">
                 <button className="tiles" onClick={handleTileClick}>
                   <p className="title-tile">Recruitment</p>

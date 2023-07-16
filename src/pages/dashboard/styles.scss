@@ -1,3 +1,8 @@
+.dashboard-page {
+  display: flex;
+  align-items: center;
+}
+
 .dashboard {
   background-color: rgb(238, 242, 246);
   width: 97%;
@@ -10,6 +15,7 @@
   margin-right: 0;
   border-radius: 12px 12px 0px 0px;
   transition: width 0.3s ease-in-out;
+
 }
 
 .dashboard.half-width {
@@ -29,6 +35,7 @@
   align-items: center;
   position: relative;
   top: 55px;
+  z-index: 1;
 }
 
 .dashboard-container {
@@ -52,13 +59,13 @@
   align-items: center;
   border-radius: 12px;
   border: none;
-  transition: transform 0.3s ease-in-out; /* Add transition for non-hover state */
+  transition: transform 0.3s ease-in-out;
+  /* Add transition for non-hover state */
 
   /* Added hover effect */
   &:hover {
     transform: scale(1.05);
     transition: transform 0.5s ease-in-out;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -74,6 +81,7 @@
   box-shadow: none;
   background-image: none;
   padding: 18px;
+
 
   /* Added transition for smoother hover effect */
   transition: transform 0.5s linear;
@@ -96,7 +104,8 @@
   position: absolute;
   top: -124px;
   right: -4px;
-  transition: top 0.5s ease-in-out, right 0.5s ease-in-out; /* Add transition for the shapes on hover */
+  transition: top 0.5s ease-in-out, right 0.5s ease-in-out;
+  /* Add transition for the shapes on hover */
 }
 
 .tiles::after {
@@ -104,7 +113,8 @@
   position: absolute;
   top: -104px;
   right: -95px;
-  transition: top 0.5s ease-in-out, right 0.5s ease-in-out; /* Add transition for the shapes on hover */
+  transition: top 0.5s ease-in-out, right 0.5s ease-in-out;
+  /* Add transition for the shapes on hover */
 }
 
 .tiles::before {
@@ -125,4 +135,553 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 10px;
+}
+
+
+@media only screen and (max-width: 390px) {
+
+  .sidepanel-backdrop {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    z-index: -1;
+  }
+
+  .dashboard-container {
+    display: flex;
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: -999;
+  }
+
+  .tiles {
+    width: 380px;
+    height: 98px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+    transition: transform 0.5s linear;
+    cursor: pointer;
+    /* Added transition for smoother hover effect */
+    transition: transform 0.5s linear;
+    cursor: pointer;
+
+    /* Updated position for the shapes on hover */
+    &:hover::before {
+      top: -74px;
+      right: -104px;
+    }
+
+    &:hover::after {
+      top: -94px;
+      right: -195px;
+    }
+  }
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    min-height: calc(150vh - 150px);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 1;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .panel-content {
+    padding: 8px;
+    background: #fff;
+    height: 100vh;
+  }
+
+  .sidepanel {
+    position: fixed;
+    top: 59px;
+    left: 0;
+    width: 250px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  button.btn-dashboard.active,
+  .btn-recruitment,
+  .btn-cdoc,
+  .btn-compensation,
+  .btn-ER,
+  .btn-CP,
+  .btn-LD,
+  .btn-payroll {
+    height: 50px;
+  }
+
+}
+
+
+@media screen and (min-width: 393px) and (max-width: 412px) {
+  .sidepanel-backdrop {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    z-index: -1;
+  }
+
+  .dashboard-container {
+    display: flex;
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: -999;
+  }
+
+  .tiles {
+    width: 380px;
+    height: 98px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+    transition: transform 0.5s linear;
+    cursor: pointer;
+    /* Added transition for smoother hover effect */
+    transition: transform 0.5s linear;
+    cursor: pointer;
+
+    /* Updated position for the shapes on hover */
+    &:hover::before {
+      top: -74px;
+      right: -104px;
+    }
+
+    &:hover::after {
+      top: -94px;
+      right: -195px;
+    }
+  }
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    min-height: calc(150vh - 150px);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 1;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .panel-content {
+    padding: 8px;
+    background: #fff;
+    height: 100vh;
+  }
+
+  .sidepanel {
+    position: fixed;
+    top: 59px;
+    left: 0;
+    width: 250px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  button.btn-dashboard.active,
+  .btn-recruitment,
+  .btn-cdoc,
+  .btn-compensation,
+  .btn-ER,
+  .btn-CP,
+  .btn-LD,
+  .btn-payroll {
+    height: 50px;
+  }
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+  .sidepanel-backdrop {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    z-index: -1;
+  }
+
+  .dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: -999;
+  }
+
+  .tiles {
+    width: 380px;
+    height: 98px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+    transition: transform 0.5s linear;
+    cursor: pointer;
+    /* Added transition for smoother hover effect */
+    transition: transform 0.5s linear;
+    cursor: pointer;
+
+    /* Updated position for the shapes on hover */
+    &:hover::before {
+      top: -74px;
+      right: -104px;
+    }
+
+    &:hover::after {
+      top: -94px;
+      right: -195px;
+    }
+  }
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    min-height: calc(150vh - 150px);
+    flex-grow: 1;
+    max-width: 90%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 1;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .panel-content {
+    padding: 8px;
+    background: #fff;
+    height: 100vh;
+  }
+
+  .sidepanel {
+    position: fixed;
+    top: 59px;
+    left: 0;
+    width: 250px;
+    transition: transform 0.2s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  button.btn-dashboard.active,
+  .btn-recruitment,
+  .btn-cdoc,
+  .btn-compensation,
+  .btn-ER,
+  .btn-CP,
+  .btn-LD,
+  .btn-payroll {
+    height: 50px;
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 912px) {
+
+  .dashboard-container.flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-container.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: -999;
+  }
+
+  .dashboard.panel-open {
+    max-width: 60%;
+    transition: max-width 0.3s ease-in-out;
+  }
+
+  .dashboard.panel-closed {
+    max-width: 100%;
+    transition: max-width 0.5s ease-in-out;
+
+    .tiles {
+      width: 360px;
+      height: 100px;
+      border-radius: 12px;
+      border: none;
+      background-color: rgb(94, 53, 177);
+      color: rgb(255, 255, 255);
+      overflow: hidden;
+      position: relative;
+      box-shadow: none;
+      background-image: none;
+      padding: 18px;
+      transition: transform 0.5s linear;
+      cursor: pointer;
+    }
+  }
+
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: 1;
+    transition: width 0.6s ease-in-out;
+  }
+
+  .tiles {
+    width: 460px;
+    height: 100px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+    transition: transform 0.5s linear;
+    cursor: pointer;
+    /* Added transition for smoother hover effect */
+    transition: transform 0.5s linear;
+    cursor: pointer;
+
+    /* Updated position for the shapes on hover */
+    &:hover::before {
+      top: -74px;
+      right: -104px;
+    }
+
+    &:hover::after {
+      top: -94px;
+      right: -195px;
+    }
+  }
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    min-height: calc(150vh - 150px);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 1;
+    transition: width 0.5s ease-in-out, max-width 0.5s ease-in-out;
+    overflow: hidden;
+  }
+
+  .panel-content {
+    padding: 8px;
+    background: #fff;
+    height: 100vh;
+  }
+
+  .sidepanel {
+    position: fixed;
+    top: 59px;
+    left: 0;
+    width: 250px;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  button.btn-dashboard.active,
+  .btn-recruitment,
+  .btn-cdoc,
+  .btn-compensation,
+  .btn-ER,
+  .btn-CP,
+  .btn-LD,
+  .btn-payroll {
+    height: 50px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  .dashboard-container.flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .dashboard-container.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: -999;
+  }
+
+  .dashboard.panel-open {
+    max-width: 60%;
+    transition: max-width 0.3s ease-in-out;
+  }
+
+  .dashboard.panel-closed {
+    max-width: 100%;
+    transition: max-width 0.5s ease-in-out;
+
+    .tiles {
+      width: 360px;
+      height: 100px;
+      border-radius: 12px;
+      border: none;
+      background-color: rgb(94, 53, 177);
+      color: rgb(255, 255, 255);
+      overflow: hidden;
+      position: relative;
+      box-shadow: none;
+      background-image: none;
+      padding: 18px;
+      transition: transform 0.5s linear;
+      cursor: pointer;
+    }
+  }
+
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 340px;
+    height: 100%;
+    position: relative;
+    top: -12rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: 1;
+    transition: width 0.6s ease-in-out;
+  }
+
+  .tiles {
+    width: 460px;
+    height: 100px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgb(94, 53, 177);
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    position: relative;
+    box-shadow: none;
+    background-image: none;
+    padding: 18px;
+    transition: transform 0.5s linear;
+    cursor: pointer;
+    /* Added transition for smoother hover effect */
+    transition: transform 0.5s linear;
+    cursor: pointer;
+
+    /* Updated position for the shapes on hover */
+    &:hover::before {
+      top: -74px;
+      right: -104px;
+    }
+
+    &:hover::after {
+      top: -94px;
+      right: -195px;
+    }
+  }
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    min-height: calc(150vh - 150px);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 1;
+    transition: width 0.5s ease-in-out, max-width 0.5s ease-in-out;
+    overflow: hidden;
+  }
+
+  .panel-content {
+    padding: 8px;
+    background: #fff;
+    height: 100vh;
+  }
+
+  .sidepanel {
+    position: fixed;
+    top: 59px;
+    left: 0;
+    width: 250px;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  button.btn-dashboard.active,
+  .btn-recruitment,
+  .btn-cdoc,
+  .btn-compensation,
+  .btn-ER,
+  .btn-CP,
+  .btn-LD,
+  .btn-payroll {
+    height: 50px;
+  }
 }
