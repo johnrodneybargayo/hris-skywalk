@@ -37,10 +37,12 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
+      // Disable side panel close between min-width: 1200px and max-width: 1934px
       if (
         dashboardRef.current &&
         !dashboardRef.current.contains(event.target as Node) &&
-        isPanelOpen
+        isPanelOpen &&
+        (window.innerWidth < 768 || window.innerWidth > 1934) // Adjusted condition here
       ) {
         handlePanelClose();
       }
@@ -53,6 +55,13 @@ const DashboardPage = () => {
     };
   }, [isPanelOpen]);
 
+  const handlePanelCloseClick = () => {
+    if (window.innerWidth >= 768 && window.innerWidth <= 1934) {
+      return; // Prevent closing the side panel within the specified range
+    }
+    handlePanelClose();
+  };
+
   return (
     <div className="dashboard-page">
       {isLoading ? (
@@ -62,7 +71,7 @@ const DashboardPage = () => {
       ) : (
         <>
           <Header togglePanel={togglePanel} />
-          <Sidepanel isOpen={isPanelOpen} active={'dashboard'} onClose={handlePanelClose} />
+          <Sidepanel isOpen={isPanelOpen} active={'dashboard'} onClose={handlePanelCloseClick} />
           <div className={`dashboard ${isDashboardHalfWidth ? 'half-width' : ''} ${isPanelOpen ? 'panel-open' : 'panel-closed'}`} ref={dashboardRef}>
             <div className={`dashboard-container ${isPanelOpen ? 'flex' : 'grid'}`}>
               <div className="dashboard-tile">
