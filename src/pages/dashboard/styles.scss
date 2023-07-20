@@ -81,8 +81,6 @@
   box-shadow: none;
   background-image: none;
   padding: 18px;
-
-
   /* Added transition for smoother hover effect */
   transition: transform 0.5s linear;
   cursor: pointer;
@@ -174,10 +172,7 @@
     box-shadow: none;
     background-image: none;
     padding: 18px;
-    transition: transform 0.5s linear;
-    cursor: pointer;
-    /* Added transition for smoother hover effect */
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     cursor: pointer;
 
     /* Updated position for the shapes on hover */
@@ -270,11 +265,9 @@
     box-shadow: none;
     background-image: none;
     padding: 18px;
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     cursor: pointer;
-    /* Added transition for smoother hover effect */
-    transition: transform 0.5s linear;
-    cursor: pointer;
+
 
     /* Updated position for the shapes on hover */
     &:hover::before {
@@ -364,10 +357,7 @@
     box-shadow: none;
     background-image: none;
     padding: 18px;
-    transition: transform 0.5s linear;
-    cursor: pointer;
-    /* Added transition for smoother hover effect */
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     cursor: pointer;
 
     /* Updated position for the shapes on hover */
@@ -440,17 +430,18 @@
     top: -12rem;
     margin-right: auto;
     flex-direction: column;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     z-index: -999;
   }
 
   .dashboard.panel-open {
     max-width: 60%;
-    transition: max-width 0.3s ease-in-out;
+    transition: max-width 0.6s ease-in-out;
   }
 
   .dashboard.panel-closed {
     max-width: 100%;
-    transition: max-width 0.5s ease-in-out;
+    transition: max-width 0.6s ease-in-out;
 
     .tiles {
       width: 360px;
@@ -464,7 +455,7 @@
       box-shadow: none;
       background-image: none;
       padding: 18px;
-      transition: transform 0.5s linear;
+      transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
       cursor: pointer;
     }
   }
@@ -480,7 +471,7 @@
     margin-right: auto;
     flex-direction: column;
     z-index: 1;
-    transition: width 0.6s ease-in-out;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
   }
 
   .tiles {
@@ -495,11 +486,10 @@
     box-shadow: none;
     background-image: none;
     padding: 18px;
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     cursor: pointer;
-    /* Added transition for smoother hover effect */
-    transition: transform 0.5s linear;
-    cursor: pointer;
+
+
 
     /* Updated position for the shapes on hover */
     &:hover::before {
@@ -574,17 +564,17 @@
     margin-right: auto;
     flex-direction: column;
     z-index: 1;
-    transition: width 0.6s ease-in-out;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
   }
 
   .dashboard.panel-open {
     max-width: 75%;
-    transition: max-width 0.3s ease-in-out;
+    transition: max-width 0.6s ease-in-out;
   }
 
   .dashboard.panel-closed {
     max-width: 100%;
-    transition: max-width 0.5s ease-in-out;
+    transition: max-width 0.6s ease-in-out;
 
     .tiles {
       width: 375px;
@@ -598,7 +588,7 @@
       box-shadow: none;
       background-image: none;
       padding: 18px;
-      transition: transform 0.5s linear;
+      transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
       cursor: pointer;
     }
   }
@@ -629,10 +619,7 @@
     box-shadow: none;
     background-image: none;
     padding: 18px;
-    transition: transform 0.5s linear;
-    cursor: pointer;
-    /* Added transition for smoother hover effect */
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     cursor: pointer;
 
     /* Updated position for the shapes on hover */
@@ -701,20 +688,6 @@
     margin-left: 87rem;
 }
 
-  .dashboard-container.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 340px;
-    height: 100%;
-    position: relative;
-    top: -11.6rem;
-    margin-right: auto;
-    flex-direction: column;
-    z-index: 1;
-    transition: width 0.6s ease-in-out;
-  }
-
   .dashboard.panel-open {
     max-width: 84.5%;
     transition: max-width 0.3s ease-in-out;
@@ -722,7 +695,7 @@
 
   .dashboard.panel-closed {
     max-width: 100%;
-    transition: max-width 0.5s ease-in-out;
+    transition: max-width 0.3s ease-in-out;
 
     .tiles {
       width: 375px;
@@ -736,7 +709,7 @@
       box-shadow: none;
       background-image: none;
       padding: 18px;
-      transition: transform 0.5s linear;
+      transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
       cursor: pointer;
     }
   }
@@ -747,11 +720,11 @@
     grid-template-rows: repeat(3, 1fr);
     height: 100%;
     position: relative;
-    top: -8rem;
+    top: -11.6rem;
     margin-right: auto;
     flex-direction: column;
     z-index: 1;
-    transition: width 0.6s ease-in-out;
+    transition: width 0.5s ease-in-out;
   }
 
   .tiles {
@@ -766,23 +739,21 @@
     box-shadow: none;
     background-image: none;
     padding: 18px;
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
     cursor: pointer;
-    /* Added transition for smoother hover effect */
-    transition: transform 0.5s linear;
-    cursor: pointer;
-
+  
     /* Updated position for the shapes on hover */
     &:hover::before {
       top: -74px;
       right: -104px;
     }
-
+  
     &:hover::after {
       top: -94px;
       right: -195px;
     }
   }
+  
 
   .dashboard {
     background-color: rgb(238, 242, 246);
