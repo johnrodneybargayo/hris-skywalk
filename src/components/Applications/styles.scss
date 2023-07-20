@@ -7,16 +7,13 @@
     border-radius: 8px;
     padding: 20px;
     border: solid 1px #383f73;
-    background: #483c9e;
+    background: #162e9e;
     color: #fff;
     position: relative;
     overflow: hidden;
     /* Ensure pseudo-elements stay within the box */
-    box-shadow: rgba(240, 46, 170, 0.4) 0px 5px,
-        rgba(240, 46, 170, 0.3) 0px 10px,
-        rgba(240, 46, 170, 0.2) 0px 15px,
-        rgba(240, 46, 170, 0.1) 0px 20px,
-        rgba(240, 46, 170, 0.05) 0px 25px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 7px 14px 0px,
+        rgba(14, 30, 37, 0.32) 0px 7px 8px 0px;
 }
 
 

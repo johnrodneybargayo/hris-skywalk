@@ -25,25 +25,6 @@
   height: 100vh;
 }
 
-.dashboard-recruitment {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  top: 55px;
-  overflow: hidden;
-  z-index: -999;
-}
-
-
-.dashboard-container-recruitment {
-  display: flex;
-  position: relative;
-  top: -45rem;
-  margin-right: auto;
-  left: -17rem;
-}
-
 .recruitment-container {
   display: flex;
   justify-content: center;
@@ -61,7 +42,7 @@
 }
 
 .sources-container {
-  background: linear-gradient(323deg, #0703ff, #c4cbff);
+  background: #6c80dc;
   border: 1px solid rgba(76, 0, 229, 0.38);
   border-radius: 20px;
   height: auto;
@@ -69,14 +50,12 @@
   padding-right: 15px;
   padding-bottom: 20px;
   position: absolute;
+  color: #fff;
   top: 88px;
   width: 25rem;
   left: 2rem;
-  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px,
-    rgba(240, 46, 170, 0.3) -10px 10px,
-    rgba(240, 46, 170, 0.2) -15px 15px,
-    rgba(240, 46, 170, 0.1) -20px 20px,
-    rgba(240, 46, 170, 0.05) -25px 25px;
+  box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px,
+    rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
 }
 
 /* Shape 1 */
@@ -212,7 +191,7 @@ p.label-box-progress {
 }
 
 .interviews-box {
-  border: 1px solid #ccc;
+  border: 1px solid #0a0a0a29;
   border-radius: 15px;
   padding: 10px;
   background-color: #451397;
@@ -221,11 +200,8 @@ p.label-box-progress {
   font-size: 15px;
   font-weight: 600;
   line-height: 0.5;
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
-    rgba(240, 46, 170, 0.3) 10px 10px,
-    rgba(240, 46, 170, 0.2) 15px 15px,
-    rgba(240, 46, 170, 0.1) 20px 20px,
-    rgba(240, 46, 170, 0.05) 25px 25px;
+  box-shadow: rgba(14, 30, 37, 0.12) 10px 7px 14px 0px,
+    rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
 }
 
 .interviews-box h2 {
@@ -345,6 +321,7 @@ h1.job-header {
   justify-content: center;
   position: relative;
   z-index: 10;
+  color: #fff;
 }
 
 .job-postings-container {
@@ -357,17 +334,15 @@ h1.job-header {
   padding: 15px;
   top: 40rem;
   right: 105rem;
-  background: var(--amber-50, #FFF8E1); /* Use custom CSS variable for background color */
+  background: var(--amber-50, #162e9e);
+  /* Use custom CSS variable for background color */
   border: 1px solid #000000;
   border-radius: 15px;
   width: 28rem;
   display: inline-block;
   overflow: hidden;
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px,
-    rgba(240, 46, 170, 0.3) 10px 10px,
-    rgba(240, 46, 170, 0.2) 15px 15px,
-    rgba(240, 46, 170, 0.1) 20px 20px,
-    rgba(240, 46, 170, 0.05) 25px 25px;
+  box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+    rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
 }
 
 .job-postings-container::before,
@@ -403,4 +378,29 @@ h1.job-header {
   bottom: 32rem;
   left: -3rem;
   border: 3px solid var(--blue-500, #2196F3);
+}
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1934px) {
+  .dashboard-container-recuitment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    position: relative;
+    top: -38.6rem;
+    left: -17rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: 1;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .recruitment-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+  }
 }
