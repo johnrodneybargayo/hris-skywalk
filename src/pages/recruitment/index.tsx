@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Sidepanel from '../../components/Sidepanel';
@@ -18,10 +18,16 @@ const RecruitmentPage = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isDashboardHalfWidth, setIsDashboardHalfWidth] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const dashboardRef = useRef<HTMLDivElement>(null);
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
     setIsDashboardHalfWidth(!isDashboardHalfWidth);
+  };
+
+  const handlePanelClose = () => {
+    setIsPanelOpen(false);
+    setIsDashboardHalfWidth(false);
   };
 
   const positions = [
@@ -43,9 +49,31 @@ const RecruitmentPage = () => {
     setActiveSection(pathname.replace('/', ''));
   }, [history.location.pathname]);
 
-  const handlePanelClose = () => {
-    setIsPanelOpen(false);
-    setIsDashboardHalfWidth(false);
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      // Disable side panel close between min-width: 1200px and max-width: 1934px
+      if (
+        dashboardRef.current &&
+        !dashboardRef.current.contains(event.target as Node) &&
+        isPanelOpen &&
+        (window.innerWidth < 768 || window.innerWidth > 1934) // Adjusted condition here
+      ) {
+        handlePanelClose();
+      }
+    };
+
+    window.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      window.removeEventListener('click', handleOutsideClick);
+    };
+  }, [isPanelOpen]);
+
+  const handlePanelCloseClick = () => {
+    if (window.innerWidth >= 768 && window.innerWidth <= 1934) {
+      return; // Prevent closing the side panel within the specified range
+    }
+    handlePanelClose();
   };
 
   return (
@@ -58,8 +86,8 @@ const RecruitmentPage = () => {
         <>
           <Header togglePanel={togglePanel} />
           <Sidepanel isOpen={isPanelOpen} active={activeSection} onClose={handlePanelClose} />
-          <div className={`dashboard-recruitment ${isDashboardHalfWidth ? '' : 'half-width'}`}>
-            <div className="dashboard-container-recruitment">
+          <div className={`dashboard ${isDashboardHalfWidth ? 'half-width' : ''} ${isPanelOpen ? 'panel-open' : 'panel-closed'}`} ref={dashboardRef}>
+            <div className={`.dashboard-container-recuitment ${isPanelOpen ? 'flex' : 'grid'}`}>
               <div className="recruitment-container">
                 <div className="recruitment-tile">
                   <h1>RECRUITMENT</h1>
