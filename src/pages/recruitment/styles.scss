@@ -300,7 +300,6 @@ p.label-box-progress {
   justify-content: center;
   margin-top: 10px;
   position: relative;
-  top: -4.5rem;
 }
 
 h1.chart-label {
@@ -523,7 +522,7 @@ h1.job-header {
     color: var(--grey-900, #212121);
     position: relative;
     padding: 15px;
-    top: 126rem;
+    top: 127rem;
     right: 99.7rem;
     background: var(--amber-50, #162e9e);
     border: 1px solid #000000;
@@ -1171,6 +1170,521 @@ h1.job-header {
   }
 
 }
+
+@media only screen and (min-width: 768px) and (max-width: 912px) {
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    min-height: calc(226vh - 150px);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: -999;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .dashboard-container-recuitment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    position: relative;
+    top: -38.6rem;
+    left: -17rem;
+    margin-right: auto;
+    flex-direction: column;
+    z-index: 1;
+    transition: width 0.5s ease-in-out;
+  }
+
+  .recruitment-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+  }
+
+  .job-postings-container {
+    font-family: "Satoshi";
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 0.5;
+    color: var(--grey-900, #212121);
+    position: absolute;
+    padding: 15px;
+    top: 52.3rem;
+    right: 111.1rem;
+    height: 30rem;
+    background: var(--amber-50, #162e9e);
+    border: 1px solid #000000;
+    border-radius: 15px;
+    width: 19.2rem;
+    display: inline-block;
+    overflow: hidden;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px;
+  }
+
+  .hiring-positions-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 16rem;
+    padding: 10px;
+    margin: 10px;
+    background: #fff;
+    border-radius: 15px;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    border: 1px solid #ffffff;
+  }
+
+  #ticks .tick {
+    position: relative;
+    border-bottom: 1px dotted #C4C4C4;
+    width: 380px;
+  }
+
+  .interviews-box-container {
+    position: relative;
+    top: 52.4rem;
+    left: -38.1rem;
+  }
+
+  .interviews-box {
+    padding-bottom: 10px;
+    height: 31rem;
+    width: 18.7rem;
+  }
+
+  .small-box-2::after {
+    left: -10px;
+  }
+
+  .small-box-2::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 0;
+    left: 150px;
+    width: 1px;
+    height: 60px;
+    background-color: #ececec;
+  }
+
+  p.label-app-2 {
+    position: relative;
+    top: 9px;
+    left: -4px;
+    font-size: 11px;
+  }
+
+  #q-graph {
+    display: block;
+    position: relative;
+    width: 25rem;
+    height: 300px;
+    margin: 1.1em 0 0;
+    padding: 0;
+    background: transparent;
+    font-size: 11px;
+  }
+
+  #q-graph .bar {
+    width: 15px;
+    border: 1px solid;
+    border-bottom: none;
+    color: #000;
+  }
+
+  #q-graph #q2 {
+    left: 55px;
+  }
+
+  #q-graph #q3 {
+    left: 110px;
+  }
+
+  #q-graph #q4 {
+    left: 165px;
+  }
+
+  #q-graph #q5 {
+    left: 220px;
+  }
+
+  #q-graph #q6 {
+    left: 275px;
+  }
+
+  #q-graph #q7 {
+    left: 330px;
+    border-right: none;
+  }
+
+  #q-graph .paid {
+    left: 25px;
+    background-color: #ecff62;
+    border-color: transparent;
+  }
+
+  #q-graph .sent {
+    left: 5px;
+    background-color: #0092ff;
+    border-color: transparent;
+  }
+
+  #ticks .tick {
+    position: relative;
+    border-bottom: 1px dotted #C4C4C4;
+    width: 256px;
+  }
+
+  #q-graph tr,
+  #q-graph th,
+  #q-graph td {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .chart-container {
+    margin-left: 70px;
+    margin-bottom: -70px;
+    margin-right: 27rem;
+  }
+
+  .chart-container-1 {
+    position: relative;
+    max-height: 26rem;
+    top: 109rem;
+    left: -90.7rem;
+    border: solid 1px rgba(100, 37, 197, 0.3411764706);
+    border-radius: 15px;
+    width: 42rem;
+    background: #451397;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    overflow: hidden;
+  }
+
+  .tiles-container {
+    display: grid;
+    grid-template-columns: repeat(1, 4fr);
+    grid-gap: 20px;
+    max-width: 31rem;
+    position: relative;
+    left: 13rem;
+    bottom: -6.6rem;
+    align-content: center;
+  }
+
+  .tile-appbox {
+    display: block;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    left: -24.9rem;
+    bottom: -85rem;
+    max-width: 47%;
+  }
+
+}
+
+
+.dashboard.panel-open {
+  max-width: 60%;
+  transition: max-width 0.6s ease-in-out;
+  min-height: calc(313vh - 150px);
+
+  .dashboard {
+    background-color: rgb(238, 242, 246);
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 100%;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 12px 12px 0px 0px;
+    z-index: 1;
+    transition: width 0.6s ease-in-out, max-width 0.6s ease-in-out;
+    overflow: hidden;
+  }
+
+  .recruitment-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+  }
+
+  .recruitment-tile {
+    font-size: 16px;
+    position: relative;
+    left: 93px;
+    font-family: Satoshi;
+    font-weight: 700;
+    color: #451397;
+    text-align: center;
+  }
+
+  .sources-container {
+    background: #6c80dc;
+    border: 1px solid rgba(76, 0, 229, 0.38);
+    border-radius: 20px;
+    height: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    position: absolute;
+    color: #fff;
+    top: 88px;
+    width: 21.5rem;
+    left: 2rem;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+  }
+
+  .label-progress {
+    font-size: 15px;
+    font-family: Satoshi;
+    font-weight: 700;
+    color: #451397;
+    padding-top: 20px;
+    padding-left: 19rem;
+  }
+
+  .chart-container-1 {
+    position: relative;
+    max-height: 31rem;
+    top: 94rem;
+    left: -78.9rem;
+    border: solid 1px rgba(100, 37, 197, 0.3411764706);
+    border-radius: 15px;
+    width: 23.1rem;
+    background: #451397;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    overflow: hidden;
+  }
+
+  #q-graph thead th.sent {
+    top: 250px;
+    left: 0;
+    line-height: 2;
+  }
+
+  #q-graph thead th.paid {
+    top: 19.75em;
+    line-height: 2;
+    left: 0;
+  }
+
+  .month {
+    position: relative;
+    top: 6rem;
+    left: 5rem;
+  }
+
+  .week {
+    position: relative;
+    top: 4rem;
+    left: 12.5rem;
+  }
+
+  .interviews-box-container {
+    position: relative;
+    top: 168.4rem;
+    left: -55.4rem;
+    width: 22.4rem;
+  }
+
+
+  .tile {
+    background-color: #3e3298;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    width: 135px;
+    font-family: Satoshi;
+    font-size: 15px;
+    font-weight: 600;
+    color: aliceblue;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .tiles-container {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 20px;
+    max-width: 20rem;
+    position: relative;
+    left: -12rem;
+    bottom: -45.6rem;
+    align-content: center;
+  }
+
+  .tile-appbox {
+    display: inline-block;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    left: -32.7rem;
+    bottom: -71rem;
+    max-width: 48%;
+  }
+
+  .small-box-1,
+  .small-box-2,
+  .small-box-3,
+  .small-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .job-postings-container {
+    font-family: "Satoshi";
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 0.5;
+    color: var(--grey-900, #212121);
+    position: relative;
+    padding: 15px;
+    top: 127rem;
+    right: 102.1rem;
+    background: var(--amber-50, #162e9e);
+    border: 1px solid #000000;
+    border-radius: 15px;
+    width: 21.2rem;
+    display: inline-block;
+    overflow: hidden;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px, rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
+  }
+
+  .hiring-positions-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 16rem;
+    padding: 10px;
+    margin: 10px;
+    background: #fff;
+    border-radius: 15px;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    border: 1px solid #ffffff;
+  }
+
+  .interviews-box-container {
+    position: relative;
+    top: 160.4rem;
+    left: -56.4rem;
+  }
+
+  .interviews-box {
+    padding-bottom: 10px;
+    height: 31rem;
+    width: 21.7rem;
+  }
+
+  .small-box-2::after {
+    left: -10px;
+  }
+
+  .small-box-2::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 0;
+    left: 97px;
+    width: 1px;
+    height: 60px;
+    background-color: #ececec;
+  }
+
+  p.label-app-2 {
+    position: relative;
+    top: 9px;
+    left: -4px;
+    font-size: 11px;
+  }
+
+  #q-graph .bar {
+    width: 4px;
+    border: 1px solid;
+    border-bottom: none;
+    color: #000;
+  }
+
+  #q-graph #q2 {
+    left: 36px;
+  }
+
+  #q-graph #q3 {
+    left: 70px;
+  }
+
+  #q-graph #q4 {
+    left: 105px;
+  }
+
+  #q-graph #q5 {
+    left: 140px;
+  }
+
+  #q-graph #q6 {
+    left: 175px;
+  }
+
+  #q-graph #q7 {
+    left: 210px;
+    border-right: none;
+  }
+
+  #q-graph .paid {
+    left: 20px;
+    background-color: #ecff62;
+    border-color: transparent;
+  }
+
+  #ticks .tick {
+    position: relative;
+    border-bottom: 1px dotted #C4C4C4;
+    width: 256px;
+  }
+
+  #q-graph tr,
+  #q-graph th,
+  #q-graph td {
+    position: absolute;
+    bottom: 0;
+    width: 37px;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .chart-container {
+    margin-left: 58px;
+    margin-bottom: -70px;
+    margin-right: 27rem;
+  }
+
+}
+
+
 
 @media only screen and (min-width: 1200px) and (max-width: 1934px) {
   .dashboard-container-recuitment {

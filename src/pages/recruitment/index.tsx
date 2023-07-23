@@ -69,13 +69,6 @@ const RecruitmentPage = () => {
     };
   }, [isPanelOpen]);
 
-  const handlePanelCloseClick = () => {
-    if (window.innerWidth >= 768 && window.innerWidth <= 1934) {
-      return; // Prevent closing the side panel within the specified range
-    }
-    handlePanelClose();
-  };
-
   return (
     <div className="dashboard-page">
       {isLoading ? (
@@ -87,7 +80,7 @@ const RecruitmentPage = () => {
           <Header togglePanel={togglePanel} />
           <Sidepanel isOpen={isPanelOpen} active={activeSection} onClose={handlePanelClose} />
           <div className={`dashboard ${isDashboardHalfWidth ? 'half-width' : ''} ${isPanelOpen ? 'panel-open' : 'panel-closed'}`} ref={dashboardRef}>
-            <div className={`.dashboard-container-recuitment ${isPanelOpen ? 'flex' : 'grid'}`}>
+            <div className={`.dashboard-container-recruitment ${isPanelOpen ? 'flex' : 'grid'}`}>
               <div className="recruitment-container">
                 <div className="recruitment-tile">
                   <h1>RECRUITMENT</h1>
@@ -132,12 +125,12 @@ const RecruitmentPage = () => {
                       <Interview candidate="John Doe" />
                       <Interview candidate="Jane Smith" />
                     </div>
-                  </div>
-                  <div className="button-74-container">
-                    <button className="button-74">
-                      <span className="button-icon">+</span>
-                      Add Candidates
-                    </button>
+                    <div className="button-74-container">
+                      <button className="button-74">
+                        <span className="button-icon">+</span>
+                        Add Candidates
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div className="chart-container-1">
