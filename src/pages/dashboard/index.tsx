@@ -109,6 +109,11 @@ const DashboardPage = () => {
                   <p className="title-tile">Payroll</p>
                 </button>
               </div>
+              <div className="dashboard-tile">
+                <button className="tiles">
+                  <p className="title-tile">Inventory</p>
+                </button>
+              </div>
               {/* Add more dashboard tiles here */}
             </div>
           </div>
