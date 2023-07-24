@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import Header from '../../components/Header';
-import Sidepanel from '../../components/Sidepanel';
-import Loader from '../../components/Loader';
+import Header from '../../components/ui/Header';
+import Sidepanel from '../../components/forms/Sidepanel';
+import Loader from '../../components/ui/Loader';
 import './styles.scss';
 
 const DashboardPage = () => {
