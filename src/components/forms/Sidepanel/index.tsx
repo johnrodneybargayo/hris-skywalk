@@ -20,6 +20,11 @@ const Sidepanel: React.FC<SidepanelProps> = ({ isOpen, active, onClose }) => {
     history.push('/recruitment');
   };
 
+  const handleInventoryClick = () => {
+    history.push('/inventory'); // Add this function to handle the inventory button click
+  };
+
+
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
@@ -64,6 +69,12 @@ const Sidepanel: React.FC<SidepanelProps> = ({ isOpen, active, onClose }) => {
           <button className="btn-CP">Career Path</button>
           <button className="btn-LD">Learning &amp; Development</button>
           <button className="btn-payroll">Payroll</button>
+          <button
+            className={`btn-inventory ${active === 'inventory' ? 'active' : ''}`}
+            onClick={handleInventoryClick}
+          >
+            Inventory
+          </button>
         </div>
       </div>
     </>
