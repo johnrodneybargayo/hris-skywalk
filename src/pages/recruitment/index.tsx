@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import Header from '../../components/Header';
-import Sidepanel from '../../components/Sidepanel';
-import Loader from '../../components/Loader';
-import Dropdown from '../../components/Dropdown';
-import ProgressBar from '../../components/ProgressBar';
-import Applications from '../../components/Applications';
-import Interview from '../../components/Interviews';
-import Chart from '../../components/Chart';
-import HiringPositions from '../../components/Hiring';
-import TilesContainer from '../../components/RecruitmentList';
+import Header from '../../components/ui/Header';
+import Sidepanel from '../../components/forms/Sidepanel';
+import Loader from '../../components/ui/Loader';
+import Dropdown from '../../components/ui/Dropdown';
+import ProgressBar from '../../components/ui/ProgressBar';
+import Applications from '../../components/forms/Applications';
+import Interview from '../../components/forms/Interviews';
+import Chart from '../../components/ui/Chart';
+import HiringPositions from '../../components/forms/Hiring';
+import TilesContainer from '../../components/forms/RecruitmentList';
 import './styles.scss';
 
 const RecruitmentPage = () => {
