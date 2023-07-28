@@ -11,7 +11,6 @@ import Chart from '../../components/ui/Chart';
 import HiringPositions from '../../components/forms/Hiring';
 import TilesContainer from '../../components/forms/RecruitmentList';
 import { Button } from '../../components/ui/Buttons';
-import 'mdbreact/dist/css/mdb.css';
 import './styles.scss';
 
 type EmailCounts = {
