@@ -1,89 +1,59 @@
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap");
+
 .dropdown {
-    position: relative;
-    width: 235px;
-    filter: url(#goo);
+  position: relative;
+  display: inline-block;
+}
 
-    &__face,
-    &__items {
-        background-color: #fff;
-        padding: 5px;
-        border-radius: 25px;
+.dropdown-toggle {
+  padding: 8px 16px;
+  font-family: "Satoshi", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 0.5;
+  color: #fff;
+  background-color: #3e3298;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  display: flex; /* Use flexbox to align the icon and text */
+  align-items: center; /* Vertically center the content */
+}
+
+.svg-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px; /* Add some spacing between the icon and the text */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 8px 0;
+  margin: 0;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+
+  li {
+    padding: 8px 16px;
+    font-family: "Satoshi", sans-serif;
+    color: #3e3298;
+    font-size: 14px;
+    line-height: 0.5;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+      color: #3e3298;
     }
-
-    &__face {
-        display: block;
-        position: relative;
-    }
-
-    &__items {
-        margin-top: -15px;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        width: 100%;
-        list-style: none;
-        list-style-type: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        visibility: hidden;
-        z-index: -1;
-        opacity: 0;
-        transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
-
-        &::before {
-            content: "";
-            background-color: #fff;
-            position: absolute;
-            bottom: 100%;
-            right: 8%;
-            height: 40px;
-            width: 20px;
-        }
-    }
-
-    label {
-        color: #000000;
-        font-size: 10px;
-        display: flex;
-        font-weight: bold;
-        font-family: Satoshi;
-        cursor: pointer;
-        transition: 0.5s ease-in-out;
-        align-content: flex-start;
-        justify-content: center;
-    }
-
-    &__arrow {
-        border-bottom: 2px solid #000;
-        border-right: 2px solid #000;
-        position: absolute;
-        top: 50%;
-        right: 30px;
-        width: 10px;
-        height: 10px;
-        transform: rotate(45deg) translateY(-50%);
-        transform-origin: right;
-    }
-
-    li {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        font-family: Satoshi;
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 1.5;
-    }
-
-    input {
-        display: none;
-
-        &:checked~.dropdown__items {
-            top: calc(100% + 25px);
-            visibility: visible;
-            opacity: 1;
-            color: #000000;
-        }
-    }
+  }
 }
