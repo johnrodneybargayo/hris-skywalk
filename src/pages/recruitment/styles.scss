@@ -496,7 +496,7 @@ h1.job-header {
     justify-content: center;
     padding: 10px;
     position: relative;
-    left: -11.5rem;
+    left: -11.7rem;
     bottom: -27rem;
     max-width: 47%;
   }
@@ -520,8 +520,8 @@ h1.job-header {
     color: var(--grey-900, #212121);
     position: relative;
     padding: 15px;
-    height: 24rem;
     top: 52rem;
+    height: 24rem;
     right: 102rem;
     background: var(--amber-50, #162e9e);
     border: 1px solid #000000;
@@ -1212,18 +1212,19 @@ h1.job-header {
     font-weight: 600;
     line-height: 0.5;
     color: var(--grey-900, #212121);
-    position: absolute;
+    position: relative;
     padding: 15px;
-    top: 52.3rem;
-    right: 111.1rem;
-    height: 30rem;
+    top: 52rem;
+    height: 24rem;
+    right: 102rem;
     background: var(--amber-50, #162e9e);
     border: 1px solid #000000;
     border-radius: 15px;
-    width: 19.2rem;
+    width: 28rem;
     display: inline-block;
     overflow: hidden;
-    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
   }
 
   .hiring-positions-item {
@@ -1705,5 +1706,35 @@ h1.job-header {
     position: absolute;
     top: -1rem;
     left: 1rem;
+  }
+  .job-postings-container {
+    font-family: "Satoshi";
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 0.5;
+    color: var(--grey-900, #212121);
+    position: relative;
+    padding: 15px;
+    top: 52rem;
+    height: 24rem;
+    right: 102rem;
+    background: var(--amber-50, #162e9e);
+    border: 1px solid #000000;
+    border-radius: 15px;
+    width: 28rem;
+    display: inline-block;
+    overflow: hidden;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
+  }
+
+  .tile-appbox {
+    display: inline-block;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    left: -11.2rem;
+    bottom: -27rem;
+    max-width: 47%;
   }
 }
