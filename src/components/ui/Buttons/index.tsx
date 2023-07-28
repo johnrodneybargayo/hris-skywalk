@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 interface ButtonProps {
   value: JSX.Element | React.ReactText;
@@ -6,6 +6,7 @@ interface ButtonProps {
   onClick?: React.MouseEventHandler;
   disabled?: boolean;
   is_loading?: boolean;
+  role?: string;
 }
 
 export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) => {
@@ -13,6 +14,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) =>
   const is_disabled = props.is_loading ? true : props.disabled;
 
   return (
+    // eslint-disable-next-line
     <button
       className={[props.className, 'button', loading_class].join(' ').trim()}
       onClick={props.onClick}
@@ -29,6 +31,7 @@ export const SubmitButton: React.FunctionComponent<ButtonProps> = (props) => {
   const is_disabled = props.is_loading ? true : props.disabled;
 
   return (
+    // eslint-disable-next-line
     <button
       type="submit"
       className={`button is-rounded has-background-primary ${props.className} ${loading_class}`}
