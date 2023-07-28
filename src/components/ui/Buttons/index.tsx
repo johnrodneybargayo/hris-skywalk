@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 interface ButtonProps {
   value: JSX.Element | React.ReactText;
@@ -6,7 +6,6 @@ interface ButtonProps {
   onClick?: React.MouseEventHandler;
   disabled?: boolean;
   is_loading?: boolean;
-  role?: string;
 }
 
 export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) => {
@@ -36,7 +35,7 @@ export const SubmitButton: React.FunctionComponent<ButtonProps> = (props) => {
       className={`button is-rounded has-background-primary ${props.className} ${loading_class}`}
       disabled={is_disabled}
       onClick={props.onClick}
-      role="submit"
+      role="button" // Set the role to "button" for a regular button
     >
       {props.value}
     </button>
