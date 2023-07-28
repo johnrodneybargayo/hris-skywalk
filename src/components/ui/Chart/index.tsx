@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import './styles.scss';
+import { Button } from '../../../components/ui/Buttons';
 
 
 const Chart = () => {
@@ -61,12 +62,20 @@ const Chart = () => {
           <div className="tick" style={{ height: '59px' }}><p>25%</p></div>
         </div>
       </div>
-      <div className='month'>
-        <button className='month-button'>Month</button>
-      </div>
-      <div className='week'>
-        <button className='week-button'>Week</button>
-      </div>
+      <Button
+        value="Month"
+        className="month-button"
+        onClick={() => {
+          // Add your click event handler logic here, if needed
+        }}
+      />
+      <Button
+        value="Week"
+        className="week-button"
+        onClick={() => {
+          // Add your click event handler logic here, if needed
+        }}
+      />
     </>
   );
 };

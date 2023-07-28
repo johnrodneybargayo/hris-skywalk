@@ -1,5 +1,5 @@
 import React from 'react';
-import { EquipmentItem } from '../../forms/Inventory';
+import { EquipmentItem } from '../../../components/forms/Inventory';
 
 interface InventoryTableProps {
     inventory: EquipmentItem[];

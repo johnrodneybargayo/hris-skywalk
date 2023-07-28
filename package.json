@@ -19,6 +19,7 @@
     "global": "^4.4.0",
     "i18next": "^23.2.2",
     "mdb-react-ui-kit": "^6.1.0",
+    "mdbreact": "^5.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.0",
