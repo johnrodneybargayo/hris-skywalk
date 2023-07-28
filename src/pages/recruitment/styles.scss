@@ -1,4 +1,4 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap");
 
 .dashboard-recruitment {
   background-color: rgb(238, 242, 246);
@@ -72,7 +72,6 @@
   -webkit-backdrop-filter: blur(4.1px);
   border-radius: 50%;
   border-radius: 10px;
-
 }
 
 /* Shape 2 */
@@ -113,7 +112,6 @@ h1.title-sources {
   font-size: 15px;
   font-weight: 600;
   line-height: 0.5;
-
 }
 
 .label-progress {
@@ -135,13 +133,13 @@ p.label-box-progress {
 .interviews-box-container {
   position: relative;
   top: 5.4rem;
-  left: -11rem;
-  width: 29rem;
+  left: -7rem;
+  width: 30rem;
 }
 
 .tile {
   background-color: #3e3298;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   border-radius: 8px;
   width: 195px;
@@ -214,11 +212,11 @@ p.label-box-progress {
 
 .interviews-box {
   padding-bottom: 10px;
-  height: 31rem;
+  height: 43rem;
 }
 
 .interview-scrollable {
-  height: 25rem;
+  height: 37rem;
   overflow: auto;
 }
 
@@ -347,40 +345,39 @@ h1.job-header {
 .job-postings-container::before,
 .job-postings-container::after,
 .circle-shape {
-  content: '';
+  content: "";
   position: absolute;
   width: 211px;
   height: 211px;
   border-radius: 100%;
-  border: 19px var(--blue-500, #2196F3);
+  border: 19px var(--blue-500, #2196f3);
 }
 
 .job-postings-container::before {
   top: -105px;
   left: -105px;
-  border: 10px solid var(--blue-500, #2196F3);
+  border: 10px solid var(--blue-500, #2196f3);
 }
 
 .job-postings-container::after {
   bottom: -127px;
   right: -124px;
-  border: 10px solid var(--blue-500, #2196F3);
+  border: 10px solid var(--blue-500, #2196f3);
 }
 
 .shape1-job {
   top: 31rem;
   right: -2rem;
-  border: 3px solid var(--blue-500, #2196F3);
+  border: 3px solid var(--blue-500, #2196f3);
 }
 
 .shape2-job {
-  bottom: 32rem;
-  left: -3rem;
-  border: 3px solid var(--blue-500, #2196F3);
+  bottom: 28rem;
+  left: -4rem;
+  border: 3px solid var(--blue-500, #2196f3);
 }
 
 @media only screen and (max-width: 390px) {
-
   .recruitment-container {
     display: flex;
     justify-content: center;
@@ -412,7 +409,8 @@ h1.job-header {
     top: 88px;
     width: 20.5rem;
     left: 2rem;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
   }
 
   .label-progress {
@@ -433,7 +431,8 @@ h1.job-header {
     border-radius: 15px;
     width: 21.9rem;
     background: #451397;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
     overflow: hidden;
   }
 
@@ -468,7 +467,6 @@ h1.job-header {
     width: 22.4rem;
   }
 
-
   .tile {
     background-color: #3e3298;
     padding: 20px;
@@ -485,11 +483,11 @@ h1.job-header {
   .tiles-container {
     display: grid;
     grid-template-columns: repeat(2, 2fr);
-    grid-gap: 10px;
-    max-width: 20rem;
+    grid-gap: 20px;
+    max-width: 31rem;
     position: relative;
-    left: -12rem;
-    bottom: -43.6rem;
+    left: 18rem;
+    bottom: 6.4rem;
     align-content: center;
   }
 
@@ -498,9 +496,9 @@ h1.job-header {
     justify-content: center;
     padding: 10px;
     position: relative;
-    left: -32.7rem;
-    bottom: -71rem;
-    max-width: 48%;
+    left: -11.5rem;
+    bottom: -27rem;
+    max-width: 47%;
   }
 
   .small-box-1,
@@ -516,21 +514,23 @@ h1.job-header {
 
   .job-postings-container {
     font-family: "Satoshi";
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 0.5;
     color: var(--grey-900, #212121);
     position: relative;
     padding: 15px;
-    top: 127rem;
-    right: 99.7rem;
+    height: 24rem;
+    top: 52rem;
+    right: 102rem;
     background: var(--amber-50, #162e9e);
     border: 1px solid #000000;
     border-radius: 15px;
-    width: 20.1rem;
+    width: 28rem;
     display: inline-block;
     overflow: hidden;
-    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px, rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
   }
 
   .hiring-positions-item {
@@ -617,7 +617,7 @@ h1.job-header {
 
   #ticks .tick {
     position: relative;
-    border-bottom: 1px dotted #C4C4C4;
+    border-bottom: 1px dotted #c4c4c4;
     width: 256px;
   }
 
@@ -638,11 +638,9 @@ h1.job-header {
     margin-bottom: -70px;
     margin-right: 27rem;
   }
-
 }
 
 @media screen and (min-width: 393px) and (max-width: 412px) {
-
   .recruitment-container {
     display: flex;
     justify-content: center;
@@ -674,7 +672,8 @@ h1.job-header {
     top: 88px;
     width: 20.5rem;
     left: 2rem;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
   }
 
   .label-progress {
@@ -695,7 +694,8 @@ h1.job-header {
     border-radius: 15px;
     width: 21.9rem;
     background: #451397;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
     overflow: hidden;
   }
 
@@ -729,7 +729,6 @@ h1.job-header {
     left: -55.4rem;
     width: 22.4rem;
   }
-
 
   .tile {
     background-color: #3e3298;
@@ -792,7 +791,8 @@ h1.job-header {
     width: 20.1rem;
     display: inline-block;
     overflow: hidden;
-    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px, rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
   }
 
   .hiring-positions-item {
@@ -879,7 +879,7 @@ h1.job-header {
 
   #ticks .tick {
     position: relative;
-    border-bottom: 1px dotted #C4C4C4;
+    border-bottom: 1px dotted #c4c4c4;
     width: 256px;
   }
 
@@ -900,12 +900,9 @@ h1.job-header {
     margin-bottom: -70px;
     margin-right: 27rem;
   }
-
-
 }
 
 @media screen and (min-width: 414px) and (max-width: 767px) {
-
   .recruitment-container {
     display: flex;
     justify-content: center;
@@ -937,7 +934,8 @@ h1.job-header {
     top: 88px;
     width: 21.5rem;
     left: 2rem;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
   }
 
   .label-progress {
@@ -958,7 +956,8 @@ h1.job-header {
     border-radius: 15px;
     width: 23.1rem;
     background: #451397;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
     overflow: hidden;
   }
 
@@ -992,7 +991,6 @@ h1.job-header {
     left: -55.4rem;
     width: 22.4rem;
   }
-
 
   .tile {
     background-color: #3e3298;
@@ -1055,7 +1053,8 @@ h1.job-header {
     width: 21.2rem;
     display: inline-block;
     overflow: hidden;
-    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px, rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
   }
 
   .hiring-positions-item {
@@ -1147,7 +1146,7 @@ h1.job-header {
 
   #ticks .tick {
     position: relative;
-    border-bottom: 1px dotted #C4C4C4;
+    border-bottom: 1px dotted #c4c4c4;
     width: 256px;
   }
 
@@ -1168,11 +1167,9 @@ h1.job-header {
     margin-bottom: -70px;
     margin-right: 27rem;
   }
-
 }
 
 @media only screen and (min-width: 768px) and (max-width: 912px) {
-
   .dashboard {
     background-color: rgb(238, 242, 246);
     min-height: calc(226vh - 150px);
@@ -1246,7 +1243,7 @@ h1.job-header {
 
   #ticks .tick {
     position: relative;
-    border-bottom: 1px dotted #C4C4C4;
+    border-bottom: 1px dotted #c4c4c4;
     width: 380px;
   }
 
@@ -1341,7 +1338,7 @@ h1.job-header {
 
   #ticks .tick {
     position: relative;
-    border-bottom: 1px dotted #C4C4C4;
+    border-bottom: 1px dotted #c4c4c4;
     width: 256px;
   }
 
@@ -1372,7 +1369,8 @@ h1.job-header {
     border-radius: 15px;
     width: 42rem;
     background: #451397;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
     overflow: hidden;
   }
 
@@ -1396,9 +1394,7 @@ h1.job-header {
     bottom: -85rem;
     max-width: 47%;
   }
-
 }
-
 
 .dashboard.panel-open {
   max-width: 60%;
@@ -1450,7 +1446,8 @@ h1.job-header {
     top: 88px;
     width: 21.5rem;
     left: 2rem;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 7px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
   }
 
   .label-progress {
@@ -1471,7 +1468,8 @@ h1.job-header {
     border-radius: 15px;
     width: 23.1rem;
     background: #451397;
-    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px, rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) -10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) -7px 7px 8px 0px;
     overflow: hidden;
   }
 
@@ -1505,7 +1503,6 @@ h1.job-header {
     left: -55.4rem;
     width: 22.4rem;
   }
-
 
   .tile {
     background-color: #3e3298;
@@ -1568,7 +1565,8 @@ h1.job-header {
     width: 21.2rem;
     display: inline-block;
     overflow: hidden;
-    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px, rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) 10px 14px 14px 0px,
+      rgba(14, 30, 37, 0.32) 7px 7px 8px 0px;
   }
 
   .hiring-positions-item {
@@ -1660,7 +1658,7 @@ h1.job-header {
 
   #ticks .tick {
     position: relative;
-    border-bottom: 1px dotted #C4C4C4;
+    border-bottom: 1px dotted #c4c4c4;
     width: 256px;
   }
 
@@ -1681,11 +1679,9 @@ h1.job-header {
     margin-bottom: -70px;
     margin-right: 27rem;
   }
-
 }
 
 @media only screen and (min-width: 913px) and (max-width: 1199px) {
-
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1934px) {
