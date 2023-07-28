@@ -1,4 +1,5 @@
 import React from 'react';
+import Board from '../ui/Boards/Board';
 import './styles.scss'; // Import the styles.scss for styling the modal
 
 interface ShortlistingsModalProps {
@@ -25,7 +26,10 @@ const ShortlistingsModal: React.FC<ShortlistingsModalProps> = ({ showModal, onCl
         </div>
         {/* Modal Content */}
         <h2>Modal Content</h2>
-        <p>This is a simple modal content created with React and TypeScript.</p>
+      
+        
+        {/* Display the Board component with draggable tiles and droppable areas */}
+        <Board />
       </div>
     </div>
   );

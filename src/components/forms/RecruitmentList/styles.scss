@@ -1,56 +1,55 @@
 .tiles-container {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-gap: 20px;
-    max-width: 31rem;
-    position: relative;
-    left: 16rem;
-    bottom: 0.4rem;
-    align-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: 20px;
+  max-width: 30rem;
+  position: relative;
+  left: 18rem;
+  bottom: 6.4rem;
+  align-content: center;
 }
 
 .tile {
-    background-color: #3e3298;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    width: 195px;
-    font-family: Satoshi;
-    font-size: 15px;
-    font-weight: 600;
-    color: aliceblue;
-    transition: transform 0.3s ease-in-out;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 7px 14px 0px,
-        rgba(14, 30, 37, 0.32) 0px 7px 8px 0px;
-
+  background-color: #3e3298;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  width: 195px;
+  font-family: Satoshi;
+  font-size: 15px;
+  font-weight: 600;
+  color: aliceblue;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 7px 14px 0px,
+    rgba(14, 30, 37, 0.32) 0px 7px 8px 0px;
 }
 
 .tile:hover {
-    transform: translateY(-5px);
-    cursor: pointer;
-    color: #ffffff;
+  transform: translateY(-5px);
+  cursor: pointer;
+  color: #ffffff;
 }
 
 .tile i {
-    font-size: 36px;
-    margin-bottom: 10px;
-    transition: color 0.3s ease-in-out;
+  font-size: 36px;
+  margin-bottom: 10px;
+  transition: color 0.3s ease-in-out;
 }
 
 .tile:hover i {
-    color: #d9fa21;
+  color: #d9fa21;
 }
 
 .tile h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-    padding: 0;
-    margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 8px;
+  padding: 0;
+  margin-top: 0;
 }
 
 .tile .number {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
