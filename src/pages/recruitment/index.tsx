@@ -9,7 +9,7 @@ import Applications from '../../components/forms/Applications';
 import Interview from '../../components/forms/Interviews';
 import Chart from '../../components/ui/Chart';
 import HiringPositions from '../../components/forms/Hiring';
-import TilesContainer from '../../components/forms/RecruitmentList';
+import Shortlisting from '../../components/forms/RecruitmentList';
 import { Button } from '../../components/ui/Buttons';
 import './styles.scss';
 
@@ -156,7 +156,7 @@ const RecruitmentPage = () => {
                   </div>
 
                 </div>
-                <TilesContainer />
+                <Shortlisting />
                 <div className="tile-appbox">
                   <Applications />
                 </div>
