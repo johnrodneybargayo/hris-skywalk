@@ -16,7 +16,6 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) =>
     <button
       className={[props.className, 'button', loading_class].join(' ').trim()}
       onClick={props.onClick}
-      role="button"
       type="button"
       disabled={is_disabled}
     >
@@ -35,7 +34,6 @@ export const SubmitButton: React.FunctionComponent<ButtonProps> = (props) => {
       className={`button is-rounded has-background-primary ${props.className} ${loading_class}`}
       disabled={is_disabled}
       onClick={props.onClick}
-      role="button" // Set the role to "button" for a regular button
     >
       {props.value}
     </button>
