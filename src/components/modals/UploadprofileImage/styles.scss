@@ -1,0 +1,66 @@
+.upload-profile-image-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .upload-profile-image-modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+  
+    h2 {
+      margin-bottom: 20px;
+    }
+  
+    .dropzone {
+      border: 2px dashed #aaa;
+      padding: 20px;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease;
+  
+      p {
+        margin: 0;
+      }
+  
+      &:focus {
+        border-color: #4caf50;
+      }
+    }
+  
+    .uploaded-image-preview {
+      margin-top: 20px;
+  
+      img {
+        max-width: 100%;
+        border-radius: 4px;
+      }
+    }
+  
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+  
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+  }
+  

@@ -1,0 +1,275 @@
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ba68c8;
+}
+
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none;
+}
+
+.profile-button:hover {
+  background: #682773;
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none;
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none;
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer;
+}
+
+.labels {
+  font-size: 11px;
+}
+
+.add-experience:hover {
+  background: #ba68c8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #ba68c8;
+}
+
+.applicants-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  background: #e3efff;
+  border: 1px solid #b8b8b8;
+  margin: 15px;
+  justify-content: center;
+  border-radius: 15px;
+  align-items: center;
+  width: 118rem;
+  height: 56rem;
+}
+
+.applicant-form-label {
+  display: flex;
+  position: absolute;
+  top: 3rem;
+}
+
+.border-right {
+  border-right: 1px solid #dee2e6 !important;
+}
+
+.row.mt-2 {
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  left: 23rem;
+}
+
+.col-md-6,
+.col-md-12 {
+  padding: 10px;
+}
+
+.labels-applicants {
+  font-size: 11px;
+}
+
+.contact-info {
+  display: flex;
+  position: absolute;
+  left: 23rem;
+  top: 8rem;
+}
+
+.address-applicants {
+  display: flex;
+}
+
+.address-applicants {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: absolute;
+  left: 23rem;
+  top: 13rem;
+}
+
+.address-applicants-2 {
+  display: flex;
+  position: absolute;
+  top: 50px;
+}
+
+.school {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 22rem;
+  left: 23rem;
+}
+
+.name-applicant {
+  display: flex;
+  position: absolute;
+  left: 23rem;
+  top: 5rem;
+}
+
+.applicant-address-label {
+  display: flex;
+  position: absolute;
+  top: 188px;
+  background: #3e3298;
+  width: 37rem;
+  justify-content: center;
+  left: 23rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.applicant-school-label {
+  display: flex;
+  position: absolute;
+  top: 21rem;
+  background: #3e3298;
+  width: 37rem;
+  justify-content: center;
+  left: 23rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.applicant-work {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 23rem;
+}
+
+.application-submit {
+  display: flex;
+  margin: 12px auto 10%;
+  color: #fff;
+  background: #573b8a;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  position: absolute;
+  top: 50rem;
+}
+
+.applicant-work {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -1rem;
+  justify-content: center;
+  top: 13rem;
+}
+
+.applicant-work .col-md-6 {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.applicant-work .btn-danger {
+  margin-top: 10px;
+}
+
+.add-work-experience-button {
+  margin-top: 15px;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  top: 29rem;
+  align-items: center;
+}
+
+.application-submit {
+  display: flex;
+  margin: 12px auto; /* Center horizontally */
+  color: #fff;
+  background: #573b8a;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  position: absolute;
+  top: 50rem;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ba68c8;
+}
+
+.profile-button {
+  background: rgb(99, 39, 120);
+  box-shadow: none;
+  border: none;
+}
+
+.profile-button:hover {
+  background: #682773;
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none;
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none;
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer;
+}
+
+.labels {
+  font-size: 11px;
+}
+
+.add-experience:hover {
+  background: #ba68c8;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #ba68c8;
+}
+
+h4.applicant-work-label {
+  display: flex;
+  position: absolute;
+  top: 27rem;
+  background: #3e3298;
+  width: 37rem;
+  justify-content: center;
+  left: 23rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.images-applicant {
+  display: flex;
+  position: absolute;
+  right: 35rem;
+  top: 7rem;
+}

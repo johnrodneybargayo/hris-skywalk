@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TileProps } from '../../types';
+import { TileProps } from '../../Utils/types';
 import './styles.scss';
 import UserDetailModal from '../../modals/userDetails/userDetail'; // Import the UserDetailModal component
 
