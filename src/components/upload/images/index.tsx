@@ -56,7 +56,7 @@ const ImagesUpload = () => {
   return (
     <div className="images-upload-container">
       {imageUrl ? (
-        <img className="image-placeholder-applicants" src={`https://storage.googleapis.com/hrsystem_bucket1/${imageUrl}`} alt="Profile" />
+        <img className="image-placeholder-applicants" src={imageUrl} alt="Profile" />
       ) : (
         <img className="image-placeholder-applicants" src={defaultImageUrl} alt="Profile" />
       )}
