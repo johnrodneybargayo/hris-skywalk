@@ -1,6 +1,6 @@
 import React from 'react';
 import DroppableColumn from '../Columns/DroppableColumn';
-import { TileProps } from '../../types';
+import { TileProps } from '../../Utils/types';
 import './styles.scss';
 
 const Board: React.FC = () => {

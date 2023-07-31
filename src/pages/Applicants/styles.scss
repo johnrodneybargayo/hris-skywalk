@@ -1,0 +1,20 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.applicants-page {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+  
+    .loader-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+  }
+
+
+  
