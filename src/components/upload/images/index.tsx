@@ -11,7 +11,6 @@ const ImagesUpload = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const defaultImageUrl = 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
-  const [isUploading, setIsUploading] = useState(false); // Add a state for the uploading status
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -19,8 +18,6 @@ const ImagesUpload = () => {
     try {
       const formData = new FormData();
       formData.append('image', file);
-
-      setIsUploading(true); // Set uploading status to true
 
       // Send the image to the backend server using axios
       const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/uploadImage', formData, {
@@ -41,8 +38,6 @@ const ImagesUpload = () => {
       console.error('Error uploading image:', error);
       // Set imageUrl to null when an error occurs to display the default image
       setImageUrl(null);
-    } finally {
-      setIsUploading(false); // Set uploading status to false after completion
     }
   };
 
@@ -61,7 +56,7 @@ const ImagesUpload = () => {
   return (
     <div className="images-upload-container">
       {imageUrl ? (
-        <img className="image-placeholder-applicants" src={imageUrl} alt="Profile" />
+        <img className="image-placeholder-applicants" src={`https://empireone-global-inc.uc.r.appspot.com/uploads/${imageUrl}`} alt="Profile" />
       ) : (
         <img className="image-placeholder-applicants" src={defaultImageUrl} alt="Profile" />
       )}
@@ -76,14 +71,8 @@ const ImagesUpload = () => {
           }
         }}
       >
-        {isUploading ? ( // Display the uploading status
-          <span className="images-upload-loading">Uploading...</span>
-        ) : (
-          <>
-            <span className="images-upload-icon">+</span>
-            <span className="images-upload-text">Upload Photo</span>
-          </>
-        )}
+        <span className="images-upload-icon">+</span>
+        <span className="images-upload-text">Upload Photo</span>
         {/* Hidden file input */}
         <input
           ref={fileInputRef}
