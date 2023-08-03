@@ -3,29 +3,22 @@
   border-color: #ba68c8;
 }
 
-.profile-button {
-  background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none;
-}
-
-.profile-button:hover {
-  background: #682773;
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none;
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none;
-}
-
 .back:hover {
   color: #682773;
   cursor: pointer;
+}
+
+.name-applicant-label {
+  display: flex;
+  position: absolute;
+  top: 61px;
+  background: #3e3298;
+  width: 50rem;
+  justify-content: center;
+  left: 23rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
 }
 
 .labels {
@@ -54,10 +47,19 @@
   height: 56rem;
 }
 
+.dropdownlist-applicant {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 11rem;
+    left: 23rem;
+}
+
 .applicant-form-label {
   display: flex;
   position: absolute;
-  top: 3rem;
+  top: 0rem;
 }
 
 .border-right {
@@ -97,7 +99,7 @@
   flex-direction: row;
   position: absolute;
   left: 23rem;
-  top: 13rem;
+  top: 16rem;
 }
 
 .address-applicants-2 {
@@ -110,7 +112,7 @@
   display: flex;
   position: absolute;
   align-items: center;
-  top: 22rem;
+  top: 25rem;
   left: 23rem;
 }
 
@@ -124,9 +126,9 @@
 .applicant-address-label {
   display: flex;
   position: absolute;
-  top: 188px;
+  top: 233px;
   background: #3e3298;
-  width: 37rem;
+  width: 50rem;
   justify-content: center;
   left: 23rem;
   font-size: 12px;
@@ -137,9 +139,9 @@
 .applicant-school-label {
   display: flex;
   position: absolute;
-  top: 21rem;
+  top: 23rem;
   background: #3e3298;
-  width: 37rem;
+  width: 50rem;
   justify-content: center;
   left: 23rem;
   font-size: 12px;
@@ -159,7 +161,6 @@
   display: flex;
   margin: 12px auto 10%;
   color: #fff;
-  background: #573b8a;
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -170,14 +171,36 @@
   top: 50rem;
 }
 
+h4.applicant-work-label {
+  display: flex;
+  position: absolute;
+  top: 29rem;
+  background: #3e3298;
+  width: 50rem;
+  justify-content: center;
+  left: 23rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
 .applicant-work {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -1rem;
+  left: -179px;
   justify-content: center;
-  top: 13rem;
+  top: 11rem;
+}
+.applicant-work-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -179px;
+  justify-content: center;
+  top: 10rem;
 }
 
 .applicant-work .col-md-6 {
@@ -198,49 +221,9 @@
   align-items: center;
 }
 
-.application-submit {
-  display: flex;
-  margin: 12px auto; /* Center horizontally */
-  color: #fff;
-  background: #573b8a;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.2s ease-in;
-  position: absolute;
-  top: 50rem;
-}
-
 .form-control:focus {
   box-shadow: none;
   border-color: #ba68c8;
-}
-
-.profile-button {
-  background: rgb(99, 39, 120);
-  box-shadow: none;
-  border: none;
-}
-
-.profile-button:hover {
-  background: #682773;
-}
-
-.profile-button:focus {
-  background: #682773;
-  box-shadow: none;
-}
-
-.profile-button:active {
-  background: #682773;
-  box-shadow: none;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
 }
 
 .labels {
@@ -254,12 +237,45 @@
   border: solid 1px #ba68c8;
 }
 
-h4.applicant-work-label {
+
+.images-applicant {
   display: flex;
   position: absolute;
-  top: 27rem;
+  right: 25rem;
+  top: 1rem;
+}
+
+.image-note {
+  display: flex;
+  position: absolute;
+  top: 14rem;
+  right: 23rem;
+  justify-content: center;
+  width: 15rem;
+  font-size: 13px;
+  font-family: "Satoshi";
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.images-esignature {
+  display: flex;
+  position: absolute;
+  right: 21rem;
+  top: 19rem;
+}
+
+.images-esignature {
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
+.emergency-contact-label {
+  display: flex;
+  position: absolute;
+  top: 38rem;
   background: #3e3298;
-  width: 37rem;
+  width: 50rem;
   justify-content: center;
   left: 23rem;
   font-size: 12px;
@@ -267,9 +283,35 @@ h4.applicant-work-label {
   color: #fff;
 }
 
-.images-applicant {
+.emergency-contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -178px;
+  justify-content: center;
+  top: 11rem;
+}
+
+.government-id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -276px;
+  justify-content: center;
+  top: 12rem;
+}
+
+.government-id-label {
   display: flex;
   position: absolute;
-  right: 35rem;
-  top: 7rem;
+  top: 43rem;
+  background: #3e3298;
+  width: 50rem;
+  justify-content: center;
+  left: 23rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
 }
