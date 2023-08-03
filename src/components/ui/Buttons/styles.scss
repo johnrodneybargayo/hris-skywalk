@@ -1,11 +1,32 @@
-.default-button {
-    display: flex;
-    margin: 12px auto 10%;
-    color: #fff;
-    background: #573b8a;
-    font-size: 1rem;
-    font-weight: bold;
+.button-74 {
+    background-color: #a79fce;
     border: none;
-    border-radius: 4px;
+    border-radius: 30px;
+    box-shadow: #3e3298 4px 4px 0 0;
+    color: #3e3298;
     cursor: pointer;
-}
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Satoshi;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-74:hover {
+    background-color: #fff;
+  }
+  
+  .button-74:active {
+    box-shadow: #3e3298 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  

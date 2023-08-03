@@ -15,7 +15,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = (props) =>
 
   return (
     <button
-      className={[props.className, 'button', loading_class].join(' ').trim()}
+      className={[props.className, 'button-74', loading_class].join(' ').trim()}
       onClick={props.onClick}
       type="button"
       disabled={is_disabled}
@@ -32,7 +32,7 @@ export const SubmitButton: React.FunctionComponent<ButtonProps> = (props) => {
   return (
     <button
       type="submit"
-      className={`button is-rounded has-background-primary ${props.className} ${loading_class}`}
+      className={`button-74 has-background-primary ${props.className} ${loading_class}`}
       disabled={is_disabled}
       onClick={props.onClick}
     >
@@ -49,7 +49,7 @@ export const UploadButton: React.FunctionComponent<ButtonProps> = (props) => {
   return (
     <button
       type="button"
-      className={`button is-info ${props.className} ${loading_class}`}
+      className={`button-74 is-info ${props.className} ${loading_class}`}
       disabled={is_disabled}
       onClick={props.onClick}
     >
