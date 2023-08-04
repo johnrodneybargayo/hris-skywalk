@@ -69,7 +69,7 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
             <input
               type="file"
               id="fileUpload"
-              accept="image/png, image/jpeg"
+              accept="image/png"
               style={{ display: 'none' }}
               onChange={handleFileUpload}
             />
@@ -82,17 +82,17 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
         <div>
           <img src={canvas} alt="signature" />
           <div className="SignatureButtonsContainer">
-            <button onClick={handleSaveSignature}>Upload</button>
-            <button onClick={handleButtonClick}>Cancel</button>
+            <button className="SignatureButtons-up" onClick={handleSaveSignature}>Upload</button>
+            <button className="SignatureButtons-cancel" onClick={handleButtonClick}>Cancel</button>
           </div>
         </div>
       )}
 
       {uploadVisibility && (
-        <div>
-          <img src={signatureImageUrl} alt="signature" />
+        <div className="uploaded-sig-container">
+          <img src={signatureImageUrl} alt="signature" className="UploadedImage" />
           <div className="UploadButtonsContainer">
-            <button onClick={() => setUploadVisibility(false)}>Cancel</button>
+            <button className="SignatureButtons-2" onClick={() => setUploadVisibility(false)}>Cancel</button>
           </div>
         </div>
       )}
