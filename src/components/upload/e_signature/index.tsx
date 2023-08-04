@@ -33,6 +33,10 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
     setUploadVisibility(false);
   };
 
+  const handleClearCanvas = () => {
+    padRef?.current?.clear();
+  };
+
   const handleFileUpload: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -59,8 +63,9 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
             }}
           />
           <div className="SignatureButtonsContainer">
-            <button onClick={handleGetCanvas}>Save</button>
-            <label htmlFor="fileUpload">Upload Signature</label>
+            <button  className="SignatureButtons-1" onClick={handleGetCanvas}>Save</button>
+            <button  className="SignatureButtons-2" onClick={handleClearCanvas}>Clear</button>
+            <label className="SignatureButtons-3" htmlFor="fileUpload">click here to Upload Image Signature</label>
             <input
               type="file"
               id="fileUpload"
@@ -68,6 +73,7 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
               style={{ display: 'none' }}
               onChange={handleFileUpload}
             />
+           
           </div>
         </div>
       )}
