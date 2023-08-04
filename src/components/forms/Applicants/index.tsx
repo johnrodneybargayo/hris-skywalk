@@ -37,7 +37,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         currentAddress: '',
         phoneNumber: '',
         emailAddress: '',
-        dateOfBirth: '',
+        dateOfBirth: new Date(),
         placeOfBirth: '',
         maritalStatus: '',
         sssNumber: '',
@@ -68,12 +68,15 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
     });
 
+
+
     const handleSignatureSave = (imageUrl: string = '') => {
         setFormData((prevFormData) => ({
             ...prevFormData,
             signatureImageUrl: imageUrl,
         }));
     };
+
     const [workExperience1, setWorkExperience1] = useState<WorkExperience>({
         company: '',
         position: '',
@@ -127,6 +130,12 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         }
     };
 
+    const handleDateOfBirthChange = (date: Date) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            dateOfBirth: date, // Set dateOfBirth to the selected date
+        }));
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | Date) => {
         if ('target' in e) {
@@ -142,6 +151,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             }));
         }
     };
+
 
     const handleGenderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setGender(e.target.value); // Update the gender state with the selected value
@@ -174,7 +184,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         currentAddress: '',
         phoneNumber: '',
         emailAddress: '',
-        dateOfBirth: '',
+        dateOfBirth: new Date(),
         placeOfBirth: '',
         maritalStatus: '',
         sssNumber: '',
@@ -204,22 +214,34 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         signatureImageUrl: '', // Add signatureImageUrl property to store the signature image URL
     };
 
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            // Send the form data to the server using axios
-            await axios.post('http://localhost:8080/api/applicants', formData);
-            // Clear the form data after successful submission
-            setFormData(initialFormData);
-            // Optionally, you can show a success message to the user here
-            alert('Form submitted successfully!');
+          // Combine the work experiences into an array
+          const workExperiences = [workExperience1, workExperience2];
+          
+          // Update the formData with the work experiences array
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            workExperiences,
+          }));
+      
+          // Send the form data to the server using axios
+          await axios.post('http://localhost:8080/api/applicants', formData);
+      
+          // Clear the form data after successful submission
+          setFormData(initialFormData);
+      
+          // Optionally, you can show a success message to the user here
+          alert('Form submitted successfully!');
         } catch (error) {
-            console.error('Error submitting form:', error);
-            // Optionally, you can show an error message to the user here
-            alert('An error occurred while submitting the form. Please try again.');
+          console.error('Error submitting form:', error);
+      
+          // Optionally, you can show an error message to the user here
+          alert('An error occurred while submitting the form. Please try again.');
         }
-    };
+      };
+      
 
 
     return (
@@ -295,6 +317,27 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 value={formData.emailId}
                                 onChange={handleChange}
                                 placeholder="Input Email ID"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="labels">Date of Birth:</label>
+                            <DatePicker
+                                selected={formData.dateOfBirth}
+                                onChange={handleDateOfBirthChange} // Call the function when the date is changed
+                                className="form-control"
+                                placeholderText="mm/dd/yyyy"
+                            />
+
+                        </div>
+                        <div className="col-md-6">
+                            <label className="labels">Place of Birth:</label>
+                            <input
+                                type="text"
+                                name="placeOfBirth"
+                                value={formData.placeOfBirth}
+                                onChange={handleChange}
+                                placeholder="Input Place of Birth"
                                 className="form-control"
                             />
                         </div>
@@ -466,6 +509,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <DatePicker
                                     selected={workExperience1.dateHired ? new Date(workExperience1.dateHired) : null}
                                     onChange={(date: Date) => handleWorkExperienceChange1(date, 'dateHired')}
+                                    placeholderText="mm/dd/yyyy"
                                 />
 
                             </div>
@@ -476,6 +520,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <DatePicker
                                     selected={workExperience1.dateResigned ? new Date(workExperience1.dateResigned) : null}
                                     onChange={(date: Date) => handleWorkExperienceChange1(date, 'dateResigned')}
+                                    placeholderText="mm/dd/yyyy"
                                 />
 
                             </div>
@@ -515,6 +560,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <DatePicker
                                     selected={workExperience2.dateHired ? new Date(workExperience2.dateHired) : null}
                                     onChange={(date: Date) => handleWorkExperienceChange2(date, 'dateHired')}
+                                    placeholderText="mm/dd/yyyy"
                                 />
 
                             </div>
@@ -525,6 +571,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <DatePicker
                                     selected={workExperience2.dateResigned ? new Date(workExperience2.dateResigned) : null}
                                     onChange={(date: Date) => handleWorkExperienceChange2(date, 'dateResigned')}
+                                    placeholderText="mm/dd/yyyy"
                                 />
                             </div>
                         </div>

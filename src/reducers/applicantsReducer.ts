@@ -31,7 +31,7 @@ export interface Applicant {
   currentAddress: string;
   phoneNumber: string;
   emailAddress: string;
-  dateOfBirth: string;
+  dateOfBirth: Date;
   placeOfBirth: string;
   maritalStatus: string;
   sssNumber: string;
