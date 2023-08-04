@@ -10,6 +10,7 @@ interface ImageUploadResponse {
 const ImagesUpload = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [profileImageUrl, setProfileImageUrl] = useState<string>(''); // Add profileImageUrl property to store the profile image URL
   const defaultImageUrl = 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +33,9 @@ const ImagesUpload = () => {
       // Set the imageUrl state to the received image URL
       setImageUrl(imageUrl);
 
+      // Set the profileImageUrl state to the received image URL (used to save the image URL to the applicant's data)
+      setProfileImageUrl(imageUrl);
+
       // Do something with the image URL if needed (e.g., set it to the applicant's data)
       console.log('Uploaded image URL:', imageUrl);
     } catch (error) {
@@ -53,12 +57,15 @@ const ImagesUpload = () => {
     }
   };
 
+  // Use the profileImageUrl state to conditionally display the default image or uploaded image
+  const displayImageUrl = profileImageUrl || defaultImageUrl;
+
   return (
     <div className="images-upload-container">
       {imageUrl ? (
         <img className="image-placeholder-applicants" src={imageUrl} alt="Profile" />
       ) : (
-        <img className="image-placeholder-applicants" src={defaultImageUrl} alt="Profile" />
+        <img className="image-placeholder-applicants" src={displayImageUrl} alt="Profile" />
       )}
       <div
         className="images-upload-overlay"
