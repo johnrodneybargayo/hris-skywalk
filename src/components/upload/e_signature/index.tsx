@@ -1,59 +1,60 @@
-import React, { useRef, useState } from "react";
-import SignatureCanvas from "react-signature-canvas";
+import React, { useRef, useState } from 'react';
+import SignatureCanvas from 'react-signature-canvas';
+import axios from 'axios';
 import './styles.scss';
 
 interface SignaturePadProps {
-  onSave: (imageUrl: string) => void;
+  onSave: (imageUrl: string, isSignature: boolean) => void;
 }
 
 const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
   const padRef = useRef<SignatureCanvas | null>(null);
-  const [canvas, setCanvas] = useState<string | undefined>(undefined);
   const [canvasVisibility, setCanvasVisibility] = useState(false);
-  const [uploadVisibility, setUploadVisibility] = useState(false);
   const [signatureImageUrl, setSignatureImageUrl] = useState<string>('');
 
   const handleGetCanvas = () => {
-    const canvasData = padRef?.current?.toDataURL();
-    setCanvas(canvasData);
     setCanvasVisibility(true);
   };
 
-  const handleSaveSignature = () => {
-    onSave(canvas ?? "");
-    setCanvasVisibility(false);
-    setSignatureImageUrl('');
-  };
-
   const handleButtonClick = () => {
-    setCanvasVisibility(!canvasVisibility);
-    setCanvas(undefined);
+    setCanvasVisibility(false);
     padRef?.current?.clear();
     setSignatureImageUrl('');
-    setUploadVisibility(false);
   };
 
   const handleClearCanvas = () => {
     padRef?.current?.clear();
   };
 
-  const handleFileUpload: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleFileUpload: React.ChangeEventHandler<HTMLInputElement> = async (event) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === 'string') {
-          setSignatureImageUrl(reader.result);
-          setUploadVisibility(true);
-        }
-      };
-      reader.readAsDataURL(file);
+      try {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (typeof reader.result === 'string') {
+            setSignatureImageUrl(reader.result);
+            onSave(reader.result, true); // Save uploaded image URL with isSignature=true
+          }
+        };
+        reader.readAsDataURL(file);
+
+        const formData = new FormData();
+        formData.append('signature', file);
+
+        const response = await axios.post('http://empireone-global-inc.uc.r.appspot.com/api/upload-signature', formData);
+        // Handle the response if needed
+        console.log('Signature uploaded:', response.data.imageUrl);
+      } catch (error) {
+        // Handle the error if needed
+        console.error('Error uploading signature:', error);
+      }
     }
   };
 
   return (
     <div className="SignaturePad">
-      {!canvasVisibility && !uploadVisibility && (
+      {!canvasVisibility ? (
         <div>
           <SignatureCanvas
             ref={padRef}
@@ -63,9 +64,15 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
             }}
           />
           <div className="SignatureButtonsContainer">
-            <button  className="SignatureButtons-1" onClick={handleGetCanvas}>Save</button>
-            <button  className="SignatureButtons-2" onClick={handleClearCanvas}>Clear</button>
-            <label className="SignatureButtons-3" htmlFor="fileUpload">click here to Upload Image Signature</label>
+            <button className="SignatureButtons-1" onClick={handleGetCanvas}>
+              Save
+            </button>
+            <button className="SignatureButtons-2" onClick={handleClearCanvas}>
+              Clear
+            </button>
+            <label className="SignatureButtons-3" htmlFor="fileUpload">
+              Click here to Upload Image Signature
+            </label>
             <input
               type="file"
               id="fileUpload"
@@ -73,26 +80,15 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
               style={{ display: 'none' }}
               onChange={handleFileUpload}
             />
-           
           </div>
         </div>
-      )}
-
-      {canvasVisibility && (
+      ) : (
         <div>
-          <img src={canvas} alt="signature" />
+          <img src={signatureImageUrl} alt="signature" />
           <div className="SignatureButtonsContainer">
-            <button className="SignatureButtons-up" onClick={handleSaveSignature}>Upload</button>
-            <button className="SignatureButtons-cancel" onClick={handleButtonClick}>Cancel</button>
-          </div>
-        </div>
-      )}
-
-      {uploadVisibility && (
-        <div className="uploaded-sig-container">
-          <img src={signatureImageUrl} alt="signature" className="UploadedImage" />
-          <div className="UploadButtonsContainer">
-            <button className="SignatureButtons-2" onClick={() => setUploadVisibility(false)}>Cancel</button>
+            <button className="SignatureButtons-cancel" onClick={handleButtonClick}>
+              Cancel
+            </button>
           </div>
         </div>
       )}
