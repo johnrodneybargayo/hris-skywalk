@@ -44,7 +44,7 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
         reader.readAsDataURL(file);
 
         const formData = new FormData();
-        formData.append('signature', file); // Changed from 'signature' to 'profile'
+        formData.append('profile', file); // Changed from 'signature' to 'profile'
 
         const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
         // Handle the response if needed
