@@ -42,7 +42,7 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
         const formData = new FormData();
         formData.append('signature', file);
 
-        const response = await axios.post('https://hrsystem.empireonecontactcenter.com/api/upload-signature', formData);
+        const response = await axios.post('https://empireone-global-inc.uc.r.appspot.com/api/upload-signature', formData);
         // Handle the response if needed
         console.log('Signature uploaded:', response.data.imageUrl);
       } catch (error) {
