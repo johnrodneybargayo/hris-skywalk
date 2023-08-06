@@ -3,7 +3,7 @@ import axios from 'axios';
 import './styles.scss';
 
 interface ImageUploadResponse {
-  imageUrl: string;
+  ImageUrl: string;
 }
 
 const ImagesUpload: React.FC = () => {
@@ -24,11 +24,11 @@ const ImagesUpload: React.FC = () => {
         },
       });
 
-      const imageUrl = response.data.imageUrl; // Use the imageUrl directly from the backend response
+      const ImageUrl = response.data.ImageUrl;
 
-      setProfileImageUrl(imageUrl); // Set the profileImageUrl state directly with the imageUrl
+      setProfileImageUrl(ImageUrl);
 
-      console.log('Uploaded image URL:', imageUrl);
+      console.log('Uploaded image URL:', ImageUrl);
     } catch (error) {
       console.error('Error uploading image:', error);
       setProfileImageUrl('');
