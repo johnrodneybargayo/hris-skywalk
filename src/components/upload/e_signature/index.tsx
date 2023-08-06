@@ -46,7 +46,7 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
         const formData = new FormData();
         formData.append('signature', file); // Changed from 'signature' to 'profile'
 
-        const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/upload', formData);
+        const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
         // Handle the response if needed
         console.log('Signature uploaded:', response.data.imageUrl); // Changed from response.data.profileImageUrl to response.data.imageUrl
       } catch (error) {
