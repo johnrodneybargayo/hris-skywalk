@@ -18,7 +18,7 @@ const ImagesUpload: React.FC = () => {
       const formData = new FormData();
       formData.append('profile', file); // Use the correct file field name 'profile'
 
-      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/upload-image', formData, {
+      const response = await axios.post<ImageUploadResponse>('https://hrsystem.empireonecontactcenter.com/api/upload-image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
