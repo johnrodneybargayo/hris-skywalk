@@ -3,6 +3,10 @@ import SignatureCanvas from 'react-signature-canvas';
 import axios from 'axios';
 import './styles.scss';
 
+interface ImageUploadResponse {
+  imageUrl: string; // Changed from profileImageUrl to imageUrl
+}
+
 interface SignaturePadProps {
   onSave: (imageUrl: string, isSignature: boolean) => void;
 }
@@ -40,11 +44,11 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
         reader.readAsDataURL(file);
 
         const formData = new FormData();
-        formData.append('signature', file);
+        formData.append('signature', file); // Changed from 'signature' to 'profile'
 
-        const response = await axios.post('https://empireone-global-inc.uc.r.appspot.com/api/upload-signature', formData);
+        const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/upload', formData);
         // Handle the response if needed
-        console.log('Signature uploaded:', response.data.imageUrl);
+        console.log('Signature uploaded:', response.data.imageUrl); // Changed from response.data.profileImageUrl to response.data.imageUrl
       } catch (error) {
         // Handle the error if needed
         console.error('Error uploading signature:', error);

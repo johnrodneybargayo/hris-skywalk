@@ -3,7 +3,7 @@ import axios from 'axios';
 import './styles.scss';
 
 interface ImageUploadResponse {
-  profileImageUrl: string;
+  imageUrl: string;
 }
 
 const ImagesUpload: React.FC = () => {
@@ -18,17 +18,17 @@ const ImagesUpload: React.FC = () => {
       const formData = new FormData();
       formData.append('profile', file); // Use the correct file field name 'profile'
 
-      const response = await axios.post<ImageUploadResponse>('http://empireone-global-inc.uc.r.appspot.com/api/uploadProfile', formData, {
+      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      const profileImageUrl = response.data.profileImageUrl;
+      const imageUrl = response.data.imageUrl; // Use the imageUrl directly from the backend response
 
-      setProfileImageUrl(profileImageUrl);
+      setProfileImageUrl(imageUrl); // Set the profileImageUrl state directly with the imageUrl
 
-      console.log('Uploaded image URL:', profileImageUrl);
+      console.log('Uploaded image URL:', imageUrl);
     } catch (error) {
       console.error('Error uploading image:', error);
       setProfileImageUrl('');
