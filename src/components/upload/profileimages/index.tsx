@@ -1,51 +1,41 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 import axios from 'axios';
-import UploadProfileImage from '../../modals/UploadprofileImage';
-import './styles.scss'; // Add the appropriate styling for the ImagesUpload component
+import './styles.scss';
 
 interface ImageUploadResponse {
-  imageUrl: string;
+  profileImageUrl: string;
 }
 
-const ImagesUpload = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [profileImageUrl, setProfileImageUrl] = useState<string>(''); // Add profileImageUrl property to store the profile image URL
-  const defaultImageUrl = 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
+const ImagesUpload: React.FC = () => {
+  const [profileImageUrl, setProfileImageUrl] = useState<string>('');
+  const defaultImageUrl =
+    'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDrop = async (file: File) => {
     try {
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append('profile', file); // Use the correct file field name 'profile'
 
-      // Send the image to the backend server using axios
-      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/uploadImage', formData, {
+      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/upload-image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      // The response should contain the image URL or filename saved on the server
-      const imageUrl = response.data.imageUrl; // Replace "imageUrl" with the actual property name returned by the server
+      const profileImageUrl = response.data.profileImageUrl;
 
-      // Set the imageUrl state to the received image URL
-      setImageUrl(imageUrl);
+      setProfileImageUrl(profileImageUrl);
 
-      // Set the profileImageUrl state to the received image URL (used to save the image URL to the applicant's data)
-      setProfileImageUrl(imageUrl);
-
-      // Do something with the image URL if needed (e.g., set it to the applicant's data)
-      console.log('Uploaded image URL:', imageUrl);
+      console.log('Uploaded image URL:', profileImageUrl);
     } catch (error) {
       console.error('Error uploading image:', error);
-      // Set imageUrl to null when an error occurs to display the default image
-      setImageUrl(null);
+      setProfileImageUrl('');
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       handleDrop(event.target.files[0]);
     }
@@ -62,11 +52,7 @@ const ImagesUpload = () => {
 
   return (
     <div className="images-upload-container">
-      {imageUrl ? (
-        <img className="image-placeholder-applicants" src={imageUrl} alt="Profile" />
-      ) : (
-        <img className="image-placeholder-applicants" src={displayImageUrl} alt="Profile" />
-      )}
+      <img className="image-placeholder-applicants" src={displayImageUrl} alt="Profile" />
       <div
         className="images-upload-overlay"
         onClick={handleClickUpload}
@@ -89,14 +75,6 @@ const ImagesUpload = () => {
           onChange={handleFileChange}
         />
       </div>
-
-      <UploadProfileImage
-        isOpen={isModalOpen}
-        onRequestClose={() => setModalOpen(false)}
-        onImageUpload={(file) => {
-          handleDrop(file);
-        }}
-      />
     </div>
   );
 };
