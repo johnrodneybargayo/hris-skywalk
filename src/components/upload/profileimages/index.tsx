@@ -3,7 +3,14 @@ import axios from 'axios';
 import './styles.scss';
 
 interface ImageUploadResponse {
-  ImageUrl: string;
+  image: {
+    url: string;
+    imageType: string;
+    size: number;
+    contentType: string;
+    createdBy: string;
+    createdAt: string;
+  };
 }
 
 const ImagesUpload: React.FC = () => {
@@ -13,31 +20,33 @@ const ImagesUpload: React.FC = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleDrop = async (file: File) => {
+  const handleProfileUpload = async (file: File) => {
     try {
       const formData = new FormData();
-      formData.append('profile', file); // Use the correct file field name 'profile'
+      formData.append('profile', file);
 
-      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/profile', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post<ImageUploadResponse>(
+        'https://empireone-global-inc.uc.r.appspot.com/api/profile',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
-      const ImageUrl = response.data.ImageUrl;
+      const imageUrl = response.data.image.url;
+      setProfileImageUrl(imageUrl);
 
-      setProfileImageUrl(ImageUrl);
-
-      console.log('Uploaded image URL:', ImageUrl);
+      console.log('Uploaded profile image URL:', imageUrl);
     } catch (error) {
-      console.error('Error uploading image:', error);
-      setProfileImageUrl('');
+      console.error('Error uploading profile image:', error);
     }
   };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      handleDrop(event.target.files[0]);
+      handleProfileUpload(event.target.files[0]);
     }
   };
 
@@ -60,7 +69,7 @@ const ImagesUpload: React.FC = () => {
         onDrop={(e) => {
           e.preventDefault();
           if (e.dataTransfer.files.length > 0) {
-            handleDrop(e.dataTransfer.files[0]);
+            handleProfileUpload(e.dataTransfer.files[0]);
           }
         }}
       >
