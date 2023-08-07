@@ -64,7 +64,7 @@ const ImagesUpload: React.FC = () => {
       <div
         className="images-upload-overlay"
         onClick={handleClickUpload}
-        onDragOver={(e) => e.preventDefault()}
+        onDragOver={(e) => e.preventDefault()} 
         onDrop={(e) => {
           e.preventDefault();
           if (e.dataTransfer.files.length > 0) {
