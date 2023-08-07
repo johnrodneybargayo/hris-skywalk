@@ -23,15 +23,14 @@ const ImagesUpload: React.FC = () => {
   const handleProfileUpload = async (file: File) => {
     try {
       const formData = new FormData();
-      formData.append('profile', file);
+      
+        formData.append('image', file);
 
-      const response = await axios.post<ImageUploadResponse>(
-        'https://empireone-global-inc.uc.r.appspot.com/api/profile',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      // Send the image to the backend server using axios
+      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/uploadImage', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         }
       );
 
