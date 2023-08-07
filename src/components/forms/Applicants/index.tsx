@@ -227,7 +227,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
           }));
       
           // Send the form data to the server using axios
-          await axios.post('https://empireone-global-inc.uc.r.appspot.com/api/applicants', formData);
+          await axios.post('http://localhost:8080/api/applicants', formData);
       
           // Clear the form data after successful submission
           setFormData(initialFormData);
