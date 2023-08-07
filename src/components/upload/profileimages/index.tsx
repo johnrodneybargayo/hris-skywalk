@@ -1,51 +1,49 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import './styles.scss';
+import UploadProfileImage from '../../modals/UploadprofileImage';
+import './styles.scss'; // Add the appropriate styling for the ImagesUpload component
 
 interface ImageUploadResponse {
-  image: {
-    url: string;
-    imageType: string;
-    size: number;
-    contentType: string;
-    createdBy: string;
-    createdAt: string;
-  };
+  imageUrl: string;
 }
 
-const ImagesUpload: React.FC = () => {
-  const [profileImageUrl, setProfileImageUrl] = useState<string>('');
-  const defaultImageUrl =
-    'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
+const ImagesUpload = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const defaultImageUrl = 'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg';
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleProfileUpload = async (file: File) => {
+  const handleDrop = async (file: File) => {
     try {
       const formData = new FormData();
-      
-        formData.append('image', file);
+      formData.append('image', file);
 
       // Send the image to the backend server using axios
       const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/uploadImage', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        }
-      );
+      });
 
-      const imageUrl = response.data.image.url;
-      setProfileImageUrl(imageUrl);
+      // The response should contain the image URL or filename saved on the server
+      const imageUrl = response.data.imageUrl; // Replace "imageUrl" with the actual property name returned by the server
 
-      console.log('Uploaded profile image URL:', imageUrl);
+      // Set the imageUrl state to the received image URL
+      setImageUrl(imageUrl);
+
+      // Do something with the image URL if needed (e.g., set it to the applicant's data)
+      console.log('Uploaded image URL:', imageUrl);
     } catch (error) {
-      console.error('Error uploading profile image:', error);
+      console.error('Error uploading image:', error);
+      // Set imageUrl to null when an error occurs to display the default image
+      setImageUrl(null);
     }
   };
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      handleProfileUpload(event.target.files[0]);
+      handleDrop(event.target.files[0]);
     }
   };
 
@@ -55,20 +53,21 @@ const ImagesUpload: React.FC = () => {
     }
   };
 
-  // Use the profileImageUrl state to conditionally display the default image or uploaded image
-  const displayImageUrl = profileImageUrl || defaultImageUrl;
-
   return (
     <div className="images-upload-container">
-      <img className="image-placeholder-applicants" src={displayImageUrl} alt="Profile" />
+      {imageUrl ? (
+        <img className="image-placeholder-applicants" src={imageUrl} alt="Profile" />
+      ) : (
+        <img className="image-placeholder-applicants" src={defaultImageUrl} alt="Profile" />
+      )}
       <div
         className="images-upload-overlay"
         onClick={handleClickUpload}
-        onDragOver={(e) => e.preventDefault()} 
+        onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
           e.preventDefault();
           if (e.dataTransfer.files.length > 0) {
-            handleProfileUpload(e.dataTransfer.files[0]);
+            handleDrop(e.dataTransfer.files[0]);
           }
         }}
       >
@@ -83,6 +82,14 @@ const ImagesUpload: React.FC = () => {
           onChange={handleFileChange}
         />
       </div>
+
+      <UploadProfileImage
+        isOpen={isModalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        onImageUpload={(file) => {
+          handleDrop(file);
+        }}
+      />
     </div>
   );
 };
