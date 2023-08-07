@@ -25,6 +25,7 @@ const ImagesUpload = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      
 
       // The response should contain the image URL or filename saved on the server
       const imageUrl = response.data.imageUrl; // Replace "imageUrl" with the actual property name returned by the server
