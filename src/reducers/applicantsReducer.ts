@@ -20,7 +20,7 @@ export interface Applicant {
   city: string;
   postcode: string;
   state: string;
-  area: string;
+  barangay: string,
   emailId: string;
   education: string;
   country: string;
