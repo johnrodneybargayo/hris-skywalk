@@ -12,7 +12,7 @@ const Board: React.FC = () => {
 
   const fetchTilesData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/applicants/list'); // Use Axios.get
+      const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list'); // Use Axios.get
       const data = response.data; // Access data directly
 
       const tilesData: TileProps[] = data.map((applicant: any) => ({
