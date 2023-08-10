@@ -1,28 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import DroppableColumn from '../Columns/DroppableColumn';
+import axios from 'axios';
 import { TileProps } from '../../Utils/types';
 import './styles.scss';
 
 const Board: React.FC = () => {
-  const [interviewTiles, setInterviewTiles] = React.useState<TileProps[]>([
-    { id: 'interview1', text: 'Interview Tile 1', imageSrc: 'placeholder.jpg', name: 'John Doe', picture: 'john.jpg' },
-    { id: 'interview2', text: 'Interview Tile 2', imageSrc: 'placeholder.jpg', name: 'Jane Smith', picture: 'jane.jpg' },
-  ]);
+  const [interviewTiles, setInterviewTiles] = useState<TileProps[]>([]);
+  const [shortlistedTiles, setShortlistedTiles] = useState<TileProps[]>([]);
+  const [onboardingTiles, setOnboardingTiles] = useState<TileProps[]>([]);
+  const [hiredTiles, setHiredTiles] = useState<TileProps[]>([]);
 
-  const [shortlistedTiles, setShortlistedTiles] = React.useState<TileProps[]>([
-    { id: 'shortlisted1', text: 'Shortlisted Tile 1', imageSrc: 'placeholder.jpg', name: 'Michael Johnson', picture: 'michael.jpg' },
-    { id: 'shortlisted2', text: 'Shortlisted Tile 2', imageSrc: 'placeholder.jpg', name: 'Emily Williams', picture: 'emily.jpg' },
-  ]);
+  const fetchTilesData = async () => {
+    try {
+      const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list'); // Use Axios.get
+      const data = response.data; // Access data directly
 
-  const [onboardingTiles, setOnboardingTiles] = React.useState<TileProps[]>([
-    { id: 'onboarding1', text: 'Onboarding Tile 1', imageSrc: 'placeholder.jpg', name: 'Robert Lee', picture: 'robert.jpg' },
-    { id: 'onboarding2', text: 'Onboarding Tile 2', imageSrc: 'placeholder.jpg', name: 'Sophia Brown', picture: 'sophia.jpg' },
-  ]);
+      const tilesData: TileProps[] = data.map((applicant: any) => ({
+        id: applicant._id,
+        text: `${applicant.firstName} ${applicant.lastName}`,
+        imageSrc: applicant.picture, // Use the actual field name for the image
+        name: `${applicant.firstName} ${applicant.lastName}`,
+        picture: applicant.picture, // Use the actual field name for the picture
+      }));
+      setInterviewTiles(tilesData);
+      setShortlistedTiles([]); // Set the initial state for other tile lists in a similar way
+      setOnboardingTiles([]);
+      setHiredTiles([]);
+    } catch (error) {
+      console.error('Error fetching tiles data:', error);
+    }
+  };
 
-  const [hiredTiles, setHiredTiles] = React.useState<TileProps[]>([
-    { id: 'hired1', text: 'Hired Tile 1', imageSrc: 'placeholder.jpg', name: 'William Miller', picture: 'william.jpg' },
-    { id: 'hired2', text: 'Hired Tile 2', imageSrc: 'placeholder.jpg', name: 'Olivia Davis', picture: 'olivia.jpg' },
-  ]);
+  useEffect(() => {
+    fetchTilesData();
+  }, []);
 
   const handleTileDrop = (id: string, columnIndex: number) => {
     // Find the tile with the given ID
@@ -72,7 +83,6 @@ const Board: React.FC = () => {
         break;
     }
   };
-  
   
 
   return (

@@ -1,40 +1,308 @@
-// modal.scss
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@1,900,700,500,301,701,300,501,401,901,400,2&display=swap");
 
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Ensure it is displayed above other elements */
-    opacity: 0; /* Start with opacity 0, will be transitioned to 1 when modal opens */
-    pointer-events: none; /* Hide the modal from capturing interactions initially */
-    transition: opacity 0.3s ease; /* Opacity transition for smooth display */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it is displayed above other elements */
+  opacity: 0; /* Start with opacity 0, will be transitioned to 1 when modal opens */
+  pointer-events: none; /* Hide the modal from capturing interactions initially */
+  transition: opacity 0.3s ease; /* Opacity transition for smooth display */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 95rem;
+  height: 40rem;
+}
+
+.modal-overlay.open {
+  opacity: 1; /* Show the modal with opacity 1 when it's open */
+  pointer-events: auto; /* Allow the modal to capture interactions */
+}
+
+.close-icon {
+  cursor: pointer;
+  position: relative;
+  top: -46px;
+  left: 95rem;
+  color: #fff;
+}
+
+/* Add global styles here */
+
+.submitted-data {
+  /* Add styles for submitted data container */
+  padding: 20px;
+
+  h3.applicant-form-label {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
-  
-  .modal-content {
-    background-color: white;
+
+  .images-applicant,
+  .images-esignature {
+    margin: 10px 0;
+
+    /* Add specific styles for image containers */
+    /* For example: */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .image-note {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+  }
+
+  .p-3 {
     padding: 20px;
+    background-color: #f8f8f8;
     border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    width: 95rem;
-    height: 40rem;
-}
-  
-  .modal-overlay.open {
-    opacity: 1; /* Show the modal with opacity 1 when it's open */
-    pointer-events: auto; /* Allow the modal to capture interactions */
+
+    h4.name-applicant-label,
+    h4.applicant-address-label,
+    h4.applicant-school-label,
+    h4.applicant-work-label,
+    h4.emergency-contact-label,
+    h4.government-id-label {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .col-md-6 {
+      /* Add styles for columns */
+      display: inline-block;
+      width: 50%;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    .address-applicants {
+      /* Add styles for address container */
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .address-applicants-2 {
+      /* Add styles for second part of address */
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .school,
+    .applicant-work,
+    .applicant-work-2,
+    .emergency-contact,
+    .government-id {
+      /* Add styles for sections like school, work, etc. */
+      margin-top: 20px;
+    }
   }
-  
-  .close-icon {
-    cursor: pointer;
-    position: relative;
-    top: -46px;
-    left: 95rem;
-    color: #fff;
 }
-  
+
+/* Add any other custom styles here */
+
+.user-details-image-note {
+  display: flex;
+  position: absolute;
+  right: 19rem;
+  top: 20rem;
+  width: 257px;
+}
+
+.user-details-personal-label {
+  display: flex;
+  position: absolute;
+  top: 185px;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 13rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-personalname-applicant {
+  display: flex;
+  position: relative;
+  left: 1rem;
+  top: 1rem;
+}
+
+.user-details-address-label {
+  display: flex;
+  position: absolute;
+  top: 24rem;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 13rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-contact {
+  display: flex;
+  position: absolute;
+  left: 208px;
+  top: 280px;
+}
+
+.user-details-personal-label {
+  display: flex;
+  position: absolute;
+  top: 186px;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 13rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-address {
+  display: flex;
+  position: absolute;
+  left: 211px;
+  top: 26rem;
+}
+
+.user-details-col {
+  padding: 10px;
+  font-size: 15px;
+  line-height: 0.5;
+}
+
+.user-details-school-label {
+  display: flex;
+  position: absolute;
+  top: 32rem;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 13rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-school {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 34rem;
+  left: 13rem;
+}
+
+h4.user-details-work-label {
+  display: flex;
+  position: absolute;
+  top: 185px;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 46rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-work {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -90px;
+  justify-content: center;
+  top: -5rem;
+}
+
+.user-details-work-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: 141px;
+  justify-content: center;
+  top: -204px;
+}
+
+.user-details-emergency-label {
+  display: flex;
+  position: absolute;
+  top: 24rem;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 46rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-government-label {
+  display: flex;
+  position: absolute;
+  top: 32rem;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 46rem;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
+}
+
+.user-details-emergency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -66px;
+  justify-content: center;
+  top: -133px;
+}
+
+.user-details-gov-id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  left: -105px;
+  justify-content: center;
+  top: -8rem;
+}
+
+.labels-userdetails {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Satoshi";
+  line-height: 0.5;
+}
+
+.user-results {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Satoshi';
+}

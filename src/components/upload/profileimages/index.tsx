@@ -20,7 +20,7 @@ const ImagesUpload = () => {
       formData.append('image', file);
 
       // Send the image to the backend server using axios
-      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/uploadImage', formData, {
+      const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/uploadImage', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
