@@ -63,6 +63,7 @@ interface FormData {
   dateHired2: Date | null;
   dateResigned2: Date | null;
   status: StatusEnum;
+  positionApplied: String;
 }
 interface UserDetailProps {
   showModal: boolean;
@@ -225,10 +226,14 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                   <p className='labels-userdetails'>TIN ID: <span className='user-results'>{applicantData.tinNumber}</span></p>
                   <p className='labels-userdetails'>PhilHealth Number: <span className='user-results'>{applicantData.philHealthId}</span></p>
                 </div>
+                <div className='position-applied-container'>
+                  <div className='user-details-col'>
+                    <p className='labels-userdetails'>Position Applied: <span className='user-results'>{applicantData.positionApplied}</span></p>
+                  </div>
+
+                </div>
               </div>
               <div>
-        
-
               </div>
             </div>
           </div>

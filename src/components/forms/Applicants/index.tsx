@@ -59,6 +59,7 @@ interface FormData {
     position2: string;
     dateHired2: Date | null;
     dateResigned2: Date | null;
+    positionApplied: string;
 }
 
 interface ApplicantFormProps {
@@ -108,6 +109,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         position2: '',
         dateHired2: null,
         dateResigned2: null,
+        positionApplied: '',
     });
 
 
@@ -174,7 +176,20 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     return (
 
         <div className="applicants-form">
-            <h3 className="applicant-form-label">Information's information</h3>
+            <h3 className="applicant-form-label">Information applicant's form</h3>
+            <div className='position-apply'>
+                <div className="col-md-8">
+                    <label className="labels-position">Position Applying:</label>
+                    <input
+                        type="text"
+                        name="emergencypositionApplied"
+                        value={formData.positionApplied}
+                        onChange={handleChange}
+                        placeholder="Input the position your applying"
+                        className="form-control-position"
+                    />
+                </div>
+            </div>
             <div className='images-applicant'>
                 <ImagesUpload />
             </div>
@@ -284,6 +299,8 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <option value={GenderEnum.Other}>Other</option>
                             </select>
                         </div>
+                    </div>
+                    <div className='marital-status'>
                         <div className="col-md-6">
                             <label className="labels">Marital Status:</label>
                             <select
@@ -300,6 +317,8 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <option value={MaritalStatusEnum.Other}>Other</option>
                             </select>
                         </div>
+                    </div>
+                    <div className='parents-container'>
                         <div className="col-md-6">
                             <label className="labels-applicants">Mother's Maiden Name:</label>
                             <input
