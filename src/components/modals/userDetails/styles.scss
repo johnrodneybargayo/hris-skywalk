@@ -286,7 +286,7 @@ h2.user-info-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -66px;
+  left: -37px;
   justify-content: center;
   top: -133px;
 }
@@ -296,7 +296,7 @@ h2.user-info-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -105px;
+  left: -77px;
   justify-content: center;
   top: -8rem;
 }
@@ -311,5 +311,27 @@ h2.user-info-label {
 .user-results {
   font-size: 13px;
   font-weight: 500;
-  font-family: 'Satoshi';
+  font-family: "Satoshi";
+}
+
+.position-applied-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 41rem;
+  left: 210px;
+}
+
+.user-details-position-label {
+  display: flex;
+  position: absolute;
+  top: 39rem;
+  background: #3e3298;
+  width: 30rem;
+  justify-content: center;
+  left: 211px;
+  font-size: 12px;
+  font-family: Satoshi;
+  color: #fff;
 }

@@ -76,7 +76,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   useEffect(() => {
     if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`) 
+      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
 
@@ -226,11 +226,11 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                   <p className='labels-userdetails'>TIN ID: <span className='user-results'>{applicantData.tinNumber}</span></p>
                   <p className='labels-userdetails'>PhilHealth Number: <span className='user-results'>{applicantData.philHealthId}</span></p>
                 </div>
-                <div className='position-applied-container'>
-                  <div className='user-details-col'>
-                    <p className='labels-userdetails'>Position Applied: <span className='user-results'>{applicantData.positionApplied}</span></p>
-                  </div>
-
+              </div>
+              <h4 className="user-details-position-label">Applying for what position:</h4>
+              <div className='position-applied-container'>
+                <div className='user-details-col'>
+                  <p className='labels-userdetails'>Position Applied: <span className='user-results'>{applicantData.positionApplied}</span></p>
                 </div>
               </div>
               <div>
