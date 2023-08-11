@@ -171,9 +171,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 setSubmitting(false);
             });
     };
-
-
-
     return (
 
         <div className="applicants-form">
