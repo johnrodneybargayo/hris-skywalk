@@ -149,7 +149,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
     const handleSubmit = () => {
         setSubmitting(true);
-
         // Add the default status to the formData
         const formDataWithStatus = {
             ...formData,
