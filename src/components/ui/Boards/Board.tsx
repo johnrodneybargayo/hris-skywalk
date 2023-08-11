@@ -48,7 +48,7 @@ const Board: React.FC = () => {
 
     try {
       // Update the status on the backend
-      const response = await axios.put(`http://localhost:8080/api/applicants/update-status/${id}`, {
+      const response = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${id}`, {
         status: newStatus,
       });
 
