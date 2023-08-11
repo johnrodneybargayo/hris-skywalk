@@ -9,14 +9,38 @@
   cursor: pointer;
 }
 
+.position-apply {
+  display: flex;
+  position: absolute;
+  top: 34px;
+  left: 292px;
+}
+
+.labels-position {
+  font-family: "Satoshi";
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  padding: 10px;
+}
+
+input.form-control-position {
+  width: 186px;
+}
+
+.col-md-8 {
+  display: flex;
+  align-items: center;
+}
+
 .name-applicant-label {
   display: flex;
   position: absolute;
-  top: 61px;
+  top: 60px;
   background: #3e3298;
-  width: 50rem;
+  width: 60rem;
   justify-content: center;
-  left: 23rem;
+  left: 17rem;
   font-size: 12px;
   font-family: Satoshi;
   color: #fff;
@@ -49,12 +73,30 @@
 }
 
 .dropdownlist-applicant {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    top: 11rem;
-    left: 23rem;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 11rem;
+  left: 20rem;
+}
+
+.marital-status {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 11rem;
+  left: 517px;
+}
+
+.parents-container {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 11rem;
+  left: 715px;
 }
 
 .applicant-form-label {
@@ -86,12 +128,8 @@
 .contact-info {
   display: flex;
   position: absolute;
-  left: 23rem;
+  left: 20rem;
   top: 8rem;
-}
-
-.address-applicants {
-  display: flex;
 }
 
 .address-applicants {
@@ -99,7 +137,7 @@
   align-items: center;
   flex-direction: row;
   position: absolute;
-  left: 23rem;
+  left: 20rem;
   top: 16rem;
 }
 
@@ -113,14 +151,14 @@
   display: flex;
   position: absolute;
   align-items: center;
-  top: 25rem;
-  left: 23rem;
+  top: 24rem;
+  left: 20rem;
 }
 
 .name-applicant {
   display: flex;
   position: absolute;
-  left: 23rem;
+  left: 20rem;
   top: 5rem;
 }
 
@@ -129,9 +167,9 @@
   position: absolute;
   top: 233px;
   background: #3e3298;
-  width: 50rem;
+  width: 60rem;
   justify-content: center;
-  left: 23rem;
+  left: 17rem;
   font-size: 12px;
   font-family: Satoshi;
   color: #fff;
@@ -142,9 +180,9 @@
   position: absolute;
   top: 23rem;
   background: #3e3298;
-  width: 50rem;
+  width: 60rem;
   justify-content: center;
-  left: 23rem;
+  left: 17rem;
   font-size: 12px;
   font-family: Satoshi;
   color: #fff;
@@ -175,11 +213,11 @@
 h4.applicant-work-label {
   display: flex;
   position: absolute;
-  top: 29rem;
+  top: 28rem;
   background: #3e3298;
-  width: 50rem;
+  width: 60rem;
   justify-content: center;
-  left: 23rem;
+  left: 17rem;
   font-size: 12px;
   font-family: Satoshi;
   color: #fff;
@@ -190,16 +228,17 @@ h4.applicant-work-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -179px;
+  left: -228px;
   justify-content: center;
   top: 11rem;
 }
+
 .applicant-work-2 {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -179px;
+  left: -227px;
   justify-content: center;
   top: 10rem;
 }
@@ -238,19 +277,18 @@ h4.applicant-work-label {
   border: solid 1px #ba68c8;
 }
 
-
 .images-applicant {
   display: flex;
   position: absolute;
-  right: 18rem;
-  top: 1rem;
+  right: 14rem;
+  top: 7rem;
 }
 
 .image-note {
   display: flex;
   position: absolute;
-  top: 15rem;
-  right: 16rem;
+  top: 20rem;
+  right: 12rem;
   justify-content: center;
   width: 15rem;
   font-size: 13px;
@@ -262,8 +300,8 @@ h4.applicant-work-label {
 .images-esignature {
   display: flex;
   position: absolute;
-  right: 9rem;
-  top: 19rem;
+  right: 5rem;
+  top: 25rem;
 }
 
 .images-esignature {
@@ -276,9 +314,9 @@ h4.applicant-work-label {
   position: absolute;
   top: 38rem;
   background: #3e3298;
-  width: 50rem;
+  width: 60rem;
   justify-content: center;
-  left: 23rem;
+  left: 17rem;
   font-size: 12px;
   font-family: Satoshi;
   color: #fff;
@@ -289,7 +327,7 @@ h4.applicant-work-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -178px;
+  left: -228px;
   justify-content: center;
   top: 11rem;
 }
@@ -299,7 +337,7 @@ h4.applicant-work-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -276px;
+  left: -327px;
   justify-content: center;
   top: 12rem;
 }
@@ -309,9 +347,9 @@ h4.applicant-work-label {
   position: absolute;
   top: 43rem;
   background: #3e3298;
-  width: 50rem;
+  width: 60rem;
   justify-content: center;
-  left: 23rem;
+  left: 17rem;
   font-size: 12px;
   font-family: Satoshi;
   color: #fff;
