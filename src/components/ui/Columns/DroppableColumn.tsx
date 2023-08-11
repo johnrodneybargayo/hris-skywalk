@@ -34,7 +34,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
     if (selectedTileId) {
       const tile = tiles.find(tile => tile.id === selectedTileId);
       if (tile) {
-        axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
+        axios.get(`http://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
           .then(response => {
             console.log('Fetched user data:', response.data); // Add this line
             setUserData(response.data);
