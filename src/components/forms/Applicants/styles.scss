@@ -316,3 +316,27 @@ h4.applicant-work-label {
   font-family: Satoshi;
   color: #fff;
 }
+
+/* Define styles for the custom alert */
+.custom-alert {
+  padding: 10px;
+  border: 2px solid #ccc;
+  background-color: #f7f7f7;
+  color: #333;
+  margin-top: 10px;
+  display: none; /* Hide the alert by default */
+}
+
+/* Style for success message */
+.custom-alert.success {
+  border-color: #66bb6a;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Style for error message */
+.custom-alert.error {
+  border-color: #ef5350;
+  background-color: #ffebee;
+  color: #b71c1c;
+}

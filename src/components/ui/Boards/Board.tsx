@@ -5,27 +5,23 @@ import { TileProps } from '../../Utils/types';
 import './styles.scss';
 
 const Board: React.FC = () => {
-  const [interviewTiles, setInterviewTiles] = useState<TileProps[]>([]);
-  const [shortlistedTiles, setShortlistedTiles] = useState<TileProps[]>([]);
-  const [onboardingTiles, setOnboardingTiles] = useState<TileProps[]>([]);
-  const [hiredTiles, setHiredTiles] = useState<TileProps[]>([]);
+  const [tilesData, setTilesData] = useState<TileProps[]>([]);
 
   const fetchTilesData = async () => {
     try {
-      const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list'); // Use Axios.get
-      const data = response.data; // Access data directly
+      const response = await axios.get('http://localhost:8080/api/applicants/list');
+      const data = response.data;
 
-      const tilesData: TileProps[] = data.map((applicant: any) => ({
+      const updatedTilesData: TileProps[] = data.map((applicant: any) => ({
         id: applicant._id,
         text: `${applicant.firstName} ${applicant.lastName}`,
-        imageSrc: applicant.picture, // Use the actual field name for the image
+        imageSrc: applicant.picture,
         name: `${applicant.firstName} ${applicant.lastName}`,
-        picture: applicant.picture, // Use the actual field name for the picture
+        picture: applicant.picture,
+        status: applicant.status,
       }));
-      setInterviewTiles(tilesData);
-      setShortlistedTiles([]); // Set the initial state for other tile lists in a similar way
-      setOnboardingTiles([]);
-      setHiredTiles([]);
+
+      setTilesData(updatedTilesData);
     } catch (error) {
       console.error('Error fetching tiles data:', error);
     }
@@ -35,62 +31,46 @@ const Board: React.FC = () => {
     fetchTilesData();
   }, []);
 
-  const handleTileDrop = (id: string, columnIndex: number) => {
-    // Find the tile with the given ID
-    const tileToMove =
-      interviewTiles.find((tile) => tile.id === id) ||
-      shortlistedTiles.find((tile) => tile.id === id) ||
-      onboardingTiles.find((tile) => tile.id === id) ||
-      hiredTiles.find((tile) => tile.id === id);
-  
-    if (!tileToMove) {
-      return; // Tile not found, do nothing
-    }
-  
-    // Remove the tile from the original column
-    const updatedInterviewTiles = interviewTiles.filter((tile) => tile.id !== id);
-    const updatedShortlistedTiles = shortlistedTiles.filter((tile) => tile.id !== id);
-    const updatedOnboardingTiles = onboardingTiles.filter((tile) => tile.id !== id);
-    const updatedHiredTiles = hiredTiles.filter((tile) => tile.id !== id);
-  
-    // Set the updated tiles for the new column based on the columnIndex
-    switch (columnIndex) {
-      case 0:
-        setInterviewTiles([...updatedInterviewTiles, tileToMove]);
-        setShortlistedTiles(updatedShortlistedTiles);
-        setOnboardingTiles(updatedOnboardingTiles);
-        setHiredTiles(updatedHiredTiles);
-        break;
-      case 1:
-        setInterviewTiles(updatedInterviewTiles);
-        setShortlistedTiles([...updatedShortlistedTiles, tileToMove]);
-        setOnboardingTiles(updatedOnboardingTiles);
-        setHiredTiles(updatedHiredTiles);
-        break;
-      case 2:
-        setInterviewTiles(updatedInterviewTiles);
-        setShortlistedTiles(updatedShortlistedTiles);
-        setOnboardingTiles([...updatedOnboardingTiles, tileToMove]);
-        setHiredTiles(updatedHiredTiles);
-        break;
-      case 3:
-        setInterviewTiles(updatedInterviewTiles);
-        setShortlistedTiles(updatedShortlistedTiles);
-        setOnboardingTiles(updatedOnboardingTiles);
-        setHiredTiles([...updatedHiredTiles, tileToMove]);
-        break;
-      default:
-        break;
+  const handleTileDrop = async (id: string, newStatus: 'Interview' | 'Shortlisted' | 'Onboarding' | 'Hired') => {
+    console.log('Handling tile drop:', id, newStatus);
+
+    const updatedTiles = tilesData.map(tile => {
+      if (tile.id === id) {
+        return {
+          ...tile,
+          status: newStatus,
+        };
+      }
+      return tile;
+    });
+
+    setTilesData(updatedTiles);
+
+    try {
+      // Update the status on the backend
+      const response = await axios.put(`http://localhost:8080/api/applicants/update-status/${id}`, {
+        status: newStatus,
+      });
+
+      console.log('Status updated successfully:', response.data);
+      // console.log('Fetched user data:', response.data); // Add this line
+    } catch (error) {
+      console.error('Error updating status:', error);
     }
   };
-  
+
+  // Categorize tiles based on their status
+  const interviewTiles = tilesData.filter(tile => tile.status === 'Interview');
+  const shortlistedTiles = tilesData.filter(tile => tile.status === 'Shortlisted');
+  const onboardingTiles = tilesData.filter(tile => tile.status === 'Onboarding');
+  const hiredTiles = tilesData.filter(tile => tile.status === 'Hired');
 
   return (
     <div className="board">
-      <DroppableColumn header="Interview" tiles={interviewTiles} onTileDrop={handleTileDrop} columnIndex={0} />
-      <DroppableColumn header="Shortlisted" tiles={shortlistedTiles} onTileDrop={handleTileDrop} columnIndex={1} />
-      <DroppableColumn header="Onboarding" tiles={onboardingTiles} onTileDrop={handleTileDrop} columnIndex={2} />
-      <DroppableColumn header="HIRED" tiles={hiredTiles} onTileDrop={handleTileDrop} columnIndex={3} />
+      <DroppableColumn header="Interview" tiles={interviewTiles} onTileDrop={(id) => handleTileDrop(id, 'Interview')} columnIndex={0} />
+      <DroppableColumn header="Shortlisted" tiles={shortlistedTiles} onTileDrop={(id) => handleTileDrop(id, 'Shortlisted')} columnIndex={1} />
+      <DroppableColumn header="Onboarding" tiles={onboardingTiles} onTileDrop={(id) => handleTileDrop(id, 'Onboarding')} columnIndex={2} />
+      <DroppableColumn header="HIRED" tiles={hiredTiles} onTileDrop={(id) => handleTileDrop(id, 'Hired')} columnIndex={3} />
     </div>
   );
 };

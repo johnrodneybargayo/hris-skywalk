@@ -3,5 +3,6 @@ export interface TileProps {
   text: string;
   imageSrc: string;
   name: string;
-  picture: string; // Add the picture property
+  picture: string;
+  status: 'Interview' | 'Shortlisted' | 'Onboarding' | 'Hired'; // Add the status field
 }
