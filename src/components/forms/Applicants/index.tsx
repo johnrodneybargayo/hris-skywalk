@@ -149,9 +149,15 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
     const handleSubmit = () => {
         setSubmitting(true);
-    
+
+        // Add the default status to the formData
+        const formDataWithStatus = {
+            ...formData,
+            status: 'Interview'
+        };
+
         // Send the formData to the server
-        axios.post('https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', formData)
+        axios.post('http://localhost:8080/api/applicants/create', formDataWithStatus)
             .then(response => {
                 console.log('Applicant created:', response.data);
                 setSuccessMessage('Applicant created successfully.');
@@ -166,8 +172,8 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 setSubmitting(false);
             });
     };
-    
-    
+
+
 
     return (
 
@@ -181,7 +187,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 <SignaturePad onSave={handleSignatureSave} />
             </div>
             <>
-
                 <div className="p-3 py-5">
                     <div className="d-flex justify-content-between align-items-center mb-3">
                     </div>
@@ -629,10 +634,16 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 </div>
                 <div className="application-submit">
                     <SubmitButton className="button-74" onClick={handleSubmit} value="Save Profile" />
+
+                    {/* Render custom alerts */}
+                    <div className={`custom-alert ${successMessage ? 'success' : ''} ${errorMessage ? 'error' : ''}`}>
+                        {successMessage && <p>{successMessage}</p>}
+                        {errorMessage && <p>{errorMessage}</p>}
+                    </div>
+
                     {submitting && <p>Submitting...</p>}
-                    {successMessage && <p>{successMessage}</p>}
-                    {errorMessage && <p>{errorMessage}</p>}
                 </div>
+
             </>
         </div >
     );

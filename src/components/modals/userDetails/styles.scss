@@ -145,7 +145,7 @@
   display: flex;
   position: relative;
   left: 1rem;
-  top: 1rem;
+  top: 20px;
 }
 
 .user-details-address-label {
@@ -236,6 +236,13 @@ h4.user-details-work-label {
   left: -90px;
   justify-content: center;
   top: -5rem;
+}
+
+h2.user-info-label {
+  margin-bottom: -43px;
+  position: absolute;
+  top: 130px;
+  left: 220px;
 }
 
 .user-details-work-2 {

@@ -16,6 +16,14 @@ enum MaritalStatusEnum {
   Other = 'other',
 }
 
+enum StatusEnum {
+  Interview = 'Interview',
+  Shortlisted = 'Shortlisted',
+  Onboarding = 'Onboarding',
+  Hired = 'Hired',
+  // Add other potential status values if needed
+}
+
 interface FormData {
   _id: string;
   firstName: string;
@@ -54,6 +62,7 @@ interface FormData {
   position2: string;
   dateHired2: Date | null;
   dateResigned2: Date | null;
+  status: StatusEnum;
 }
 interface UserDetailProps {
   showModal: boolean;
@@ -66,7 +75,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   useEffect(() => {
     if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
+      axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`)
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
 
@@ -110,10 +119,19 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
       <div className="modal-content">
         {/* Close Icon */}
         <div className="close-icon" onClick={onClose}>
-          {/* Close icon SVG */}
+          <svg height="45px" width="45px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path style={{ fill: '#3a3672' }} d="M0,256c0,141.384,114.615,256,256,256l22.261-256L256,0C114.615,0,0,114.615,0,256z"></path>
+              <path style={{ fill: '#1C274C' }} d="M256,0v512c141.384,0,256-114.616,256-256S397.384,0,256,0z"></path>
+              <polygon style={{ fill: '#FFFFFF' }} points="161.555,114.333 114.333,161.555 208.778,256 114.333,350.445 161.555,397.667 256,303.222 278.261,256 256,208.778 "></polygon>
+              <polygon style={{ fill: '#cfc2ff' }} points="397.667,161.555 350.445,114.333 256,208.778 256,303.222 350.445,397.667 397.667,350.445 303.222,256 "></polygon>
+            </g>
+          </svg>
         </div>
         {/* Modal Content */}
-        <h2>User Information</h2>
+        <h2 className='user-info-label'>User Information</h2>
         {applicantData ? (
           <div className="user-details">
             <div className='user-details-images'>
