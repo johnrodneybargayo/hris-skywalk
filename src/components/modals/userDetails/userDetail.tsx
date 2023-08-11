@@ -230,6 +230,10 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                   <p className='labels-userdetails'>PhilHealth Number: <span className='user-results'>{applicantData.philHealthId}</span></p>
                 </div>
               </div>
+              <div>
+        
+
+              </div>
             </div>
           </div>
         ) : (
