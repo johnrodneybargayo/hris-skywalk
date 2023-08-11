@@ -75,11 +75,10 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   useEffect(() => {
     if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
+      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`) 
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
 
-          // Parse the dateOfBirth field if it exists
           if (fetchedApplicantData.dateOfBirth) {
             fetchedApplicantData.dateOfBirth = new Date(fetchedApplicantData.dateOfBirth);
           }
@@ -96,12 +95,9 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
             fetchedApplicantData.dateHired2 = new Date(fetchedApplicantData.dateHired2);
           }
 
-          // Parse the dateResigned field if it exists
           if (fetchedApplicantData.dateResigned2) {
             fetchedApplicantData.dateResigned2 = new Date(fetchedApplicantData.dateResigned2);
           }
-
-          // Similarly, parse other date fields if needed
 
           setApplicantData(fetchedApplicantData);
         })
