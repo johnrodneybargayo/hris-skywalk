@@ -182,7 +182,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                     <label className="labels-position">Position Applying:</label>
                     <input
                         type="text"
-                        name="emergencypositionApplied"
+                        name="positionApplied"
                         value={formData.positionApplied}
                         onChange={handleChange}
                         placeholder="Input the position your applying"
