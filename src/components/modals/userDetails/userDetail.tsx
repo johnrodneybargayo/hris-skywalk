@@ -75,7 +75,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   useEffect(() => {
     if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`) 
+      axios.get(`http://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`) 
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
 
