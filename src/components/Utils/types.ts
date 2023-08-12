@@ -6,3 +6,4 @@ export interface TileProps {
   picture: string;
   status: 'Interview' | 'Shortlisted' | 'Onboarding' | 'Hired'; // Add the status field
 }
+
