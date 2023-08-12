@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import './styles.scss'; // Import the styles.scss for styling the modal
 
 enum GenderEnum {
@@ -21,7 +22,7 @@ enum StatusEnum {
   Shortlisted = 'Shortlisted',
   Onboarding = 'Onboarding',
   Hired = 'Hired',
-  // Add other potential status values if needed
+  Failed = 'Failed',
 }
 
 interface FormData {
@@ -76,7 +77,8 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   useEffect(() => {
     if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
+      // axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
+      axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`)
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
 
@@ -109,6 +111,85 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         });
     }
   }, [showModal, formData._id]);
+
+  const handleHired = async () => {
+    if (applicantData) {
+      try {
+        // Mark the applicant as hired by sending a POST request
+        const markHiredResponse = await axios.post(`http://localhost:8080/api/applicants/hired/${applicantData._id}`);
+        console.log('Applicant hired:', markHiredResponse.data);
+
+        // Create a new user object with relevant data
+        const newUser = {
+          email: applicantData.email,
+          password: '', // Temporary password, consider generating a secure one
+          firstName: applicantData.firstName,
+          lastName: applicantData.lastName,
+          middleName: applicantData.middleName,
+          mobileNumber: applicantData.mobileNumber,
+          dateOfBirth: applicantData.dateOfBirth,
+          placeOfBirth: applicantData.placeOfBirth,
+          gender: applicantData.gender,
+          maritalStatus: applicantData.maritalStatus,
+          motherMaidenName: applicantData.motherMaidenName,
+          fatherName: applicantData.fatherName,
+          currentAddress: applicantData.currentAddress,
+          permanentAddress: applicantData.permanentAddress,
+          postalCode: applicantData.postcode,
+          barangay: applicantData.barangay,
+          city: applicantData.city,
+          state: applicantData.state,
+          country: applicantData.country,
+          courseGraduated: applicantData.courseGraduated,
+          schoolName: applicantData.schoolName,
+          yearGraduated: applicantData.yearGraduated,
+          companyName: applicantData.companyName,
+          position: applicantData.position,
+          dateHired: applicantData.dateHired,
+          dateResigned: applicantData.dateResigned,
+          companyName2: applicantData.companyName2,
+          position2: applicantData.position2,
+          dateHired2: applicantData.dateHired2,
+          dateResigned2: applicantData.dateResigned2,
+          emergencyName: applicantData.emergencyName,
+          emergencyContactNumber: applicantData.emergencyContactNumber,
+          emergencyAlternateContactNumber: applicantData.emergencyAlternateContactNumber,
+          emergencyRelationship: applicantData.emergencyRelationship,
+          sssNumber: applicantData.sssNumber,
+          tinNumber: applicantData.tinNumber,
+          philHealthId: applicantData.philHealthId,
+          positionApplied: applicantData.positionApplied,
+        };
+
+        // Create a new user by sending a POST request
+        const savedUserResponse = await axios.post(`http://localhost:8080/api/users`, newUser);
+        console.log('User saved:', savedUserResponse.data);
+
+        // Update the applicant's status to 'Onboarding' by sending a PUT request
+        const onboardingResponse = await axios.put(`http://localhost:8080/api/applicants/update-status/${applicantData._id}`, {
+          status: 'Onboarding'
+        });
+        console.log('Applicant moved to onboarding:', onboardingResponse.data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+  const handleFailed = () => {
+    if (applicantData) {
+      axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
+        .then(response => {
+          // Handle success, update applicant status to "Failed" in UI or perform necessary actions
+          console.log('Applicant failed:', response.data);
+          // Close the modal or perform other actions
+          onClose();
+        })
+        .catch(error => {
+          console.error('Error marking applicant as failed:', error);
+        });
+    }
+  };
 
 
   return (
@@ -233,8 +314,12 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                   <p className='labels-userdetails'>Position Applied: <span className='user-results'>{applicantData.positionApplied}</span></p>
                 </div>
               </div>
-              <div>
-              </div>
+              {applicantData.status === StatusEnum.Shortlisted && (
+                <div className="action-buttons">
+                  <button onClick={handleHired}>Mark as Hired</button>
+                  <button onClick={handleFailed}>Mark as Failed</button>
+                </div>
+              )}
             </div>
           </div>
         ) : (
