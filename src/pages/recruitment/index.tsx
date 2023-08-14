@@ -103,7 +103,7 @@ const RecruitmentPage = () => {
   }, [isPanelOpen]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/emails')
+    fetch('https://empireone-global-inc.uc.r.appspot.com/api/emails')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
