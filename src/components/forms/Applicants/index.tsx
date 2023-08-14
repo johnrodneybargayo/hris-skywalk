@@ -159,7 +159,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
         // Send the formData to the server
          axios.post('https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', formDataWithStatus)
-        // axios.post('http://localhost:8080/api/applicants/create', formDataWithStatus)
+       // axios.post('http://localhost:8080/api/applicants/create', formDataWithStatus)
             .then(response => {
                 console.log('Applicant created:', response.data);
                 setSuccessMessage('Applicant created successfully.');

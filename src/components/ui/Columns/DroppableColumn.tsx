@@ -34,11 +34,13 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
     if (selectedTileId) {
       const tile = tiles.find(tile => tile.id === selectedTileId);
       if (tile) {
-         axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
+          axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
         // axios.get(`http://localhost:8080/api/applicants/list/${selectedTileId}`)
           .then(response => {
-            console.log('Fetched user data:', response.data); // Add this line
-            setUserData(response.data);
+            console.log('Fetched user data:', response.data);
+            console.log('Tile position:', tile.positionApplied);
+            const userDataWithPosition = { ...response.data, position: tile.positionApplied };
+            setUserData(userDataWithPosition);
           })
           .catch(error => {
             console.error(error);
@@ -46,6 +48,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
       }
     }
   }, [selectedTileId, tiles]);
+  
 
   return (
     <div className="droppable-column">
@@ -65,6 +68,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
           >
             <img src={tile.picture} alt="" className="picture-placeholder" />
             <span className="name-user">{tile.name}</span>
+            <span className="position-user">{tile.positionApplied}</span>
           </div>
         ))}
       </div>
@@ -76,6 +80,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
           formData={userData}
         />
       )}
+
     </div>
   );
 };
