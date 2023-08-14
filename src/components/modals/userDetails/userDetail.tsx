@@ -78,7 +78,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
   useEffect(() => {
     if (showModal && formData._id) {
       axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
-      //axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`)
+     // axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`)
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
 
@@ -117,6 +117,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
       try {
         // Mark the applicant as hired by sending a POST request
         const markHiredResponse = await axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/hired/${applicantData._id}`);
+      //  const markHiredResponse = await axios.post(`http://localhost:8080/api/applicants/hired/${applicantData._id}`);
         console.log('Applicant hired:', markHiredResponse.data);
 
         // Create a new user object with relevant data
@@ -162,12 +163,14 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         };
 
         // Create a new user by sending a POST request
-        const savedUserResponse = await axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/users`, newUser);
+       const savedUserResponse = await axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/users`, newUser);
+      //  const savedUserResponse = await axios.post(`http://localhost:8080/api/users`, newUser);
         console.log('User saved:', savedUserResponse.data);
 
         // Update the applicant's status to 'Onboarding' by sending a PUT request
         const onboardingResponse = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${applicantData._id}`, {
-          status: 'Onboarding'
+      //  const onboardingResponse = await axios.put(`http://localhost:8080/api/applicants/update-status/${applicantData._id}`, {
+       status: 'Onboarding'
         });
         console.log('Applicant moved to onboarding:', onboardingResponse.data);
       } catch (error) {
@@ -179,6 +182,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
   const handleFailed = () => {
     if (applicantData) {
       axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`)
+    //  axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
         .then(response => {
           // Handle success, update applicant status to "Failed" in UI or perform necessary actions
           console.log('Applicant failed:', response.data);

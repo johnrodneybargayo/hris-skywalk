@@ -9,8 +9,8 @@ const Board: React.FC = () => {
 
   const fetchTilesData = async () => {
     try {
-       const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list');
-      // const response = await axios.get('http://localhost:8080/api/applicants/list');
+      // const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list');
+      const response = await axios.get('http://localhost:8080/api/applicants/list');
       const data = response.data;
 
       const updatedTilesData: TileProps[] = data.map((applicant: any) => ({
@@ -49,13 +49,13 @@ const Board: React.FC = () => {
 
     try {
       // Update the status on the backend
-      // const response = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${id}`, {
-        const response = await axios.put(`http://localhost:8080/api/applicants/update-status/${id}`, {
+       const response = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${id}`, {
+     // const response = await axios.put(`http://localhost:8080/api/applicants/update-status/${id}`, {
         status: newStatus,
       });
 
       console.log('Status updated successfully:', response.data);
-      // console.log('Fetched user data:', response.data); // Add this line
+       console.log('Fetched user data:', response.data); // Add this line
     } catch (error) {
       console.error('Error updating status:', error);
     }

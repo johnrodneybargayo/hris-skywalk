@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios'; // Import Axios
 import LoginForm from '../../components/forms/Login';
 
 const LoginPage: React.FC = () => {
@@ -11,21 +12,21 @@ const LoginPage: React.FC = () => {
       const token = localStorage.getItem('accessToken');
       const apiKey = 'AIzaSyAI1NsFZrRaBSRCtj8TkIxA3Mg-qYFDRzg'; // Replace with your actual API key
 
-      const response = await fetch('https://empireone-global-inc.uc.r.appspot.com/api/login', {
-        //const response = await fetch('http://localhost:8080/api/login', {  
-      method: 'POST',
+      const response = await axios.post('https://empireone-global-inc.uc.r.appspot.com/api/login', {
+        email,
+        password,
+      }, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
           'X-API-Key': apiKey,
         },
-        body: JSON.stringify({ email, password }),
       });
 
       console.log('Response:', response); // Add this logging statement
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.status === 200) {
+        const data = response.data;
         if (data.token) {
           console.log('Login successful');
           localStorage.setItem('accessToken', data.token);
@@ -34,8 +35,7 @@ const LoginPage: React.FC = () => {
           setError(data.error);
         }
       } else {
-        const errorData = await response.json();
-        setError(errorData.error || 'An error occurred during login');
+        setError(response.data.error || 'An error occurred during login');
       }
     } catch (error) {
       console.error('Error occurred during login:', error);
