@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TileProps } from '../../Utils/types';
 import './styles.scss';
 import UserDetailModal from '../../modals/userDetails/userDetail';
+import { formatDistanceToNow } from 'date-fns';
 import axios from 'axios';
 
 interface DroppableColumnProps {
@@ -27,28 +28,29 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
     e.preventDefault();
     const id = e.dataTransfer.getData('text');
     console.log('Dropped tile with ID:', id);
+    e.currentTarget.classList.add('tile-dropped');
     onTileDrop(id, columnIndex);
   };
 
   useEffect(() => {
-    if (selectedTileId) {
-      const tile = tiles.find(tile => tile.id === selectedTileId);
-      if (tile) {
-          axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
-        // axios.get(`http://localhost:8080/api/applicants/list/${selectedTileId}`)
+    tiles.forEach(tile => {
+      if (tile.id === selectedTileId) {
+        const tilePosition = tile.positionApplied; // Store the tile position
+
+        axios.get(`http://localhost:8080/api/applicants/list/${selectedTileId}`)
           .then(response => {
             console.log('Fetched user data:', response.data);
-            console.log('Tile position:', tile.positionApplied);
-            const userDataWithPosition = { ...response.data, position: tile.positionApplied };
-            setUserData(userDataWithPosition);
+            // Update user data with the fetched details and stored position
+            setUserData({ ...response.data, position: tilePosition });
           })
           .catch(error => {
             console.error(error);
+            // Handle fetch error here
+            setUserData(null); // Clear userData if there's an error
           });
       }
-    }
+    });
   }, [selectedTileId, tiles]);
-  
 
   return (
     <div className="droppable-column">
@@ -58,19 +60,40 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
         onDrop={handleTileDrop}
         onDragOver={(e) => e.preventDefault()}
       >
-        {tiles.map((tile) => (
-          <div
-            key={tile.id}
-            draggable
-            onDragStart={(e) => handleTileDragStart(tile.id, e)}
-            className="tile-user"
-            onClick={() => handleTileClick(tile.id)}
-          >
-            <img src={tile.picture} alt="" className="picture-placeholder" />
-            <span className="name-user">{tile.name}</span>
-            <span className="position-user">{tile.positionApplied}</span>
-          </div>
-        ))}
+        {tiles.map((tile) => {
+          const createdAt = new Date(tile.createdAt); // Add type assertion
+          const now = new Date();
+          const timeDifference = Math.floor((now.getTime() - createdAt.getTime()) / (1000 * 60 * 60));
+          let backgroundColorClass = '';
+          let textColorClass = '';
+
+          if (timeDifference >= 0 && timeDifference <= 11) {
+            backgroundColorClass = 'tile-background-0-2';
+            textColorClass = 'tile-text-0-2';
+          } else if (timeDifference >= 12 && timeDifference <= 48) {
+            backgroundColorClass = 'tile-background-3-5';
+            textColorClass = 'tile-text-3-5';
+          } else {
+            backgroundColorClass = 'tile-background-6';
+            textColorClass = 'tile-text-6';
+          }
+
+          return (
+            <div
+              key={tile.id}
+              draggable
+              onDragStart={(e) => handleTileDragStart(tile.id, e)}
+              className={`tile-user ${backgroundColorClass} ${textColorClass}`}
+              onClick={() => handleTileClick(tile.id)}
+            >
+              <img src={tile.picture} alt="" className="picture-placeholder" />
+              <span className="name-user">{tile.name}</span>
+              <span className="position-user">{tile.positionApplied}</span>
+              <span className="created-time">{formatDistanceToNow(new Date(tile.createdAt))}
+              </span>
+            </div>
+          );
+        })}
       </div>
       {/* Render the UserDetailModal conditionally based on the selectedTileId */}
       {selectedTileId && userData !== null && (
@@ -80,7 +103,6 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
           formData={userData}
         />
       )}
-
     </div>
   );
 };

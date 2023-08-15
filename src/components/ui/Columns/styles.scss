@@ -38,6 +38,12 @@
       font-weight: 600;
       line-height: 0.5;
       box-sizing: border-box;
+      transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    }
+
+    .tile-dropped {
+      transform: scale(1.05);
+      transition: transform 0.3s, background-color 0.3s, color 0.3s;
     }
 
     .picture-placeholder {
@@ -59,15 +65,52 @@
     }
 
     .position-user {
-      font-size: 14px; 
-      align-items: center;
+      position: relative;
+      top: -26px;
       margin: 0;
+      left: 190px;
       flex-direction: row;
-      font-size: 14px; 
-      font-weight: bold;
-      font-family: 'Satoshi';
+      font-size: 10px;
+      font-weight: 300;
+      font-family: "Satoshi";
+      color: #fff;
+    }
+
+    span.created-time {
+      font-size: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      top: -68px;
+      left: -4px;
+      font-weight: 500;
+      color: #fff;
+      line-height: 0.5;
+    }
+
+    .tile-background-0-2 {
+      background-color: #f0b86e;
+    }
+    
+    .tile-background-3-5 {
+      background-color: #35155d;
+    }
+    
+    .tile-background-6 {
+      background-color: #8cc0de;
+    }
+    
+    .tile-text-0-2 {
+      color: #000;
+    }
+    
+    .tile-text-3-5 {
       color: #fff;
     }
     
+    .tile-text-6 {
+      color: #071952;
+    }
   }
 }

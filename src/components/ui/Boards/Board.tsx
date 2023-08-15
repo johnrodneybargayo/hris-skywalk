@@ -9,24 +9,26 @@ const Board: React.FC = () => {
 
   const fetchTilesData = async () => {
     try {
-       const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list');
-      // const response = await axios.get('http://localhost:8080/api/applicants/list');
+      const response = await axios.get('http://localhost:8080/api/applicants/list');
       const data = response.data;
-
-      const updatedTilesData: TileProps[] = data.map((applicant: any) => ({
+  
+      const sortedTilesData: TileProps[] = data.map((applicant: any) => ({
         id: applicant._id,
         text: `${applicant.firstName} ${applicant.lastName}`,
         imageSrc: applicant.picture,
         name: `${applicant.firstName} ${applicant.lastName}`,
+        positionApplied: applicant.positionApplied,
         picture: applicant.picture,
         status: applicant.status,
-      }));
-
-      setTilesData(updatedTilesData);
+        createdAt: new Date(applicant.createdAt), // Convert to a Date object
+      })).sort((a: TileProps, b: TileProps) => b.createdAt.getTime() - a.createdAt.getTime()); // Explicit type annotations
+  
+      setTilesData(sortedTilesData);
     } catch (error) {
       console.error('Error fetching tiles data:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchTilesData();
@@ -34,7 +36,7 @@ const Board: React.FC = () => {
 
   const handleTileDrop = async (id: string, newStatus: 'Interview' | 'Shortlisted' | 'Onboarding' | 'Hired') => {
     console.log('Handling tile drop:', id, newStatus);
-
+  
     const updatedTiles = tilesData.map(tile => {
       if (tile.id === id) {
         return {
@@ -44,22 +46,23 @@ const Board: React.FC = () => {
       }
       return tile;
     });
-
+  
     setTilesData(updatedTiles);
-
+  
     try {
       // Update the status on the backend
-       const response = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${id}`, {
-     // const response = await axios.put(`http://localhost:8080/api/applicants/update-status/${id}`, {
+       //  const response = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${id}`, {
+      const response = await axios.put(`http://localhost:8080/api/applicants/update-status/${id}`, {
         status: newStatus,
       });
-
+  
       console.log('Status updated successfully:', response.data);
-       console.log('Fetched user data:', response.data); // Add this line
+      console.log('Fetched user data:', response.data);
     } catch (error) {
       console.error('Error updating status:', error);
     }
   };
+  
 
   // Categorize tiles based on their status
   const interviewTiles = tilesData.filter(tile => tile.status === 'Interview');
