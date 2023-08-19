@@ -36,7 +36,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
     tiles.forEach(tile => {
       if (tile.id === selectedTileId) {
         const tilePosition = tile.positionApplied; // Store the tile position
-        axios.get(`https://empireonecontactcenter.com/api/applicants/list/${selectedTileId}`)
+        axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
        // axios.get(`http://localhost:8080/api/applicants/list/${selectedTileId}`)
           .then(response => {
             console.log('Fetched user data:', response.data);
