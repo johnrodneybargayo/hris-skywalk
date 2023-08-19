@@ -78,9 +78,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   useEffect(() => {
     if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`, {
-        withCredentials: true, // Include cookies in the request
-      })
+      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
         // axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`)
         .then(response => {
           const fetchedApplicantData: FormData = response.data;
@@ -118,9 +116,8 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
   const handleHired = async () => {
     if (applicantData) {
       try {
-        const markHiredResponse = await axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/hired/${applicantData._id}`, null, {
-          withCredentials: true, // Include cookies in the request
-        });
+        // Mark the applicant as hired by sending a POST request
+        const markHiredResponse = await axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/hired/${applicantData._id}`);
         //  const markHiredResponse = await axios.post(`http://localhost:8080/api/applicants/hired/${applicantData._id}`);
         console.log('Applicant hired:', markHiredResponse.data);
 
@@ -185,10 +182,8 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   const handleFailed = () => {
     if (applicantData) {
-      axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`, null, {
-        withCredentials: true, // Include cookies in the request
-      })
-        // axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
+        axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`)
+     // axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
         .then(response => {
           // Handle success, update applicant status to "Failed" in UI or perform necessary actions
           console.log('Applicant failed:', response.data);
