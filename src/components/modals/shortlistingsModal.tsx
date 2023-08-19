@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from '../ui/Boards/Board';
+import UserDetailExport from '../ui/Export/UserDetailExport';
 import './styles.scss'; // Import the styles.scss for styling the modal
 
 interface ShortlistingsModalProps {
@@ -26,7 +27,7 @@ const ShortlistingsModal: React.FC<ShortlistingsModalProps> = ({ showModal, onCl
         </div>
         {/* Modal Content */}
         <h2>Applicants Pooling</h2>
-      
+        <UserDetailExport />
         
         {/* Display the Board component with draggable tiles and droppable areas */}
         <Board />

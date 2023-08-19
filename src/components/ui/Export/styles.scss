@@ -1,0 +1,38 @@
+/* UserDetailExport.scss */
+
+.export-button {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #0f773d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for background-color and transform */
+
+  svg {
+    width: 35px;
+    height: 35px;
+    border: none;
+    transition: fill 0.3s ease; /* Add transition for fill color */
+  }
+
+  &:hover {
+    background-color: #0c5f30;
+    transform: translateY(-5px); /* Move the button 5px upward on hover */
+    svg {
+      fill: white; /* Change fill color on hover */
+    }
+  }
+}
+
+button.export-button {
+  border: none;
+  background-color: none;
+  position: absolute;
+  top: 204px;
+  right: 270px;
+  cursor: pointer;
+}
