@@ -9,8 +9,8 @@ const Board: React.FC = () => {
 
   const fetchTilesData = async () => {
     try {
-      // const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list');
-      const response = await axios.get('http://localhost:8080/api/applicants/list');
+      const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/applicants/list');
+     // const response = await axios.get('http://localhost:8080/api/applicants/list');
       const data = response.data;
   
       const sortedTilesData: TileProps[] = data.map((applicant: any) => ({
