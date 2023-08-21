@@ -8,6 +8,10 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles.scss';
 
+interface ImageUploadResponse {
+    imageUrl: string;
+}
+
 enum GenderEnum {
     Female = "female",
     Male = "male",
@@ -60,6 +64,8 @@ interface FormData {
     dateHired2: Date | null;
     dateResigned2: Date | null;
     positionApplied: string;
+    image: File | null; // Initialize image URL
+    signatureData: string | null, // Initialize signature data
 }
 
 interface ApplicantFormProps {
@@ -110,6 +116,8 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         dateHired2: null,
         dateResigned2: null,
         positionApplied: '',
+        image: null,
+        signatureData: '',
     });
 
 
@@ -144,36 +152,71 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     };
 
     const handleSignatureSave = (signatureData: any) => {
-        // Implement the logic to save the signature data here
-        // that you can store it in the formData or send it to the server
-        console.log('Signature data:', signatureData);
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            signatureData: signatureData,
+        }));
     };
 
-    const handleSubmit = () => {
+    const handleImageUpload = (file: File) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            image: file,
+        }));
+    };
+
+    const handleSubmit = async () => {
         setSubmitting(true);
-        // Add the default status to the formData
-        const formDataWithStatus = {
-            ...formData,
-            status: 'Interview'
-        };
 
-        // Send the formData to the server
-         axios.post('https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', formDataWithStatus)
-       // axios.post('http://localhost:8080/api/applicants/create', formDataWithStatus)
-            .then(response => {
-                console.log('Applicant created:', response.data);
-                setSuccessMessage('Applicant created successfully.');
-                setErrorMessage(''); // Clear any previous error message
-            })
-            .catch(error => {
-                console.error('Error creating applicant:', error);
-                setErrorMessage('An error occurred while creating the applicant.');
-                setSuccessMessage(''); // Clear any previous success message
-            })
-            .finally(() => {
-                setSubmitting(false);
-            });
+        try {
+            const imageUrl = await uploadImage(formData.image);
+
+            const formDataWithImage = {
+                ...formData,
+                image: imageUrl,
+                status: 'Interview',
+            };
+
+            await axios.post('http://localhost:8080/api/applicants/create', formDataWithImage);
+
+            console.log('Applicant created successfully.');
+            setSuccessMessage('Applicant created successfully.');
+            setErrorMessage('');
+        } catch (error) {
+            console.error('Error creating applicant:', error);
+            setErrorMessage('An error occurred while creating the applicant.');
+            setSuccessMessage('');
+        } finally {
+            setSubmitting(false);
+        }
     };
+
+    const uploadImage = async (file: File | null): Promise<string> => {
+        if (!file) {
+            return '';
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const response = await axios.post<ImageUploadResponse>(
+                'http://localhost:8080/api/uploadImage',
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            );
+
+            return response.data.imageUrl;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            throw new Error('Failed to upload image');
+        }
+    };
+
     return (
 
         <div className="applicants-form">
@@ -192,7 +235,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 </div>
             </div>
             <div className='images-applicant'>
-                <ImagesUpload />
+                <ImagesUpload onImageUpload={handleImageUpload} />
             </div>
             <div className='image-note'>Upload your photo here make sure it's a decent photo for your employee ID</div>
             <div className='images-esignature'>

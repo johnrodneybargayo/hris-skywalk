@@ -34,27 +34,31 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
     const file = event.target.files?.[0];
     if (file) {
       try {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          if (typeof reader.result === 'string') {
-            setSignatureImageUrl(reader.result);
-            onSave(reader.result, true); // Save uploaded image URL with isSignature=true
-          }
-        };
-        reader.readAsDataURL(file);
-
-        const formData = new FormData();
-        formData.append('profile', file); // Changed from 'signature' to 'profile'
-
-        const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
-        // Handle the response if needed
-        console.log('Signature uploaded:', response.data.imageUrl); // Changed from response.data.profileImageUrl to response.data.imageUrl
+        const signatureData = padRef?.current?.toDataURL(); // Capture drawing data
+  
+        if (signatureData) {
+          console.log('Signature data captured:', signatureData); // Log the captured signature data
+  
+          // Save the signature data and trigger onSave
+          onSave(signatureData, true);
+  
+          const formData = new FormData();
+          formData.append('signature', signatureData);
+  
+          //  const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
+          const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
+          // Handle the response if needed
+          console.log('Signature uploaded:', response.data.imageUrl); // Changed from response.data.profileImageUrl to response.data.imageUrl
+        } else {
+          console.error('No signature data captured');
+        }
       } catch (error) {
         // Handle the error if needed
         console.error('Error uploading signature:', error);
       }
     }
   };
+  
 
   return (
     <div className="SignaturePad">
