@@ -26,7 +26,7 @@ const ShortlistingsModal: React.FC<ShortlistingsModalProps> = ({ showModal, onCl
           </svg>
         </div>
         {/* Modal Content */}
-        <h2>Applicants Pooling</h2>
+        <h2 className='label-pooling'>Applicants Pooling</h2>
         <UserDetailExport />
         
         {/* Display the Board component with draggable tiles and droppable areas */}

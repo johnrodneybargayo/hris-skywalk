@@ -73,7 +73,7 @@ const Board: React.FC = () => {
 
   return (
     <div className="board">
-      <DroppableColumn header="Interview" tiles={interviewTiles} onTileDrop={(id) => handleTileDrop(id, 'Interview')} columnIndex={0} />
+        <DroppableColumn header="Interview" tiles={interviewTiles} onTileDrop={(id) => handleTileDrop(id, 'Interview')} columnIndex={0} />
       <DroppableColumn header="Shortlisted" tiles={shortlistedTiles} onTileDrop={(id) => handleTileDrop(id, 'Shortlisted')} columnIndex={1} />
       <DroppableColumn header="Onboarding" tiles={onboardingTiles} onTileDrop={(id) => handleTileDrop(id, 'Onboarding')} columnIndex={2} />
       <DroppableColumn header="HIRED" tiles={hiredTiles} onTileDrop={(id) => handleTileDrop(id, 'Hired')} columnIndex={3} />

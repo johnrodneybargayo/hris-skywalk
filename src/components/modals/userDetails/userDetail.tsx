@@ -25,6 +25,7 @@ enum StatusEnum {
   Failed = 'Failed',
 }
 
+
 interface FormData {
   _id: string;
   firstName: string;
@@ -65,6 +66,7 @@ interface FormData {
   dateResigned2: Date | null;
   status: StatusEnum;
   positionApplied: String;
+  image: string;
 
 }
 interface UserDetailProps {
@@ -123,6 +125,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
         // Create a new user object with relevant data
         const newUser = {
+          image: applicantData.image,
           email: applicantData.email,
           password: '', // Temporary password, consider generating a secure one
           firstName: applicantData.firstName,
@@ -218,7 +221,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         {applicantData ? (
           <div className="user-details">
             <div className='user-details-images'>
-              {/* Code for images */}
+            <img src={applicantData.image} alt="Applicant's E-Signature" />
             </div>
             <div className='user-details-image-note'>Upload your photo here, make sure it's a decent photo for your employee ID</div>
             <div className='user-details-esignature'>
