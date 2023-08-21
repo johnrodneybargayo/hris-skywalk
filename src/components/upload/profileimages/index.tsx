@@ -23,7 +23,8 @@ const ImagesUpload: React.FC<ImagesUploadProps> = ({ onImageUpload }) => {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/uploadImage',
+      const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/uploadImage',
+    //  const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/uploadImage',
         formData,
         {
           headers: {
