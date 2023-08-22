@@ -44,6 +44,7 @@
     "sass-loader": "^13.3.2",
     "serve": "^14.2.0",
     "signature_pad": "^4.1.6",
+    "sweetalert2": "^11.7.27",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

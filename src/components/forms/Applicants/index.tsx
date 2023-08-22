@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
 import { Applicant } from '../../../reducers/applicantsReducer';
 import { SubmitButton } from '../../ui/Buttons';
 import SignaturePad from '../../upload/e_signature'; // Import the SignaturePad component
 import ImagesUpload from '../../upload/profileimages';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles.scss';
@@ -77,6 +80,8 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     const [submitting, setSubmitting] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
     const [formData, setFormData] = useState<FormData>({
         firstName: '',
@@ -120,7 +125,39 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         signatureData: '',
     });
 
+    const closeDuplicateModal = () => {
+        setIsDuplicateModalOpen(false);
+        window.location.reload();
+    };
 
+    const openDuplicateModal = () => {
+        Swal.fire({
+            title: 'Duplicate Entry',
+            text: 'Duplicate entry detected. Please check your data.',
+            icon: 'warning',
+            confirmButtonText: 'Close',
+        }).then(() => {
+            // Reload the page after the modal is closed
+            window.location.reload();
+        });
+    };
+
+    const closeSuccessModal = () => {
+        setIsSuccessModalOpen(false);
+        window.location.reload(); // Reload the page to clear the entered data
+    };
+
+    const openSuccessModal = () => {
+        Swal.fire({
+            title: 'Success!',
+            text: 'Applicant created successfully.',
+            icon: 'success',
+            confirmButtonText: 'Close',
+        }).then(() => {
+            // Reload the page after the modal is closed
+            window.location.reload();
+        });
+    };
 
     const handleDateOfBirthChange = (date: Date) => {
         setFormData((prevFormData) => ({
@@ -177,19 +214,30 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 status: 'Interview',
             };
 
-            await axios.post('https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', formDataWithImage);
+            await axios.post(
+                'https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', // Update the URL
+                formDataWithImage
+            );
 
             console.log('Applicant created successfully.');
             setSuccessMessage('Applicant created successfully.');
             setErrorMessage('');
-        } catch (error) {
-            console.error('Error creating applicant:', error);
-            setErrorMessage('An error occurred while creating the applicant.');
+            openSuccessModal();
+        } catch (error: any) {
+            if (error.response && error.response.status === 400) {
+                console.log('Duplicate entry detected:', error.response.data.error);
+                setErrorMessage('Duplicate entry detected. Please check your data.');
+                openDuplicateModal();
+            } else {
+                console.error('Error creating applicant:', error);
+                setErrorMessage('An error occurred while creating the applicant.');
+            }
             setSuccessMessage('');
         } finally {
             setSubmitting(false);
         }
     };
+
 
     const uploadImage = async (file: File | null): Promise<string> => {
         if (!file) {
@@ -701,8 +749,28 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                     </div>
 
                     {submitting && <p>Submitting...</p>}
-                </div>
+                    <Modal
+                        isOpen={isSuccessModalOpen}
+                        onRequestClose={closeSuccessModal}
+                        contentLabel="Success Modal"
+                    >
+                        <h2>Success!</h2>
+                        <p>Applicant created successfully.</p>
+                        <button onClick={closeSuccessModal}>Close</button>
+                    </Modal>
 
+                    {/* Duplicate Modal */}
+                    <Modal
+                        isOpen={isDuplicateModalOpen}
+                        onRequestClose={closeDuplicateModal}
+                        contentLabel="Duplicate Modal"
+                    >
+                        <h2>Duplicate Entry</h2>
+                        <p>Duplicate entry detected. Please check your data.</p>
+                        <button onClick={closeDuplicateModal}>Close</button>
+                    </Modal>
+
+                </div>
             </>
         </div >
     );

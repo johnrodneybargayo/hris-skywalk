@@ -378,3 +378,39 @@ h4.applicant-work-label {
   background-color: #ffebee;
   color: #b71c1c;
 }
+
+/* style.scss */
+
+/* Custom modal styles */
+.custom-modal {
+  width: 300px;
+  text-align: center;
+  animation: zoomIn 0.3s;
+}
+
+/* Custom modal styles for success modal */
+.success-modal {
+  background-color: #dff0d8; /* Change to your desired background color */
+  border-color: #d6e9c6; /* Change to your desired border color */
+  color: #3c763d; /* Change to your desired text color */
+}
+
+/* Custom modal styles for warning modal */
+.warning-modal {
+  background-color: #fcf8e3; /* Change to your desired background color */
+  border-color: #faebcc; /* Change to your desired border color */
+  color: #8a6d3b; /* Change to your desired text color */
+}
+
+/* Animation for modal */
+@keyframes zoomIn {
+  from {
+      transform: scale(0.8);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+

@@ -86,7 +86,7 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
               className={`tile-user ${backgroundColorClass} ${textColorClass}`}
               onClick={() => handleTileClick(tile.id)}
             >
-              <img src={tile.imageUrl} alt="sample" className="picture-placeholder" />
+              <img src={tile.imageUrl} alt="" className="picture-placeholder" />
               <span className="name-user">{tile.name}</span>
               <span className="position-user">{tile.positionApplied}</span>
               <span className="created-time">{formatDistanceToNow(new Date(tile.createdAt))}
