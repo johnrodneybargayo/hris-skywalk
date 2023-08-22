@@ -1,7 +1,7 @@
 export interface TileProps {
   id: string;
   text: string;
-  imageSrc: string;
+  imageUrl: string; 
   name: string;
   positionApplied: string;
   picture: string;
