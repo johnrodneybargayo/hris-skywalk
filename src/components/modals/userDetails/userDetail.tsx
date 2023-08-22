@@ -173,7 +173,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
         // Update the applicant's status to 'Onboarding' by sending a PUT request
         const onboardingResponse = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${applicantData._id}`, {
-          //    const onboardingResponse = await axios.put(`http://localhost:8080/api/applicants/update-status/${applicantData._id}`, {
+          // const onboardingResponse = await axios.put(`http://localhost:8080/api/applicants/update-status/${applicantData._id}`, {
           status: 'Onboarding'
         });
         console.log('Applicant moved to onboarding:', onboardingResponse.data);
@@ -185,8 +185,8 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
   const handleFailed = () => {
     if (applicantData) {
-      //   axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`)
-      axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
+      axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`)
+        // axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
         .then(response => {
           // Handle success, update applicant status to "Failed" in UI or perform necessary actions
           console.log('Applicant failed:', response.data);
