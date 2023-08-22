@@ -177,7 +177,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                 status: 'Interview',
             };
 
-            await axios.post('http://localhost:8080/api/applicants/create', formDataWithImage);
+            await axios.post('https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', formDataWithImage);
 
             console.log('Applicant created successfully.');
             setSuccessMessage('Applicant created successfully.');
@@ -201,7 +201,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             formData.append('image', file);
 
             const response = await axios.post<ImageUploadResponse>(
-                'http://localhost:8080/api/uploadImage',
+                'https://empireone-global-inc.uc.r.appspot.com/api/uploadImage',
                 formData,
                 {
                     headers: {

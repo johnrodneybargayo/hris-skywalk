@@ -220,7 +220,7 @@ h4.user-details-work-label {
   position: absolute;
   top: 185px;
   background: #3e3298;
-  width: 30rem;
+  width: 38rem;
   justify-content: center;
   left: 46rem;
   font-size: 12px;
@@ -233,7 +233,7 @@ h4.user-details-work-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: -90px;
+  left: -59px;
   justify-content: center;
   top: -5rem;
 }
@@ -250,7 +250,7 @@ h2.user-info-label {
   flex-direction: row;
   align-items: center;
   position: relative;
-  left: 141px;
+  left: 228px;
   justify-content: center;
   top: -204px;
 }
@@ -260,7 +260,7 @@ h2.user-info-label {
   position: absolute;
   top: 24rem;
   background: #3e3298;
-  width: 30rem;
+  width: 38rem;
   justify-content: center;
   left: 46rem;
   font-size: 12px;
@@ -273,7 +273,7 @@ h2.user-info-label {
   position: absolute;
   top: 32rem;
   background: #3e3298;
-  width: 30rem;
+  width: 38rem;
   justify-content: center;
   left: 46rem;
   font-size: 12px;
@@ -337,9 +337,18 @@ h2.user-info-label {
 }
 
 
-.user-details-images {
+.user-details-images img {
   display: flex;
   position: absolute;
-  top: 238px;
-  right: 372px;
+  top: 214px;
+  right: 281px;
+  width: 9%;
+  height: 20%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 10;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
 }
