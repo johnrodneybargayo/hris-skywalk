@@ -352,3 +352,12 @@ h2.user-info-label {
   transition: opacity 0.3s ease;
   border-radius: 50%;
 }
+
+.user-details-esignature {
+  display: flex;
+  position: absolute;
+  top: 10rem;
+  right: 79px;
+  align-items: center;
+  width: 15rem;
+}

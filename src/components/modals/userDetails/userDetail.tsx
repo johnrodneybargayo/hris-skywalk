@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import './styles.scss'; // Import the styles.scss for styling the modal
 
+
+
 enum GenderEnum {
   Female = "female",
   Male = "male",
@@ -67,6 +69,8 @@ interface FormData {
   status: StatusEnum;
   positionApplied: String;
   image: string;
+  signature: string;
+
 
 }
 interface UserDetailProps {
@@ -75,45 +79,70 @@ interface UserDetailProps {
   formData: FormData;
 }
 
+// interface SignatureModel {
+//   data: string;
+//   contentType: string;
+// }
+
+
 const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formData }) => {
   const [applicantData, setApplicantData] = useState<FormData | null>(null);
+  const [signatureImage, setSignatureImage] = useState('');
 
   useEffect(() => {
-    if (showModal && formData._id) {
-      axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`)
-        // axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`)
-        .then(response => {
-          const fetchedApplicantData: FormData = response.data;
+    const fetchData = async () => {
+      try {
+        if (formData._id) {
+          const applicantResponse = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`);
+          const fetchedApplicantData = applicantResponse.data;
 
-          if (fetchedApplicantData.dateOfBirth) {
-            fetchedApplicantData.dateOfBirth = new Date(fetchedApplicantData.dateOfBirth);
+          // Check if there is a signature associated with the applicant
+          if (fetchedApplicantData.signature) {
+            try {
+              const signatureResponse = await axios.get(`http://localhost:8080/api/applicants/signature/${fetchedApplicantData.signature}`, {
+                responseType: 'arraybuffer', // Treat the response as an ArrayBuffer
+              });
+
+              // Convert the ArrayBuffer to a base64-encoded string
+              const uint8Array = new Uint8Array(signatureResponse.data);
+              let binary = '';
+              uint8Array.forEach((byte) => {
+                binary += String.fromCharCode(byte);
+              });
+              const base64SignatureData = btoa(binary); // Convert to base64
+
+              // Update the state with the base64-encoded signature
+              setSignatureImage(base64SignatureData);
+            } catch (error) {
+              console.error('Error fetching signature data:', error);
+              alert('Failed to fetch signature data. Please try again later.');
+            }
           }
 
-          if (fetchedApplicantData.dateHired) {
-            fetchedApplicantData.dateHired = new Date(fetchedApplicantData.dateHired);
-          }
+          // Convert date strings to Date objects
+          fetchedApplicantData.dateOfBirth = fetchedApplicantData.dateOfBirth ? new Date(fetchedApplicantData.dateOfBirth) : null;
+          fetchedApplicantData.dateHired = fetchedApplicantData.dateHired ? new Date(fetchedApplicantData.dateHired) : null;
+          fetchedApplicantData.dateResigned = fetchedApplicantData.dateResigned ? new Date(fetchedApplicantData.dateResigned) : null;
+          fetchedApplicantData.dateHired2 = fetchedApplicantData.dateHired2 ? new Date(fetchedApplicantData.dateHired2) : null;
+          fetchedApplicantData.dateResigned2 = fetchedApplicantData.dateResigned2 ? new Date(fetchedApplicantData.dateResigned2) : null;
 
-          if (fetchedApplicantData.dateResigned) {
-            fetchedApplicantData.dateResigned = new Date(fetchedApplicantData.dateResigned);
-          }
-
-          if (fetchedApplicantData.dateHired2) {
-            fetchedApplicantData.dateHired2 = new Date(fetchedApplicantData.dateHired2);
-          }
-
-          if (fetchedApplicantData.dateResigned2) {
-            fetchedApplicantData.dateResigned2 = new Date(fetchedApplicantData.dateResigned2);
-          }
-
+          // Update applicant data state
           setApplicantData(fetchedApplicantData);
-        })
-        .catch(error => {
-          console.error('Error fetching applicant data:', error);
-          setApplicantData(null);
-          alert('Failed to fetch applicant data. Please try again later.');
-        });
+        }
+      } catch (error) {
+        console.error('Error fetching applicant data:', error);
+        setApplicantData(null);
+        alert('Failed to fetch applicant data. Please try again later.');
+      }
+    };
+
+    if (showModal && formData._id) {
+      fetchData();
     }
   }, [showModal, formData._id]);
+
+
+
 
   const handleHired = async () => {
     if (applicantData) {
@@ -125,7 +154,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
         // Create a new user object with relevant data
         const newUser = {
-          Image: applicantData.image,
+          image: applicantData.image,
           email: applicantData.email,
           password: '', // Temporary password, consider generating a secure one
           firstName: applicantData.firstName,
@@ -164,6 +193,9 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
           tinNumber: applicantData.tinNumber,
           philHealthId: applicantData.philHealthId,
           positionApplied: applicantData.positionApplied,
+          signature: applicantData.signature,
+
+
         };
 
         // Create a new user by sending a POST request
@@ -221,10 +253,20 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         {applicantData ? (
           <div className="user-details">
             <div className='user-details-images'>
-              <img src={applicantData.image} alt="Applicant's E-Signature" />
+              <img src={applicantData.image} alt="Profile" />
             </div>
             <div className='user-details-esignature'>
-              {/* Code for e-signature images */}
+              <div className='user-details-esignature'>
+                <div className='user-details-esignature'>
+                  {signatureImage && (
+                    <img
+                      src={`data:image/png;base64,${signatureImage}`} // Assuming the signature is a PNG image
+                      alt="Signature"
+                    />
+                  )}
+
+                </div>
+              </div>
             </div>
             <div className="user-details-content">
               <div className="user-details-header-row">

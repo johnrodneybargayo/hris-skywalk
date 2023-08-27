@@ -15,6 +15,7 @@ interface ImageUploadResponse {
     imageUrl: string;
 }
 
+
 enum GenderEnum {
     Female = "female",
     Male = "male",
@@ -68,7 +69,8 @@ interface FormData {
     dateResigned2: Date | null;
     positionApplied: string;
     image: File | null; // Initialize image URL
-    signatureData: string | null, // Initialize signature data
+    signature: string;
+
 }
 
 interface ApplicantFormProps {
@@ -122,12 +124,14 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         dateResigned2: null,
         positionApplied: '',
         image: null,
-        signatureData: '',
+        signature: '',
+
     });
 
+    // Use useEffect to monitor changes to the captured signature data and trigger submission
     const closeDuplicateModal = () => {
         setIsDuplicateModalOpen(false);
-        window.location.reload();
+        
     };
 
     const openDuplicateModal = () => {
@@ -138,13 +142,13 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             confirmButtonText: 'Close',
         }).then(() => {
             // Reload the page after the modal is closed
-            window.location.reload();
+            // window.location.reload();
         });
     };
 
     const closeSuccessModal = () => {
         setIsSuccessModalOpen(false);
-        window.location.reload(); // Reload the page to clear the entered data
+        // window.location.reload(); // Reload the page to clear the entered data
     };
 
     const openSuccessModal = () => {
@@ -155,7 +159,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             confirmButtonText: 'Close',
         }).then(() => {
             // Reload the page after the modal is closed
-            window.location.reload();
+            // window.location.reload();
         });
     };
 
@@ -188,13 +192,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         }
     };
 
-    const handleSignatureSave = (signatureData: any) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            signatureData: signatureData,
-        }));
-    };
-
     const handleImageUpload = (file: File) => {
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -202,42 +199,64 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         }));
     };
 
+
+
     const handleSubmit = async () => {
         setSubmitting(true);
-
+      
         try {
-            const imageUrl = await uploadImage(formData.image);
-
-            const formDataWithImage = {
-                ...formData,
-                image: imageUrl,
-                status: 'Interview',
-            };
-
-            await axios.post(
-                'https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', // Update the URL
-                formDataWithImage
-            );
-
-            console.log('Applicant created successfully.');
-            setSuccessMessage('Applicant created successfully.');
-            setErrorMessage('');
-            openSuccessModal();
-        } catch (error: any) {
-            if (error.response && error.response.status === 400) {
-                console.log('Duplicate entry detected:', error.response.data.error);
-                setErrorMessage('Duplicate entry detected. Please check your data.');
-                openDuplicateModal();
-            } else {
-                console.error('Error creating applicant:', error);
-                setErrorMessage('An error occurred while creating the applicant.');
-            }
-            setSuccessMessage('');
+          // Upload the image and get the image URL
+          const imageUrl = await uploadImage(formData.image);
+      
+          // Extract the base64-encoded signature data without the prefix
+          const base64SignatureData = formData.signature.split(',')[1]; // Split at the comma and get the second part
+      
+          // Create a new applicant object with the image URL and base64-encoded signature
+          const applicantData = {
+            ...formData,
+            image: imageUrl, // Use the image URL
+            signatureData: base64SignatureData,
+            status: 'Interview',
+          };
+      
+          // Send a POST request to create the applicant
+          const response = await axios.post(
+            'http://localhost:8080/api/applicants/create', // Update the URL
+            applicantData
+          );
+      
+          console.log('Applicant created successfully:', response.data);
+          setSuccessMessage('Applicant created successfully.');
+          setErrorMessage('');
+          openSuccessModal();
+        } catch (error) {
+          if (axios.isAxiosError(error) && error.response && error.response.status === 400) {
+            console.log('Duplicate entry detected:', error.response.data.error);
+            setErrorMessage('Duplicate entry detected. Please check your data.');
+            openDuplicateModal(); // Display duplicate modal
+          } else {
+            console.error('Error creating applicant:', error);
+            setErrorMessage('An error occurred while creating the applicant.');
+          }
+          setSuccessMessage('');
         } finally {
-            setSubmitting(false);
+          setSubmitting(false);
         }
-    };
+      };
+      
 
+
+
+      const handleSignatureSave = (data: string) => {
+        // Remove the following line, as signatureData is already set in formData.signature
+        // setSignatureData(data);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          signature: data, // Update the signature field in formData
+        }));
+      };
+      
+      
 
     const uploadImage = async (file: File | null): Promise<string> => {
         if (!file) {
@@ -287,7 +306,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             </div>
             <div className='image-note'>Upload your photo here make sure it's a decent photo for your employee ID</div>
             <div className='images-esignature'>
-                <SignaturePad onSave={handleSignatureSave} />
+            <SignaturePad onSave={handleSignatureSave} onSubmit={handleSubmit} />
             </div>
             <>
                 <div className="p-3 py-5">
