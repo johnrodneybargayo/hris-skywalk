@@ -251,22 +251,22 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
           </svg>
         </div>
         {/* Modal Content */}
-        <h2 className='user-info-label'>User Information</h2>
+        <h2 className='user-info-label'>Applicant's Information</h2>
         {applicantData ? (
           <div className="user-details">
             <div className='user-details-images'>
               <img src={applicantData.image} alt="Profile" />
             </div>
             <div className='user-details-esignature'>
-              <div className='user-details-esignature'>
-                <div className='user-details-esignature'>
+              <div className='esignature-container'>
+                <div className='row-esignature'>
                   {signatureImage && (
                     <img
                       src={`data:image/png;base64,${signatureImage}`} // Assuming the signature is a PNG image
                       alt="Signature"
                     />
                   )}
-
+                    <p className='esignature-label'>e-signature</p>
                 </div>
               </div>
             </div>
