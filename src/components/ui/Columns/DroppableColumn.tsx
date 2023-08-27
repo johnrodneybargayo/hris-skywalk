@@ -35,22 +35,21 @@ const DroppableColumn: React.FC<DroppableColumnProps> = ({ header, tiles, onTile
   useEffect(() => {
     tiles.forEach(tile => {
       if (tile.id === selectedTileId) {
-        const tilePosition = tile.positionApplied; // Store the tile position
-        axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
-          //  axios.get(`http://localhost:8080/api/applicants/list/${selectedTileId}`)
+        const tilePosition = tile.positionApplied;
+          axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${selectedTileId}`)
+      //  axios.get(`http://localhost:8080/api/applicants/list/${selectedTileId}`)
           .then(response => {
             console.log('Fetched user data:', response.data);
-            // Update user data with the fetched details and stored position
             setUserData({ ...response.data, position: tilePosition });
           })
           .catch(error => {
             console.error(error);
-            // Handle fetch error here
-            setUserData(null); // Clear userData if there's an error
+            setUserData(null);
           });
       }
     });
   }, [selectedTileId, tiles]);
+  
 
   return (
     <div className="droppable-column">
