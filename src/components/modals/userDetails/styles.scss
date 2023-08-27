@@ -243,6 +243,10 @@ h2.user-info-label {
   position: absolute;
   top: 130px;
   left: 220px;
+  font-size: 28px;
+  font-family: "Satoshi";
+  font-weight: 700;
+  line-height: 0.5;
 }
 
 .user-details-work-2 {
@@ -336,7 +340,6 @@ h2.user-info-label {
   color: #fff;
 }
 
-
 .user-details-images img {
   display: flex;
   position: absolute;
@@ -353,11 +356,26 @@ h2.user-info-label {
   border-radius: 50%;
 }
 
-.user-details-esignature {
+.row-esignature {
   display: flex;
   position: absolute;
-  top: 10rem;
-  right: 79px;
+  top: 26rem;
+  right: 233px;
   align-items: center;
   width: 15rem;
+  border-radius: 15px;
+  border: solid 1px #3e3298;
+  padding: 20px 20px 0px 20px;
+}
+
+.esignature-label {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 102px;
+  right: 104px;
+  font-size: 15px;
+  font-family: 'Satoshi';
+  font-weight: 800;
 }
