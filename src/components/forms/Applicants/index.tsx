@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
 import './styles.scss';
 
 interface ImageUploadResponse {
@@ -85,6 +86,9 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
+
+
+
     const [formData, setFormData] = useState<FormData>({
         firstName: '',
         lastName: '',
@@ -131,7 +135,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     // Use useEffect to monitor changes to the captured signature data and trigger submission
     const closeDuplicateModal = () => {
         setIsDuplicateModalOpen(false);
-        
+
     };
 
     const openDuplicateModal = () => {
@@ -163,12 +167,13 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         });
     };
 
-    const handleDateOfBirthChange = (date: Date) => {
+    const handleDateOfBirthChange = (date: Date | null) => {
         setFormData((prevFormData) => ({
             ...prevFormData,
-            dateOfBirth: date, // Set dateOfBirth to the selected date
+            dateOfBirth: date,
         }));
     };
+
 
     const handleDateChange = (date: Date, field: string) => {
         setFormData((prevFormData) => ({
@@ -203,62 +208,62 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
     const handleSubmit = async () => {
         setSubmitting(true);
-      
+
         try {
-          // Upload the image and get the image URL
-          const imageUrl = await uploadImage(formData.image);
-      
-          // Extract the base64-encoded signature data without the prefix
-          const base64SignatureData = formData.signature.split(',')[1]; // Split at the comma and get the second part
-      
-          // Create a new applicant object with the image URL and base64-encoded signature
-          const applicantData = {
-            ...formData,
-            image: imageUrl, // Use the image URL
-            signatureData: base64SignatureData,
-            status: 'Interview',
-          };
-      
-          // Send a POST request to create the applicant
-        //   const response = await axios.post(
-        //     'http://localhost:8080/api/applicants/create', // Update the URL
-        const response = await axios.post(
-            'https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', // Update the URL
-            applicantData
-          );
-      
-          console.log('Applicant created successfully:', response.data);
-          setSuccessMessage('Applicant created successfully.');
-          setErrorMessage('');
-          openSuccessModal();
+            // Upload the image and get the image URL
+            const imageUrl = await uploadImage(formData.image);
+
+            // Extract the base64-encoded signature data without the prefix
+            const base64SignatureData = formData.signature.split(',')[1]; // Split at the comma and get the second part
+
+            // Create a new applicant object with the image URL and base64-encoded signature
+            const applicantData = {
+                ...formData,
+                image: imageUrl, // Use the image URL
+                signatureData: base64SignatureData,
+                status: 'Interview',
+            };
+
+            // Send a POST request to create the applicant
+            //   const response = await axios.post(
+            //     'http://localhost:8080/api/applicants/create', // Update the URL
+            const response = await axios.post(
+                'https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', // Update the URL
+                applicantData
+            );
+
+            console.log('Applicant created successfully:', response.data);
+            setSuccessMessage('Applicant created successfully.');
+            setErrorMessage('');
+            openSuccessModal();
         } catch (error) {
-          if (axios.isAxiosError(error) && error.response && error.response.status === 400) {
-            console.log('Duplicate entry detected:', error.response.data.error);
-            setErrorMessage('Duplicate entry detected. Please check your data.');
-            openDuplicateModal(); // Display duplicate modal
-          } else {
-            console.error('Error creating applicant:', error);
-            setErrorMessage('An error occurred while creating the applicant.');
-          }
-          setSuccessMessage('');
+            if (axios.isAxiosError(error) && error.response && error.response.status === 400) {
+                console.log('Duplicate entry detected:', error.response.data.error);
+                setErrorMessage('Duplicate entry detected. Please check your data.');
+                openDuplicateModal(); // Display duplicate modal
+            } else {
+                console.error('Error creating applicant:', error);
+                setErrorMessage('An error occurred while creating the applicant.');
+            }
+            setSuccessMessage('');
         } finally {
-          setSubmitting(false);
+            setSubmitting(false);
         }
-      };
-      
+    };
 
 
 
-      const handleSignatureSave = (data: string) => {
+
+    const handleSignatureSave = (data: string) => {
         // Remove the following line, as signatureData is already set in formData.signature
         // setSignatureData(data);
         setFormData((prevFormData) => ({
-          ...prevFormData,
-          signature: data, // Update the signature field in formData
+            ...prevFormData,
+            signature: data, // Update the signature field in formData
         }));
-      };
-      
-      
+    };
+
+
 
     const uploadImage = async (file: File | null): Promise<string> => {
         if (!file) {
@@ -308,7 +313,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             </div>
             <div className='image-note'>Upload your photo here make sure it's a decent photo for your employee ID</div>
             <div className='images-esignature'>
-            <SignaturePad onSave={handleSignatureSave} onSubmit={handleSubmit} />
+                <SignaturePad onSave={handleSignatureSave} onSubmit={handleSubmit} />
             </div>
             <>
                 <div className="p-3 py-5">
@@ -378,12 +383,15 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                             <label className="labels">Date of Birth:</label>
                             <DatePicker
                                 selected={formData.dateOfBirth}
-                                onChange={handleDateOfBirthChange} // Call the function when the date is changed
-                                className="form-control"
-                                dateFormat="MM/dd/yyyy" // Display day, month, and year
-                                placeholderText="Select date"
+                                onChange={handleDateOfBirthChange}
+                                dateFormat="dd/MM/yyyy"
+                                placeholderText="Select date of birth"
+                                showYearDropdown
+                                scrollableYearDropdown
+                                yearDropdownItemNumber={100}
+                                showMonthDropdown
+                                scrollableMonthYearDropdown
                             />
-
                         </div>
                         <div className="col-md-6">
                             <label className="labels">Place of Birth:</label>
@@ -611,6 +619,11 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     selected={formData.dateHired ? new Date(formData.dateHired) : null}
                                     onChange={(date: Date) => handleDateChange(date, 'dateHired')}
                                     placeholderText="mm/dd/yyyy"
+                                    showYearDropdown
+                                    scrollableYearDropdown
+                                    yearDropdownItemNumber={100}
+                                    showMonthDropdown
+                                    scrollableMonthYearDropdown
                                 />
                             </div>
                             <div className="col-md-12">
@@ -621,6 +634,11 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     selected={formData.dateResigned ? new Date(formData.dateResigned) : null}
                                     onChange={(date: Date) => handleDateChange(date, 'dateResigned')}
                                     placeholderText="mm/dd/yyyy"
+                                    showYearDropdown
+                                    scrollableYearDropdown
+                                    yearDropdownItemNumber={100}
+                                    showMonthDropdown
+                                    scrollableMonthYearDropdown
                                 />
                             </div>
                         </div>
@@ -659,6 +677,11 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     selected={formData.dateHired2 ? new Date(formData.dateHired2) : null}
                                     onChange={(date: Date) => handleDateChange(date, 'dateHired2')}
                                     placeholderText="mm/dd/yyyy"
+                                    showYearDropdown
+                                    scrollableYearDropdown
+                                    yearDropdownItemNumber={100}
+                                    showMonthDropdown
+                                    scrollableMonthYearDropdown
                                 />
                             </div>
                             <div className="col-md-12">
@@ -669,6 +692,11 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     selected={formData.dateResigned2 ? new Date(formData.dateResigned2) : null}
                                     onChange={(date: Date) => handleDateChange(date, 'dateResigned2')}
                                     placeholderText="mm/dd/yyyy"
+                                    showYearDropdown
+                                    scrollableYearDropdown
+                                    yearDropdownItemNumber={100}
+                                    showMonthDropdown
+                                    scrollableMonthYearDropdown
                                 />
                             </div>
                         </div>
