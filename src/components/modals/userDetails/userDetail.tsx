@@ -94,53 +94,54 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
       try {
         if (formData._id) {
           const applicantResponse = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`);
+          //  const applicantResponse = await axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`);
           const fetchedApplicantData = applicantResponse.data;
 
           // Check if there is a signature associated with the applicant
           if (fetchedApplicantData.signature) {
             try {
               const signatureResponse = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/signature/${fetchedApplicantData.signature}`, {
-              //  const signatureResponse = await axios.get(`http://localhost:8080/api/applicants/signature/${fetchedApplicantData.signature}`, {
-                  responseType: 'arraybuffer', // Treat the response as an ArrayBuffer
-                });
+                //   const signatureResponse = await axios.get(`http://localhost:8080/api/applicants/signature/${fetchedApplicantData.signature}`, {
+                responseType: 'arraybuffer', // Treat the response as an ArrayBuffer
+              });
 
-                // Convert the ArrayBuffer to a base64-encoded string
-                const uint8Array = new Uint8Array(signatureResponse.data);
-                let binary = '';
-                uint8Array.forEach((byte) => {
-                  binary += String.fromCharCode(byte);
-                });
-                const base64SignatureData = btoa(binary); // Convert to base64
+              // Convert the ArrayBuffer to a base64-encoded string
+              const uint8Array = new Uint8Array(signatureResponse.data);
+              let binary = '';
+              uint8Array.forEach((byte) => {
+                binary += String.fromCharCode(byte);
+              });
+              const base64SignatureData = btoa(binary); // Convert to base64
 
-                // Update the state with the base64-encoded signature
-                setSignatureImage(base64SignatureData);
-              } catch (error) {
-                console.error('Error fetching signature data:', error);
-                alert('Failed to fetch signature data. Please try again later.');
-              }
+              // Update the state with the base64-encoded signature
+              setSignatureImage(base64SignatureData);
+            } catch (error) {
+              console.error('Error fetching signature data:', error);
+              alert('Failed to fetch signature data. Please try again later.');
             }
+          }
 
           // Convert date strings to Date objects
           fetchedApplicantData.dateOfBirth = fetchedApplicantData.dateOfBirth ? new Date(fetchedApplicantData.dateOfBirth) : null;
-            fetchedApplicantData.dateHired = fetchedApplicantData.dateHired ? new Date(fetchedApplicantData.dateHired) : null;
-            fetchedApplicantData.dateResigned = fetchedApplicantData.dateResigned ? new Date(fetchedApplicantData.dateResigned) : null;
-            fetchedApplicantData.dateHired2 = fetchedApplicantData.dateHired2 ? new Date(fetchedApplicantData.dateHired2) : null;
-            fetchedApplicantData.dateResigned2 = fetchedApplicantData.dateResigned2 ? new Date(fetchedApplicantData.dateResigned2) : null;
+          fetchedApplicantData.dateHired = fetchedApplicantData.dateHired ? new Date(fetchedApplicantData.dateHired) : null;
+          fetchedApplicantData.dateResigned = fetchedApplicantData.dateResigned ? new Date(fetchedApplicantData.dateResigned) : null;
+          fetchedApplicantData.dateHired2 = fetchedApplicantData.dateHired2 ? new Date(fetchedApplicantData.dateHired2) : null;
+          fetchedApplicantData.dateResigned2 = fetchedApplicantData.dateResigned2 ? new Date(fetchedApplicantData.dateResigned2) : null;
 
-            // Update applicant data state
-            setApplicantData(fetchedApplicantData);
-          }
-        } catch (error) {
-          console.error('Error fetching applicant data:', error);
-          setApplicantData(null);
-          alert('Failed to fetch applicant data. Please try again later.');
+          // Update applicant data state
+          setApplicantData(fetchedApplicantData);
         }
-      };
-
-      if (showModal && formData._id) {
-        fetchData();
+      } catch (error) {
+        console.error('Error fetching applicant data:', error);
+        setApplicantData(null);
+        alert('Failed to fetch applicant data. Please try again later.');
       }
-    }, [showModal, formData._id]);
+    };
+
+    if (showModal && formData._id) {
+      fetchData();
+    }
+  }, [showModal, formData._id]);
 
 
 
