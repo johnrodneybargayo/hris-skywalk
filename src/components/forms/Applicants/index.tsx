@@ -220,8 +220,10 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
           };
       
           // Send a POST request to create the applicant
-          const response = await axios.post(
-            'http://localhost:8080/api/applicants/create', // Update the URL
+        //   const response = await axios.post(
+        //     'http://localhost:8080/api/applicants/create', // Update the URL
+        const response = await axios.post(
+            'https://empireone-global-inc.uc.r.appspot.com/api/applicants/create', // Update the URL
             applicantData
           );
       
