@@ -414,3 +414,11 @@ h4.applicant-work-label {
   }
 }
 
+
+.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+  margin-top: 0;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.944rem;
+  display: none;
+}
