@@ -4,26 +4,47 @@ import axios from 'axios';
 import './styles.scss';
 
 interface ImageUploadResponse {
-  imageUrl: string; // Changed from profileImageUrl to imageUrl
+  imageUrl: string;
 }
 
 interface SignaturePadProps {
-  onSave: (imageUrl: string, isSignature: boolean) => void;
+  onSave: (signatureData: string) => void;
+  onSubmit: () => void;
 }
 
-const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
+const SignaturePad: React.FC<SignaturePadProps> = ({ onSave, onSubmit }) => {
   const padRef = useRef<SignatureCanvas | null>(null);
   const [canvasVisibility, setCanvasVisibility] = useState(false);
-  const [signatureImageUrl, setSignatureImageUrl] = useState<string>('');
+  const [signatureData, setSignatureData] = useState<string>('');
 
-  const handleGetCanvas = () => {
+  const handleGetCanvas = async () => {
     setCanvasVisibility(true);
+    const capturedData = padRef?.current?.toDataURL();
+
+    if (capturedData) {
+      console.log('Signature data captured:', capturedData);
+      setSignatureData(capturedData);
+
+      try {
+        const formData = new FormData();
+        const blob = await (await fetch(capturedData)).blob();
+        formData.append('signature', blob);
+
+        const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
+        console.log('Signature uploaded:', response.data.imageUrl);
+        onSave(capturedData); // Trigger the onSave function with the captured data
+      } catch (error) {
+        console.error('Error uploading signature:', error);
+      }
+    } else {
+      console.error('No signature data captured');
+    }
   };
 
   const handleButtonClick = () => {
     setCanvasVisibility(false);
     padRef?.current?.clear();
-    setSignatureImageUrl('');
+    setSignatureData('');
   };
 
   const handleClearCanvas = () => {
@@ -34,31 +55,27 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
     const file = event.target.files?.[0];
     if (file) {
       try {
-        const signatureData = padRef?.current?.toDataURL(); // Capture drawing data
-  
-        if (signatureData) {
-          console.log('Signature data captured:', signatureData); // Log the captured signature data
-  
-          // Save the signature data and trigger onSave
-          onSave(signatureData, true);
-  
+        const capturedData = padRef?.current?.toDataURL();
+
+        if (capturedData) {
+          console.log('Signature data captured:', capturedData);
+          onSave(capturedData); // Trigger the onSave function with the captured data
+
           const formData = new FormData();
-          formData.append('signature', signatureData);
-  
-          //  const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
+          formData.append('signatureData', capturedData);
+
           const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
-          // Handle the response if needed
-          console.log('Signature uploaded:', response.data.imageUrl); // Changed from response.data.profileImageUrl to response.data.imageUrl
+          console.log('Signature uploaded:', response.data.imageUrl);
         } else {
           console.error('No signature data captured');
         }
       } catch (error) {
-        // Handle the error if needed
         console.error('Error uploading signature:', error);
       }
     }
   };
-  
+
+  console.log('Rendering SignaturePad component');
 
   return (
     <div className="SignaturePad">
@@ -92,10 +109,13 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave }) => {
         </div>
       ) : (
         <div>
-          <img src={signatureImageUrl} alt="signature" />
+          <img src={signatureData} alt="signature" />
           <div className="SignatureButtonsContainer">
             <button className="SignatureButtons-cancel" onClick={handleButtonClick}>
               Cancel
+            </button>
+            <button className="SignatureButtons-submit" onClick={onSubmit}>
+              Submit
             </button>
           </div>
         </div>
