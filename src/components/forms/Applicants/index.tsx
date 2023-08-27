@@ -85,6 +85,8 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     const [errorMessage, setErrorMessage] = useState('');
     const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+    const [showError, setShowError] = useState(false);
+
 
 
 
@@ -175,25 +177,34 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     };
 
 
-    const handleDateChange = (date: Date, field: string) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [field]: date,
-        }));
-    };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | Date) => {
-        if ('target' in e) {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement> | Date,
+        field?: string
+    ) => {
+        if ("target" in e) {
             const { name, value } = e.target as HTMLInputElement;
-            setFormData((prevFormData) => ({
-                ...prevFormData,
-                [name]: value,
-            }));
+            // Allow only numbers for specific fields
+            if (
+                ["mobileNumber", "emergencyContactNumber", "emergencyAlternateContactNumber"].includes(name)
+            ) {
+                const numericValue = value.replace(/\D/g, "");
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    [name]: numericValue,
+                }));
+            } else {
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    [name]: value,
+                }));
+            }
         } else {
-            setFormData((prevFormData) => ({
-                ...prevFormData,
-                dateHired: e,
-            }));
+            if (field === "dateHired") {
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    dateHired: e,
+                }));
+            }
         }
     };
 
@@ -203,8 +214,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             image: file,
         }));
     };
-
-
 
     const handleSubmit = async () => {
         setSubmitting(true);
@@ -251,8 +260,22 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         }
     };
 
+    const isEmailValid = (email: string) => {
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        return emailRegex.test(email);
+    };
 
+    const handleBlur = () => {
+        if (formData.email && !isEmailValid(formData.email)) {
+            setShowError(true); // Show the error if email is invalid on blur
+        }
+    };
 
+    const errorMessageStyle = {
+        color: "red",      // Change the color to your preferred color
+        fontSize: "12px",  // Change the font size to your preferred size
+        fontWeight: 600,   // Add font weight 600
+    };
 
     const handleSignatureSave = (data: string) => {
         // Remove the following line, as signatureData is already set in formData.signature
@@ -363,7 +386,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 type="text"
                                 name="mobileNumber"
                                 value={formData.mobileNumber}
-                                onChange={handleChange}
+                                onChange={(e) => handleChange(e)}
                                 placeholder="Input Phone Number"
                                 className="form-control"
                             />
@@ -375,9 +398,16 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
+                                onBlur={handleBlur}
                                 placeholder="Input email address"
-                                className="form-control"
+                                className={`form-control ${showError || !isEmailValid(formData.email) ? "is-invalid" : ""
+                                    }`}
                             />
+                            {showError && (
+                                <div className="invalid-feedback" style={errorMessageStyle}>
+                                    Please enter a valid email address.
+                                </div>
+                            )}
                         </div>
                         <div className="col-md-6">
                             <label className="labels">Date of Birth:</label>
@@ -617,7 +647,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 </label>
                                 <DatePicker
                                     selected={formData.dateHired ? new Date(formData.dateHired) : null}
-                                    onChange={(date: Date) => handleDateChange(date, 'dateHired')}
+                                    onChange={(date: Date) => handleChange(date, 'dateHired')}
                                     placeholderText="mm/dd/yyyy"
                                     showYearDropdown
                                     scrollableYearDropdown
@@ -632,7 +662,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 </label>
                                 <DatePicker
                                     selected={formData.dateResigned ? new Date(formData.dateResigned) : null}
-                                    onChange={(date: Date) => handleDateChange(date, 'dateResigned')}
+                                    onChange={(date: Date) => handleChange(date, 'dateResigned')}
                                     placeholderText="mm/dd/yyyy"
                                     showYearDropdown
                                     scrollableYearDropdown
@@ -675,7 +705,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 </label>
                                 <DatePicker
                                     selected={formData.dateHired2 ? new Date(formData.dateHired2) : null}
-                                    onChange={(date: Date) => handleDateChange(date, 'dateHired2')}
+                                    onChange={(date: Date) => handleChange(date, 'dateHired2')}
                                     placeholderText="mm/dd/yyyy"
                                     showYearDropdown
                                     scrollableYearDropdown
@@ -690,7 +720,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 </label>
                                 <DatePicker
                                     selected={formData.dateResigned2 ? new Date(formData.dateResigned2) : null}
-                                    onChange={(date: Date) => handleDateChange(date, 'dateResigned2')}
+                                    onChange={(date: Date) => handleChange(date, 'dateResigned2')}
                                     placeholderText="mm/dd/yyyy"
                                     showYearDropdown
                                     scrollableYearDropdown
@@ -721,7 +751,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     type="text"
                                     name="emergencyContactNumber"
                                     value={formData.emergencyContactNumber}
-                                    onChange={handleChange}
+                                    onChange={(e) => handleChange(e)}
                                     placeholder="Input Mobile Phone Number"
                                     className="form-control"
                                 />
@@ -732,7 +762,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     type="text"
                                     name="emergencyAlternateContactNumber"
                                     value={formData.emergencyAlternateContactNumber}
-                                    onChange={handleChange}
+                                    onChange={(e) => handleChange(e)}
                                     placeholder="Input Alternate Phone Number"
                                     className="form-control"
                                 />
