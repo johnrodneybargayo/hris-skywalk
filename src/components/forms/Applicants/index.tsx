@@ -5,10 +5,13 @@ import { SubmitButton } from '../../ui/Buttons';
 import SignaturePad from '../../upload/e_signature'; // Import the SignaturePad component
 import ImagesUpload from '../../upload/profileimages';
 import axios from 'axios';
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { confirmAlert } from 'react-confirm-alert';
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
+import { CustomCalendarIcon } from '../../ui/svg_icons/CustomDateTimePickerIcons'; // Adjust the path to match the actual location of your components
+
 
 import './styles.scss';
 
@@ -91,6 +94,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
 
 
+
     const [formData, setFormData] = useState<FormData>({
         firstName: '',
         lastName: '',
@@ -141,14 +145,14 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     };
 
     const openDuplicateModal = () => {
-        Swal.fire({
+        confirmAlert({
             title: 'Duplicate Entry',
-            text: 'Duplicate entry detected. Please check your data.',
-            icon: 'warning',
-            confirmButtonText: 'Close',
-        }).then(() => {
-            // Reload the page after the modal is closed
-            // window.location.reload();
+            message: 'Duplicate entry detected. Please check your data.',
+            buttons: [
+                {
+                    label: 'Close',
+                },
+            ],
         });
     };
 
@@ -158,24 +162,28 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     };
 
     const openSuccessModal = () => {
-        Swal.fire({
+        confirmAlert({
             title: 'Success!',
-            text: 'Applicant created successfully.',
-            icon: 'success',
-            confirmButtonText: 'Close',
-        }).then(() => {
-            // Reload the page after the modal is closed
-            // window.location.reload();
+            message: 'Applicant created successfully.',
+            buttons: [
+                {
+                    label: 'Close',
+                    onClick: () => {
+                        closeSuccessModal();
+                    },
+                },
+            ],
         });
     };
 
-    const handleDateOfBirthChange = (date: Date | null) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            dateOfBirth: date,
-        }));
+    const handleDateOfBirthChange = (date: Date | Date[] | null | null[] | undefined) => {
+        if (date instanceof Date) {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                dateOfBirth: date,
+            }));
+        }
     };
-
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement> | Date,
@@ -187,7 +195,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             if (
                 ["mobileNumber", "emergencyContactNumber", "emergencyAlternateContactNumber"].includes(name)
             ) {
-                const numericValue = value.replace(/\D/g, "");
+                const numericValue = value.replace(/\D/g, '');
                 setFormData((prevFormData) => ({
                     ...prevFormData,
                     [name]: numericValue,
@@ -198,15 +206,21 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                     [name]: value,
                 }));
             }
-        } else {
-            if (field === "dateHired") {
-                setFormData((prevFormData) => ({
-                    ...prevFormData,
-                    dateHired: e,
-                }));
-            }
         }
     };
+
+    const handleDateChange = (
+        date: Date | Date[] | null | undefined,
+        field: 'dateHired' | 'dateResigned' | 'dateHired2' | 'dateResigned2'
+    ) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [field]: date instanceof Date ? date : null,
+        }));
+    };
+
+
+
 
     const handleImageUpload = (file: File) => {
         setFormData((prevFormData) => ({
@@ -265,9 +279,12 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
         return emailRegex.test(email);
     };
 
-    const handleBlur = () => {
-        if (formData.email && !isEmailValid(formData.email)) {
-            setShowError(true); // Show the error if email is invalid on blur
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        if (name === 'emergencyContactNumber' || name === 'emergencyAlternateContactNumber' || name === 'mobileNumber') {
+            if (!/^\d+$/.test(value)) {
+                setShowError(true); // Show the error if input is not a number
+            }
         }
     };
 
@@ -386,10 +403,16 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 type="text"
                                 name="mobileNumber"
                                 value={formData.mobileNumber}
-                                onChange={(e) => handleChange(e)}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
                                 placeholder="Input Phone Number"
-                                className="form-control"
+                                className={`form-control ${showError && !/^\d+$/.test(formData.mobileNumber) ? 'is-invalid' : ''}`}
                             />
+                            {showError && !/^\d+$/.test(formData.mobileNumber) && (
+                                <div className="invalid-feedback" style={errorMessageStyle}>
+                                    Please input valid phone numbers only.
+                                </div>
+                            )}
                         </div>
                         <div className="col-md-12">
                             <label className="labels">Email Address:</label>
@@ -411,16 +434,16 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                         </div>
                         <div className="col-md-6">
                             <label className="labels">Date of Birth:</label>
-                            <DatePicker
-                                selected={formData.dateOfBirth}
+                            <DateTimePicker
+                                value={formData.dateOfBirth}
                                 onChange={handleDateOfBirthChange}
-                                dateFormat="dd/MM/yyyy"
-                                placeholderText="Select date of birth"
-                                showYearDropdown
-                                scrollableYearDropdown
-                                yearDropdownItemNumber={100}
-                                showMonthDropdown
-                                scrollableMonthYearDropdown
+                                format="dd/MM/yyyy"
+                                dayPlaceholder="dd"
+                                monthPlaceholder="mm"
+                                yearPlaceholder="yyyy"
+                                clearIcon={null}
+                                calendarIcon={<CustomCalendarIcon />}
+
                             />
                         </div>
                         <div className="col-md-6">
@@ -645,30 +668,30 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <label className="labels">
                                     Date Hired:
                                 </label>
-                                <DatePicker
-                                    selected={formData.dateHired ? new Date(formData.dateHired) : null}
-                                    onChange={(date: Date) => handleChange(date, 'dateHired')}
-                                    placeholderText="mm/dd/yyyy"
-                                    showYearDropdown
-                                    scrollableYearDropdown
-                                    yearDropdownItemNumber={100}
-                                    showMonthDropdown
-                                    scrollableMonthYearDropdown
+                                <DateTimePicker
+                                    value={formData.dateHired || undefined}
+                                    onChange={(date: Date | Date[] | null | undefined) => handleDateChange(date, 'dateHired')}
+                                    format="MM/dd/yyyy"
+                                    dayPlaceholder="dd"
+                                    monthPlaceholder="mm"
+                                    yearPlaceholder="yyyy"
+                                    clearIcon={null}
+                                    calendarIcon={<CustomCalendarIcon />}
                                 />
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">
                                     Date Resigned:
                                 </label>
-                                <DatePicker
-                                    selected={formData.dateResigned ? new Date(formData.dateResigned) : null}
-                                    onChange={(date: Date) => handleChange(date, 'dateResigned')}
-                                    placeholderText="mm/dd/yyyy"
-                                    showYearDropdown
-                                    scrollableYearDropdown
-                                    yearDropdownItemNumber={100}
-                                    showMonthDropdown
-                                    scrollableMonthYearDropdown
+                                <DateTimePicker
+                                    value={formData.dateResigned || undefined}
+                                    onChange={(date: Date | Date[] | null | undefined) => handleDateChange(date, 'dateResigned')}
+                                    format="MM/dd/yyyy"
+                                    dayPlaceholder="dd"
+                                    monthPlaceholder="mm"
+                                    yearPlaceholder="yyyy"
+                                    clearIcon={null}
+                                    calendarIcon={<CustomCalendarIcon />}
                                 />
                             </div>
                         </div>
@@ -703,30 +726,30 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                 <label className="labels">
                                     Date Hired:
                                 </label>
-                                <DatePicker
-                                    selected={formData.dateHired2 ? new Date(formData.dateHired2) : null}
-                                    onChange={(date: Date) => handleChange(date, 'dateHired2')}
-                                    placeholderText="mm/dd/yyyy"
-                                    showYearDropdown
-                                    scrollableYearDropdown
-                                    yearDropdownItemNumber={100}
-                                    showMonthDropdown
-                                    scrollableMonthYearDropdown
+                                <DateTimePicker
+                                    value={formData.dateHired2 ? new Date(formData.dateHired2) : null}
+                                    onChange={(date: Date | Date[] | null | undefined) => handleDateChange(date, 'dateHired2')}
+                                    format="MM/dd/yyyy"
+                                    dayPlaceholder="dd"
+                                    monthPlaceholder="mm"
+                                    yearPlaceholder="yyyy"
+                                    clearIcon={null}
+                                    calendarIcon={<CustomCalendarIcon />}
                                 />
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">
                                     Date Resigned:
                                 </label>
-                                <DatePicker
-                                    selected={formData.dateResigned2 ? new Date(formData.dateResigned2) : null}
-                                    onChange={(date: Date) => handleChange(date, 'dateResigned2')}
-                                    placeholderText="mm/dd/yyyy"
-                                    showYearDropdown
-                                    scrollableYearDropdown
-                                    yearDropdownItemNumber={100}
-                                    showMonthDropdown
-                                    scrollableMonthYearDropdown
+                                <DateTimePicker
+                                    value={formData.dateResigned2 ? new Date(formData.dateResigned2) : null}
+                                    onChange={(date: Date | Date[] | null | undefined) => handleDateChange(date, 'dateResigned2')}
+                                    format="MM/dd/yyyy"
+                                    dayPlaceholder="dd"
+                                    monthPlaceholder="mm"
+                                    yearPlaceholder="yyyy"
+                                    clearIcon={null}
+                                    calendarIcon={<CustomCalendarIcon />}
                                 />
                             </div>
                         </div>
@@ -751,10 +774,16 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     type="text"
                                     name="emergencyContactNumber"
                                     value={formData.emergencyContactNumber}
-                                    onChange={(e) => handleChange(e)}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     placeholder="Input Mobile Phone Number"
-                                    className="form-control"
+                                    className={`form-control ${showError && !/^\d+$/.test(formData.emergencyContactNumber) ? 'is-invalid' : ''}`}
                                 />
+                                {showError && !/^\d+$/.test(formData.emergencyContactNumber) && (
+                                    <div className="invalid-feedback" style={errorMessageStyle}>
+                                        Please input valid phone numbers only.
+                                    </div>
+                                )}
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">Alternate Phone Number:</label>
@@ -762,10 +791,16 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
                                     type="text"
                                     name="emergencyAlternateContactNumber"
                                     value={formData.emergencyAlternateContactNumber}
-                                    onChange={(e) => handleChange(e)}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     placeholder="Input Alternate Phone Number"
-                                    className="form-control"
+                                    className={`form-control ${showError && !/^\d+$/.test(formData.emergencyAlternateContactNumber) ? 'is-invalid' : ''}`}
                                 />
+                                {showError && !/^\d+$/.test(formData.emergencyAlternateContactNumber) && (
+                                    <div className="invalid-feedback" style={errorMessageStyle}>
+                                        Please input valid phone numbers only.
+                                    </div>
+                                )}
                             </div>
                             <div className="col-md-12">
                                 <label className="labels">Relationship with the employee:</label>
