@@ -405,20 +405,98 @@ h4.applicant-work-label {
 /* Animation for modal */
 @keyframes zoomIn {
   from {
-      transform: scale(0.8);
-      opacity: 0;
+    transform: scale(0.8);
+    opacity: 0;
   }
   to {
-      transform: scale(1);
-      opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-
-.react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
   margin-top: 0;
   color: #000;
   font-weight: bold;
   font-size: 0.944rem;
   display: none;
+}
+
+.react-datetime-picker__wrapper {
+  background: #fff;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  border: thin solid gray;
+  width: 177px;
+}
+
+.react-datetime-picker__button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.react-datetime-picker__inputGroup {
+  min-width: calc(4px + (4px * 3) + 0.54em * 6 + 0.217em * 2);
+  flex-grow: 1;
+  padding: 0 2px;
+  display: flex;
+  justify-content: center;
+  font-family: "Satoshi";
+  font-size: 13px;
+  font-weight: 500;
+  align-items: center;
+}
+
+.react-calendar {
+  border-radius: 15px;
+  margin: 2px;
+}
+
+.react-calendar__tile--active {
+  background: #006edc;
+  color: white;
+  border-radius: 100%;
+  height: 45px;
+}
+
+.react-calendar__tile--now {
+  background: #ffff76;
+  color: #000;
+  border-radius: 100%;
+  height: 45px;
+}
+
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 10px 6.6667px;
+
+  text-align: center;
+  line-height: 16px;
+  border-radius: 100%;
+  height: 45px;
+}
+
+span.react-calendar__navigation__label__labelText.react-calendar__navigation__label__labelText--from {
+  font-family: "Satoshi";
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  background: bisque;
+  border-radius: 15px 15px 0 0px;
+}
+
+button.react-calendar__tile.react-calendar__tile--now.react-calendar__year-view__months__month {
+  border-radius: 15%;
+  height: 51px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

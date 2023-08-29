@@ -20,16 +20,13 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave, onSubmit }) => {
   const handleGetCanvas = async () => {
     setCanvasVisibility(true);
     const capturedData = padRef?.current?.toDataURL();
-
     if (capturedData) {
       console.log('Signature data captured:', capturedData);
       setSignatureData(capturedData);
-
       try {
         const formData = new FormData();
         const blob = await (await fetch(capturedData)).blob();
         formData.append('signature', blob);
-
         const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
         // const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
         console.log('Signature uploaded:', response.data.imageUrl);
@@ -57,16 +54,23 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave, onSubmit }) => {
     if (file) {
       try {
         const capturedData = padRef?.current?.toDataURL();
-
+    
         if (capturedData) {
           console.log('Signature data captured:', capturedData);
           onSave(capturedData); // Trigger the onSave function with the captured data
-
+    
           const formData = new FormData();
           formData.append('signatureData', capturedData);
-
-          const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
-          // const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
+    
+          const config = {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          };
+  
+          // const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature/image', formData, config);
+          const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature/image', formData, config);
+    
           console.log('Signature uploaded:', response.data.imageUrl);
         } else {
           console.error('No signature data captured');
@@ -76,6 +80,8 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave, onSubmit }) => {
       }
     }
   };
+  
+  
 
   console.log('Rendering SignaturePad component');
 

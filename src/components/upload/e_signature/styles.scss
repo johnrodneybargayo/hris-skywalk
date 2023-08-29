@@ -39,7 +39,7 @@ img {
   color: #fff;
   margin: 15px;
   display: flex;
-  background: rgba(82, 112, 219, 0.831372549);
+  background: rgb(22, 46, 135);
   font-size: 1rem;
   font-weight: bold;
   font-family: "Satoshi";
@@ -48,7 +48,7 @@ img {
   border-radius: 4px;
   position: absolute;
   bottom: -12px;
-  left: 56px;
+  left: 72px;
   cursor: pointer;
   transition: 0.2s ease-in;
   justify-content: center;
@@ -72,12 +72,16 @@ img {
   justify-content: center;
 }
 
+.SignatureButtons-submit{
+  display: none;
+}
+
 label.SignatureButtons-3 {
   width: 305px;
   height: 22px;
   color: #fff;
   padding: 10px;
-  display: flex;
+  display: none;
   margin: 10px;
   background: rgba(82, 112, 219, 0.831372549);
   font-size: 1rem;
@@ -86,7 +90,7 @@ label.SignatureButtons-3 {
   line-height: 2.5;
   position: absolute;
   top: 195px;
-  left: 7rem;
+  left: 9rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;

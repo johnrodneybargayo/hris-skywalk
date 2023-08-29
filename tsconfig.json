@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node", "babel__core"],
+    "types": ["node"],
     "target": "es5",
     "lib": [
       "dom",
