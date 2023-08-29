@@ -353,6 +353,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
             </div>
             <div className='image-note'>Upload your photo here make sure it's a decent photo for your employee ID</div>
             <div className='images-esignature'>
+            <p className='signature-label'>Draw your e-signature here:</p>
                 <SignaturePad onSave={handleSignatureSave} onSubmit={handleSubmit} />
             </div>
             <>
