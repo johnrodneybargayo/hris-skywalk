@@ -500,3 +500,15 @@ button.react-calendar__tile.react-calendar__tile--now.react-calendar__year-view_
   justify-content: center;
   align-items: center;
 }
+
+.signature-label {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: -41px;
+  right: 288px;
+  font-size: 15px;
+  font-family: 'Satoshi';
+  font-weight: 800;
+}
