@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.scss';
+import FailedApplicantModal from '../../modals/FailedApplicantModal';
 
 const ApplicationBox = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedFailedApplicant, setSelectedFailedApplicant] = useState('');
+
+  const openModal = (failedApplicant: string) => {
+    console.log('Opening modal for', failedApplicant);
+    setSelectedFailedApplicant(failedApplicant);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    console.log('Closing modal');
+    setIsModalOpen(false);
+  };
+
+
   return (
     <>
       <div className='label-tile-appbox'>
@@ -18,7 +34,11 @@ const ApplicationBox = () => {
             <p className="number-app">6</p>
             <p className="label-app">ONHOLD</p>
           </div>
-          <div className="small-box-3">
+          <div
+            className="small-box-3"
+            onClick={() => openModal('Failed')}
+            style={{ cursor: 'pointer' }}
+          >
             <p className="number-app">10</p>
             <p className="label-app">Failed</p>
           </div>
@@ -43,6 +63,11 @@ const ApplicationBox = () => {
           </div>
         </div>
       </div>
+      <FailedApplicantModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        failedApplicant={selectedFailedApplicant}
+      />
     </>
   );
 };

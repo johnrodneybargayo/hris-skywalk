@@ -8,6 +8,7 @@ const UserDetailExport: React.FC = () => {
       const response = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list`);
       // const response = await axios.get(`http://localhost:8080/api/applicants/list`);
       const applicants = response.data;
+      
 
       // Get all field names from the first applicant (assuming all applicants have the same structure)
       const allFields = Object.keys(applicants[0]);
