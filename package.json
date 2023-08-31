@@ -12,7 +12,6 @@
     "@jridgewell/sourcemap-codec": "^1.4.15",
     "@npmcli/fs": "^3.1.0",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-terser": "^0.4.3",
     "@sideway/address": "^5.0.0",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/jest-dom": "^6.1.2",
@@ -27,7 +26,6 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "chokidar": "^3.5.3",
-    "clsx": "^2.0.0",
     "css-select": "^5.1.0",
     "css-what": "^6.1.0",
     "date-fns": "^2.30.0",
@@ -37,7 +35,6 @@
     "joi": "^17.10.1",
     "mdb-react-ui-kit": "^6.2.0",
     "moment": "^2.29.4",
-    "nth-check": "^2.1.1",
     "postcss": "^8.4.29",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
@@ -64,9 +61,7 @@
     "svgo": "^3.0.2",
     "uglify-js": "^3.17.4",
     "uuid": "^9.0.0",
-    "web-vitals": "^3.4.0",
-    "workbox-background-sync": "^7.0.0",
-    "workbox-cacheable-response": "^7.0.0"
+    "web-vitals": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -103,9 +98,10 @@
     "@types/react-modal": "^3.16.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-signature-canvas": "^1.0.2",
+    "html-webpack-plugin": "^5.5.3",
     "react-scripts": "^5.0.1",
     "redux-thunk": "^2.4.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^4.9.5"
   }
 }
