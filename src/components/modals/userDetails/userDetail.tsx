@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import NotesModal from '../Notes/noteApplicantInfo'; // Adjust the path as needed
 import './styles.scss'; // Import the styles.scss for styling the modal
 
 
@@ -88,6 +88,10 @@ interface UserDetailProps {
 const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formData }) => {
   const [applicantData, setApplicantData] = useState<FormData | null>(null);
   const [signatureImage, setSignatureImage] = useState('');
+  const [loading, setLoading] = useState(false); // Initialize loading state
+  const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState<{ firstName: string; lastName: string } | null>(null); // Initialize with null or default data
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -143,8 +147,13 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
     }
   }, [showModal, formData._id]);
 
+  const handleOpenNotesModal = () => {
+    setIsNotesModalOpen(true);
+  };
 
-
+  const handleCloseNotesModal = () => {
+    setIsNotesModalOpen(false);
+  };
 
   const handleHired = async () => {
     if (applicantData) {
@@ -206,30 +215,95 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         console.log('User saved:', savedUserResponse.data);
 
         // Update the applicant's status to 'Onboarding' by sending a PUT request
-        const onboardingResponse = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${applicantData._id}`, {
+        const hiredResponse = await axios.put(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${applicantData._id}`, {
           // const onboardingResponse = await axios.put(`http://localhost:8080/api/applicants/update-status/${applicantData._id}`, {
           status: 'Onboarding'
         });
-        console.log('Applicant moved to onboarding:', onboardingResponse.data);
+        console.log('Applicant moved to Hired:', hiredResponse.data);
       } catch (error) {
         console.error('Error:', error);
       }
     }
   };
 
-  const handleFailed = () => {
+  const handleShortlisted = async () => {
     if (applicantData) {
-      axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`)
-        // axios.post(`http://localhost:8080/api/applicants/failed/${applicantData._id}`)
-        .then(response => {
-          // Handle success, update applicant status to "Failed" in UI or perform necessary actions
-          console.log('Applicant failed:', response.data);
-          // Close the modal or perform other actions
-          onClose();
-        })
-        .catch(error => {
-          console.error('Error marking applicant as failed:', error);
-        });
+      try {
+        setLoading(true);
+        // Update the applicant's status to 'Shortlisted' by sending a PUT request
+        const shortlistedResponse = await axios.put(
+          `https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${applicantData._id}`,
+          {
+            status: 'Shortlisted'
+          }
+        );
+        console.log('Applicant moved to shortlisted:', shortlistedResponse.data);
+
+        // Update the applicantData state to reflect the new status
+        setApplicantData({ ...applicantData, status: StatusEnum.Shortlisted });
+      } catch (error) {
+        console.error('Error:', error);
+      }
+      finally {
+        setLoading(false); // Stop loading indicator
+      }
+    }
+  };
+
+  const handleOnboarding = async () => {
+    if (applicantData) {
+      try {
+        // Update the applicant's status to 'Onboarding' by sending a PUT request
+        const onboardingResponse = await axios.put(
+          `https://empireone-global-inc.uc.r.appspot.com/api/applicants/update-status/${applicantData._id}`,
+          {
+            status: 'Onboarding'
+          }
+        );
+        console.log('Applicant moved to onboarding:', onboardingResponse.data);
+
+        // Update the applicantData state to reflect the new status
+        setApplicantData({ ...applicantData, status: StatusEnum.Onboarding });
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    // Fetch logged-in user data from your authentication system or API
+    const fetchLoggedInUserData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/users'); // Replace with actual endpoint
+        setLoggedInUser(response.data);
+      } catch (error) {
+        console.error('Error fetching logged-in user data:', error);
+      }
+    };
+
+    fetchLoggedInUserData();
+  }, []);
+
+
+  const handleFailed = async () => {
+    if (applicantData) {
+      try {
+        // Mark the applicant as failed by sending a POST request
+        // const failedResponse = await axios.post(
+        //   `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
+        // );
+        const failedResponse = await axios.post(
+          `http://localhost:8080/api/applicants/failed/${applicantData._id}`
+        );
+        console.log('Applicant failed:', failedResponse.data);
+
+        // Perform additional actions as needed
+
+        // Close the modal or perform other actions
+        onClose();
+      } catch (error) {
+        console.error('Error marking applicant as failed:', error);
+      }
     }
   };
 
@@ -266,7 +340,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                       alt="Signature"
                     />
                   )}
-                    <p className='esignature-label'>e-signature</p>
+                  <p className='esignature-label'>e-signature</p>
                 </div>
               </div>
             </div>
@@ -365,18 +439,58 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                   <p className='labels-userdetails'>Position Applied: <span className='user-results'>{applicantData.positionApplied}</span></p>
                 </div>
               </div>
-              {applicantData.status === StatusEnum.Shortlisted && (
-                <div className="action-buttons">
-                  <button onClick={handleHired}>Mark as Hired</button>
-                  <button onClick={handleFailed}>Mark as Failed</button>
+              <div>
+                <div>
+                  {showModal && (
+                    <div className="modal">
+                      {/* Render buttons for actions like Shortlisted, Hired, etc. */}
+                      {loading ? (
+                        <p>Loading...</p>
+                      ) : (
+                        <>
+                          {formData.status === StatusEnum.Interview && (
+                            <div className="action-buttons">
+                              <button onClick={handleShortlisted}>Shortlisted</button>
+                              <button onClick={handleFailed}>Failed</button>
+                              <button onClick={handleOpenNotesModal}>Open Notes Modal</button>
+                            </div>
+                          )}
+                          {formData.status === StatusEnum.Shortlisted && (
+                            <div className="action-buttons">
+                              <button onClick={handleOnboarding}>Onboarding</button>
+                              <button onClick={handleOpenNotesModal}>Open Notes Modal</button>
+                            </div>
+                          )}
+                          {formData.status === StatusEnum.Onboarding && (
+                            <div className="action-buttons">
+                              <button onClick={handleHired}>Hired</button>
+                              <button onClick={handleOpenNotesModal}>Open Notes Modal</button>
+                            </div>
+                          )}
+                        </>
+                      )}
+
+                      {/* Render the NotesModal when isNotesModalOpen is true */}
+                      {isNotesModalOpen && (
+                        <NotesModal
+                          isOpen={isNotesModalOpen}
+                          onClose={handleCloseNotesModal}
+                          userId={formData._id}
+                          loggedInUser={loggedInUser}
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
+
             </div>
           </div>
         ) : (
           <p>Loading applicant data...</p>
         )}
       </div>
+
     </div>
   );
 };
