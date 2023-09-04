@@ -87,35 +87,28 @@ interface UserDetailProps {
 
 const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formData }) => {
   const [applicantData, setApplicantData] = useState<FormData | null>(null);
-  const [signatureImage, setSignatureImage] = useState('');
+  const [signatureData, setSignatureImage] = useState('');
   const [loading, setLoading] = useState(false); // Initialize loading state
   const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState<{ firstName: string; lastName: string } | null>(null); // Initialize with null or default data
-
-
+  // Check if there is a signature associated with the applicant
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (formData._id) {
           const applicantResponse = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/list/${formData._id}`);
-          //  const applicantResponse = await axios.get(`http://localhost:8080/api/applicants/list/${formData._id}`);
           const fetchedApplicantData = applicantResponse.data;
 
-          // Check if there is a signature associated with the applicant
           if (fetchedApplicantData.signature) {
             try {
-              const signatureResponse = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/signature/${fetchedApplicantData.signature}`, {
-                //   const signatureResponse = await axios.get(`http://localhost:8080/api/applicants/signature/${fetchedApplicantData.signature}`, {
+              const signatureResponse = await axios.get(`http://localhost:8080/api/applicants/signature/${fetchedApplicantData.signature}`, {
                 responseType: 'arraybuffer', // Treat the response as an ArrayBuffer
               });
 
               // Convert the ArrayBuffer to a base64-encoded string
               const uint8Array = new Uint8Array(signatureResponse.data);
-              let binary = '';
-              uint8Array.forEach((byte) => {
-                binary += String.fromCharCode(byte);
-              });
-              const base64SignatureData = btoa(binary); // Convert to base64
+              const numberArray = Array.from(uint8Array); // Convert Uint8Array to number[]
+              const base64SignatureData = btoa(String.fromCharCode.apply(null, numberArray)); // Convert to base64
 
               // Update the state with the base64-encoded signature
               setSignatureImage(base64SignatureData);
@@ -146,6 +139,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
       fetchData();
     }
   }, [showModal, formData._id]);
+
 
   const handleOpenNotesModal = () => {
     setIsNotesModalOpen(true);
@@ -334,11 +328,10 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
             <div className='user-details-esignature'>
               <div className='esignature-container'>
                 <div className='row-esignature'>
-                  {signatureImage && (
-                    <img
-                      src={`data:image/png;base64,${signatureImage}`} // Assuming the signature is a PNG image
-                      alt="Signature"
-                    />
+                  {signatureData ? (
+                    <img src={`data:image/png;base64,${signatureData}`} alt="Signature" />
+                  ) : (
+                    <p>Signature not found</p>
                   )}
                   <p className='esignature-label'>e-signature</p>
                 </div>
@@ -477,6 +470,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                           onClose={handleCloseNotesModal}
                           userId={formData._id}
                           loggedInUser={loggedInUser}
+
                         />
                       )}
                     </div>
