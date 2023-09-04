@@ -158,7 +158,7 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
 
     const closeSuccessModal = () => {
         setIsSuccessModalOpen(false);
-        // window.location.reload(); // Reload the page to clear the entered data
+         window.location.reload(); // Reload the page to clear the entered data
     };
 
     const openSuccessModal = () => {
