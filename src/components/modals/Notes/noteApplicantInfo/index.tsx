@@ -24,8 +24,8 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, userId, logged
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-            //    const response = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/users/${userId}`);
-               const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
+            const response = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/users/${userId}`);
+        //       const response = await axios.get(`http://localhost:8080/api/users/${userId}`);
                 const userFullName = `${response.data.firstName} ${response.data.lastName}`;
                 setNotes(prevNotes => [
                     ...prevNotes,

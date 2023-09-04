@@ -27,8 +27,8 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave, onSubmit }) => {
         const formData = new FormData();
         const blob = await (await fetch(capturedData)).blob();
         formData.append('signature', blob);
-       // const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
-         const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
+        const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature', formData);
+       //  const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature', formData);
         console.log('Signature uploaded:', response.data.imageUrl);
         onSave(capturedData); // Trigger the onSave function with the captured data
       } catch (error) {
@@ -68,8 +68,8 @@ const SignaturePad: React.FC<SignaturePadProps> = ({ onSave, onSubmit }) => {
             },
           };
   
-          // const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature/image', formData, config);
-          const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature/image', formData, config);
+          const response = await axios.post<ImageUploadResponse>('https://empireone-global-inc.uc.r.appspot.com/api/signature/image', formData, config);
+         // const response = await axios.post<ImageUploadResponse>('http://localhost:8080/api/signature/image', formData, config);
     
           console.log('Signature uploaded:', response.data.imageUrl);
         } else {

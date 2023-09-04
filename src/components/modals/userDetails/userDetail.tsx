@@ -268,7 +268,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
     // Fetch logged-in user data from your authentication system or API
     const fetchLoggedInUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/users'); // Replace with actual endpoint
+        const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/users'); // Replace with actual endpoint
         setLoggedInUser(response.data);
       } catch (error) {
         console.error('Error fetching logged-in user data:', error);
@@ -287,7 +287,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         //   `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
         // );
         const failedResponse = await axios.post(
-          `http://localhost:8080/api/applicants/failed/${applicantData._id}`
+          `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
         );
         console.log('Applicant failed:', failedResponse.data);
 
