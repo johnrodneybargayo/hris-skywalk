@@ -101,7 +101,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
 
           if (fetchedApplicantData.signature) {
             try {
-              const signatureResponse = await axios.get(`http://localhost:8080/api/applicants/signature/${fetchedApplicantData.signature}`, {
+              const signatureResponse = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/applicants/signature/${fetchedApplicantData.signature}`, {
                 responseType: 'arraybuffer', // Treat the response as an ArrayBuffer
               });
 
@@ -109,6 +109,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
               const uint8Array = new Uint8Array(signatureResponse.data);
               const numberArray = Array.from(uint8Array); // Convert Uint8Array to number[]
               const base64SignatureData = btoa(String.fromCharCode.apply(null, numberArray)); // Convert to base64
+              
 
               // Update the state with the base64-encoded signature
               setSignatureImage(base64SignatureData);
@@ -268,7 +269,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
     // Fetch logged-in user data from your authentication system or API
     const fetchLoggedInUserData = async () => {
       try {
-        const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/users'); // Replace with actual endpoint
+        const response = await axios.get('http://localhost:8080/api/users'); // Replace with actual endpoint
         setLoggedInUser(response.data);
       } catch (error) {
         console.error('Error fetching logged-in user data:', error);
@@ -287,7 +288,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         //   `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
         // );
         const failedResponse = await axios.post(
-          `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
+          `http://localhost:8080/api/applicants/failed/${applicantData._id}`
         );
         console.log('Applicant failed:', failedResponse.data);
 
