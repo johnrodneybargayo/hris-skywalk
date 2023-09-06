@@ -52,7 +52,7 @@ const FailedApplicantModal: React.FC<FailedApplicantModalProps> = ({
     <div className={`modal-overlay-1 ${isOpen ? 'open' : ''}`}>
       <div className="modal-content-1">
         <div className="close-icon-1" onClick={onRequestClose}>
-          <svg height="45px" width="45px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <svg height="35px" width="35px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
             <g id="SVGRepo_iconCarrier">
@@ -82,14 +82,14 @@ const FailedApplicantModal: React.FC<FailedApplicantModalProps> = ({
             </thead>
             <tbody>
               {failedApplicants.length === 0 ? (
-                <tr>
+                <tr key="no-applicants">
                   <td colSpan={7}>No failed applicants.</td>
                 </tr>
               ) : (
                 failedApplicants
                   .filter(applicant => applicant.status === StatusEnum.Failed)
-                  .map(applicant => (
-                    <tr key={applicant.id}>
+                  .map((applicant, index) => (
+                    <tr key={`applicant-${applicant.id || index}`}>
                       {/* <td>{applicant.department}</td> */}
                       <td>{applicant.positionApplied}</td>
                       <td>{applicant.interviewer}</td>
@@ -102,7 +102,6 @@ const FailedApplicantModal: React.FC<FailedApplicantModalProps> = ({
                         minute: '2-digit',
                         second: '2-digit',
                       })}</td>
-
                       <td>{applicant.status}</td>
                       <td>{applicant.comments}</td>
                     </tr>

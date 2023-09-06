@@ -220,8 +220,6 @@ const ApplicantForm: React.FC<ApplicantFormProps> = ({ onSubmit }) => {
     };
 
 
-
-
     const handleImageUpload = (file: File) => {
         setFormData((prevFormData) => ({
             ...prevFormData,

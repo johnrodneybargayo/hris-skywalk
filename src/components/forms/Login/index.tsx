@@ -1,8 +1,12 @@
-// LoginForm.jsx
 import React, { useState } from 'react';
 import './styles.scss';
 
-const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }> = ({ onLogin }) => {
+interface LoginFormProps {
+  onLogin: (email: string, password: string) => void;
+  isAuthenticated: boolean;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin, isAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -34,38 +38,42 @@ const LoginForm: React.FC<{ onLogin: (email: string, password: string) => void }
           <div className="main">
             <input type="checkbox" id="chk" aria-hidden="true" />
             <div className="login">
-              <form className="form" onSubmit={handleSubmit} method="POST">
-                <label className="label-login" htmlFor="chk" aria-hidden="true">
-                  HRIS Sign in
-                </label>
-                <input
-                  id="email"
-                  className="input"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <input
-                  id="passwd"
-                  className="input"
-                  type="password"
-                  name="pswd"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <div className="has-text-right margin-26">
-                  <label id="remeber" htmlFor="remember-me">
-                    Remember me
+              {isAuthenticated ? (
+                <p>Welcome, User!</p>
+              ) : (
+                <form className="form" onSubmit={handleSubmit} method="POST">
+                  <label className="label-login" htmlFor="chk" aria-hidden="true">
+                    HRIS Sign in
                   </label>
-                  <input type="checkbox" id="remember-me" name="remember-me" />
-                </div>
-                <button type="submit">Log in</button>
-              </form>
+                  <input
+                    id="email"
+                    className="input"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <input
+                    id="passwd"
+                    className="input"
+                    type="password"
+                    name="pswd"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <div className="has-text-right margin-26">
+                    <label id="remeber" htmlFor="remember-me">
+                      Remember me
+                    </label>
+                    <input type="checkbox" id="remember-me" name="remember-me" />
+                  </div>
+                  <button type="submit">Log in</button>
+                </form>
+              )}
             </div>
 
             <div className="register">
