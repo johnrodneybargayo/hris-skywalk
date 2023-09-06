@@ -23,7 +23,7 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, userId, logged
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await axios.get(`/api/notes/${userId}`); // Use a relative URL
+        const response = await axios.get(`https://empireone-global-inc.uc.r.appspot.com/api/notes/${userId}`); // Use a relative URL
         setNotes(response.data);
       } catch (error) {
         console.error('Error fetching notes:', error);
@@ -54,10 +54,10 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, userId, logged
       };
   
       try {
-        console.log('Sending POST request to:', `/api/notes/${userId}`);
+        console.log('Sending POST request to:', `https://empireone-global-inc.uc.r.appspot.com/api/notes/${userId}`);
         console.log('Request data:', noteData);
   
-        const response = await axios.post(`/api/notes/${userId}`, noteData);
+        const response = await axios.post(`https://empireone-global-inc.uc.r.appspot.com/api/notes/${userId}`, noteData);
   
         console.log('Response:', response);
   
