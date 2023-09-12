@@ -89,8 +89,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
   const [applicantData, setApplicantData] = useState<FormData | null>(null);
   const [signatureData, setSignatureImage] = useState('');
   const [loading, setLoading] = useState(false); // Initialize loading state
-  const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState<{ firstName: string; lastName: string } | null>(null); // Initialize with null or default data
+  const [isNotesModalOpen, setIsNotesModalOpen] = useState(false);// Initialize with null or default data
   // Check if there is a signature associated with the applicant
   useEffect(() => {
     const fetchData = async () => {
@@ -109,7 +108,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
               const uint8Array = new Uint8Array(signatureResponse.data);
               const numberArray = Array.from(uint8Array); // Convert Uint8Array to number[]
               const base64SignatureData = btoa(String.fromCharCode.apply(null, numberArray)); // Convert to base64
-              
+
 
               // Update the state with the base64-encoded signature
               setSignatureImage(base64SignatureData);
@@ -265,19 +264,19 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
     }
   };
 
-  useEffect(() => {
-    // Fetch logged-in user data from your authentication system or API
-    const fetchLoggedInUserData = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/users'); // Replace with actual endpoint
-        setLoggedInUser(response.data);
-      } catch (error) {
-        console.error('Error fetching logged-in user data:', error);
-      }
-    };
+  // useEffect(() => {
+  //   // Fetch logged-in user data from your authentication system or API
+  //   const fetchLoggedInUserData = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:8080/api/users'); // Replace with actual endpoint
+  //       setLoggedInUser(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching logged-in user data:', error);
+  //     }
+  //   };
 
-    fetchLoggedInUserData();
-  }, []);
+  //   fetchLoggedInUserData();
+  // }, []);
 
 
   const handleFailed = async () => {
@@ -288,7 +287,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
         //   `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
         // );
         const failedResponse = await axios.post(
-          `http://localhost:8080/api/applicants/failed/${applicantData._id}`
+          `https://empireone-global-inc.uc.r.appspot.com/api/applicants/failed/${applicantData._id}`
         );
         console.log('Applicant failed:', failedResponse.data);
 
@@ -469,9 +468,8 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                         <NotesModal
                           isOpen={isNotesModalOpen}
                           onClose={handleCloseNotesModal}
-                          userId={formData._id}
-                          loggedInUser={loggedInUser}
-
+                          applicantId={formData._id}
+                        
                         />
                       )}
                     </div>
