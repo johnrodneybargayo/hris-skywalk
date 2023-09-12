@@ -4,7 +4,6 @@ import axios from 'axios';
 import LoginForm from '../../components/forms/Login';
 import Cookies from 'js-cookie';
 
-
 const LoginPage: React.FC = () => {
   const history = useHistory();
   const [error, setError] = useState<string>('');
@@ -12,10 +11,11 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (email: string, password: string) => {
     try {
       const apiKey = 'AIzaSyAI1NsFZrRaBSRCtj8TkIxA3Mg-qYFDRzg'; // Replace with your actual API key
-  
+      const loginUrl = 'https://empireone-global-inc.uc.r.appspot.com/api/login';
+
       console.log('Attempting login...');
       const response = await axios.post(
-        'https://empireone-global-inc.uc.r.appspot.com/api/login',
+        loginUrl,
         {
           email,
           password,
@@ -27,19 +27,19 @@ const LoginPage: React.FC = () => {
           },
         }
       );
-  
+
       console.log('Login response:', response);
-  
+
       if (response.status === 200) {
         const data = response.data;
         if (data.token) {
           // Set a cookie to store the user's authentication token
           Cookies.set('accessToken', data.token);
-  
+
           // Redirect the user to the dashboard
           history.push('/dashboard');
         } else {
-          setError(data.error);
+          setError(data.error || 'An error occurred during login');
         }
       } else {
         setError(response.data.error || 'An error occurred during login');
@@ -49,7 +49,7 @@ const LoginPage: React.FC = () => {
       setError('Invalid email or password. Please enter them again.');
     }
   };
-  
+
   return (
     <div>
       <LoginForm onLogin={handleLogin} isAuthenticated={false} /> {/* Update isAuthenticated as needed */}

@@ -15,10 +15,11 @@
     background-color: white;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 970px;
+    height: 70%;
     font-family: "Satoshi", sans-serif;
 
-    h2.notes-label {
+    .notes-label {
       margin-top: 0;
       font-size: 24px;
       text-align: center;
@@ -31,9 +32,9 @@
     }
 
     input {
-      width: 91%;
+      width: 104%;
       padding: 7px 5px 24px 5px;
-      margin: 10px;
+      margin: 18px;
       border: 1px solid #ccc;
       border-radius: 4px;
       resize: vertical;
@@ -56,10 +57,10 @@
     }
 
     .notes-list {
-        margin-top: 20px;
-        height: 300px; // Set a specific height
-        max-height: 300px; // Set a maximum height
-        overflow-y: auto; // Enable vertical scrolling
+      margin-top: 20px;
+      height: 300px;
+      max-height: 300px;
+      overflow-y: auto;
 
       .note {
         border: 1px solid #ccc;
@@ -101,6 +102,40 @@
           margin-top: 10px;
           font-size: 14px;
         }
+        
+
+        .note-status {
+          display: inline-flex;
+          font-size: 15px;
+          font-family: "Satoshi";
+          align-items: center;
+        }
+
+
+        /* Define styles for different status values */
+        &.Failed .note-status {
+          color: #ff0000;
+        }
+
+        &.Endorsed .note-status {
+          color: #00cc00;
+        }
+
+        &.ForExamRetake .note-status {
+          color: #ff9900;
+        }
+
+        &.EndorsedForInterview .note-status {
+          color: #6600cc;
+        }
+
+        &.ForReserved .note-status {
+          color: #ff6600;
+        }
+
+        &.Passed .note-status {
+          color: #00cc99;
+        }
       }
     }
 
@@ -112,6 +147,30 @@
       cursor: pointer;
       position: relative;
       z-index: 999;
+    }
+
+    .note-status-label {
+      display: inline-flex;
+      font-size: 10px;
+      font-family: Satoshi;
+      font-weight: 500;
+      color: #451397;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+
+    .notes-data-area {
+      display: inline-block;
+      justify-content: center;
+    }
+    .notes-radio-buttons {
+      padding:0 5px 0;
+    }
+
+    /* Hover styles for status labels */
+    .note-status-label:hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 }

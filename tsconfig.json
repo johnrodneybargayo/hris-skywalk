@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "baseUrl": ".",
     "paths": {
       "mdb-react-ui-kit": ["node_modules/mdb-react-ui-kit"]
