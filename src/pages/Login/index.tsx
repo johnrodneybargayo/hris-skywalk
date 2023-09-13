@@ -11,7 +11,7 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (email: string, password: string) => {
     try {
       const apiKey = 'AIzaSyAI1NsFZrRaBSRCtj8TkIxA3Mg-qYFDRzg'; // Replace with your actual API key
-      const loginUrl = 'https://empireone-global-inc.uc.r.appspot.com/api/login';
+      const loginUrl = 'http://localhost:8080/api/login';
 
       console.log('Attempting login...');
       const response = await axios.post(

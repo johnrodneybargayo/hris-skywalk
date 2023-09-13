@@ -469,7 +469,7 @@ const UserDetailModal: React.FC<UserDetailProps> = ({ showModal, onClose, formDa
                           isOpen={isNotesModalOpen}
                           onClose={handleCloseNotesModal}
                           applicantId={formData._id}
-                        
+                          userId={formData._id}
                         />
                       )}
                     </div>
