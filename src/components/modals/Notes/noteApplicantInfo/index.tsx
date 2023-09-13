@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 interface Note {
   _id: string;
   content: string;
+  userId: String;
   applicantId: string;
   timestamp: string;
   status: string;
@@ -22,11 +23,13 @@ interface NotesModalProps {
   isOpen: boolean;
   onClose: () => void;
   applicantId: string;
+  userId: string;
 }
 
 const NotesModal: React.FC<NotesModalProps> = ({
   isOpen,
   onClose,
+  userId,
   applicantId,
 }) => {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -37,33 +40,28 @@ const NotesModal: React.FC<NotesModalProps> = ({
   const fetchUserData = useCallback(async () => {
     try {
       const accessToken = Cookies.get('accessToken');
+      console.log("token:", accessToken)
 
       if (!accessToken) {
         console.error('User is not authenticated');
         return;
       }
 
-      console.log('Attempting to fetch user data...');
-      const response = await axios.get<UserData>('https://empireone-global-inc.uc.r.appspot.com/api/users/profile', {
+      const response = await axios.get('https://empireone-global-inc.uc.r.appspot.com/api/users/profile', {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       });
 
-      console.log('Response received:', response); // Log the entire response object
-
       if (response.status === 200) {
-        console.log('User Data:', response.data);
-        setUserData(response.data); // Use setUserData to update userData
+        setUserData(response.data);
       } else {
-        console.error('Unexpected response:', response);
+        console.error(`Unexpected response: ${response.status}`);
       }
     } catch (error) {
-      console.error('Error fetching user data:', error);
-      // Handle the error, e.g., display an error message to the user
+      console.error(`Error fetching user data:`);
     }
-  }, []); // Make sure to update the state variable used here, e.g., setUserData
-
+  }, [setUserData]);
 
   const fetchNotes = useCallback(async () => {
     try {
@@ -119,30 +117,38 @@ const NotesModal: React.FC<NotesModalProps> = ({
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+  
     if (newNote.trim() !== '' && selectedStatus !== '') {
       const timestamp = new Date().toLocaleString();
-
-      const noteData: Omit<Note, '_id'> = {
-        content: newNote,
-        applicantId,
-        timestamp,
-        status: selectedStatus,
-      };
-
+  
       try {
         const accessToken = Cookies.get('accessToken');
-
+  
         if (!accessToken) {
           throw new Error('User is not authenticated');
         }
-
-        const response = await axios.post<Note>(`https://empireone-global-inc.uc.r.appspot.com/api/notes/${applicantId}`, noteData, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
+  
+        // Extract userId from userData
+        const userId = userData?._id || ''; // Set it to an empty string if not available
+  
+        const noteData: Omit<Note, '_id'> = {
+          content: newNote,
+          userId, // Use the extracted userId
+          applicantId,
+          timestamp,
+          status: selectedStatus,
+        };
+  
+        const response = await axios.post<Note>(
+          `https://empireone-global-inc.uc.r.appspot.com/api/notes/${applicantId}`,
+          noteData,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+  
         if (response.status === 201) {
           const createdNote: Note = response.data;
           setNotes([...notes, createdNote]);
@@ -157,7 +163,7 @@ const NotesModal: React.FC<NotesModalProps> = ({
       }
     }
   };
-
+  
   const handleModalClose = () => {
     onClose();
   };
@@ -179,22 +185,21 @@ const NotesModal: React.FC<NotesModalProps> = ({
           </svg>
         </div>
         <h2 className={styles['notes-label']}>Add Notes</h2>
-        {userData && (
-          <div className={styles['user-details']}>
-            <span className={styles['user-name']}>
-              Interviewer: {userData.firstName} {userData.lastName}
-            </span>
-            {/* Display other user profile fields here */}
-          </div>
-        )}
         <div className={styles['notes-list']}>
           {notes.map((note, index) => (
             <div className={`${styles['note']} ${styles[note.status]}`} key={note._id}>
-              <div className={styles['user-info']}>
+              {userData && (
+                <div className={styles['user-info']}>
+                  <h4 className={styles['user-name']}>
+                    Interviewer: {userData.firstName} {userData.lastName}
+                  </h4>
+                </div>
+              )}
+              <div className={styles['note-text']}>Notes: {note.content}</div>
+              <div className={styles['note-status']}>Status: {note.status}</div>
+              <div>
                 <span className={styles['timestamp']}> {formatTimestamp(note.timestamp)}</span>
               </div>
-              <div className={styles['note-text']}>{note.content}</div>
-              <div className={styles['note-status']}>Status: {note.status}</div>
             </div>
           ))}
         </div>
