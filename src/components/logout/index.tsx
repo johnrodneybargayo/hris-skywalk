@@ -18,7 +18,7 @@ const Logout: React.FC = () => {
 
         // Send a logout request to the backend
         await axios.post(
-          'http://localhost:8080/api/logout',
+          'https://empireone-global-inc.uc.r.appspot.com/api/logout',
           {},
           {
             headers: {
