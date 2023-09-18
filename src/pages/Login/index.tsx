@@ -11,7 +11,7 @@ const LoginPage: React.FC = () => {
 
   // Fetch the API key from the backend when the component mounts
   useEffect(() => {
-    axios.get('http://localhost:8080/api/get-api-key')
+    axios.get('https://empireone-global-inc.uc.r.appspot.com/api/get-api-key')
       .then((response) => {
         const { apiKey } = response.data;
         setApiKey(apiKey);
@@ -23,8 +23,8 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-   //  const loginUrl = 'https://empireone-global-inc.uc.r.appspot.com/api/login';
-     const loginUrl = 'http://localhost:8080/api/login';
+     const loginUrl = 'https://empireone-global-inc.uc.r.appspot.com/api/login';
+   //  const loginUrl = 'http://localhost:8080/api/login';
 
       console.log('Attempting login...');
       const response = await axios.post(
