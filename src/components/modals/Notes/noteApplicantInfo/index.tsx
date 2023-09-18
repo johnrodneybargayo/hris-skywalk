@@ -36,7 +36,6 @@ const NotesModal: React.FC<NotesModalProps> = ({
   const [newNote, setNewNote] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [userData, setUserData] = useState<UserData | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // Loading indicator state
 
   const fetchUserData = useCallback(async () => {
     try {
@@ -45,7 +44,6 @@ const NotesModal: React.FC<NotesModalProps> = ({
 
       if (!accessToken) {
         console.error('User is not authenticated');
-        setUserData(null); // Clear user data when the user is not authenticated
         return;
       }
 
@@ -61,11 +59,9 @@ const NotesModal: React.FC<NotesModalProps> = ({
         console.error(`Unexpected response: ${response.status}`);
       }
     } catch (error) {
-      console.error(`Error fetching user data:`, error);
-      setUserData(null); // Clear user data on error
+      console.error(`Error fetching user data:`);
     }
   }, [setUserData]);
-
 
   const fetchNotes = useCallback(async () => {
     try {
@@ -78,7 +74,6 @@ const NotesModal: React.FC<NotesModalProps> = ({
 
       if (!accessToken) {
         console.error('User is not authenticated');
-        setIsLoading(false); // Set isLoading to false even if the user is not authenticated
         return;
       }
 
@@ -91,19 +86,13 @@ const NotesModal: React.FC<NotesModalProps> = ({
       setNotes(response.data);
     } catch (error) {
       console.error('Error fetching notes:', error);
-    } finally {
-      setIsLoading(false); // Set isLoading to false when data fetching is done (even in case of error)
     }
-  }, [applicantId, setIsLoading]);
+  }, [applicantId]);
 
   useEffect(() => {
-    // Fetch user data and notes when the modal is opened
-    if (isOpen) {
-      setIsLoading(true); // Set isLoading to true when the modal is opened
-      fetchUserData();
-      fetchNotes();
-    }
-  }, [applicantId, isOpen, fetchUserData, fetchNotes]);
+    fetchUserData();
+    fetchNotes();
+  }, [applicantId, fetchUserData, fetchNotes]);
 
   const handleNoteChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewNote(event.target.value);
@@ -128,20 +117,20 @@ const NotesModal: React.FC<NotesModalProps> = ({
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+  
     if (newNote.trim() !== '' && selectedStatus !== '') {
       const timestamp = new Date().toLocaleString();
-
+  
       try {
         const accessToken = Cookies.get('accessToken');
-
+  
         if (!accessToken) {
           throw new Error('User is not authenticated');
         }
-
+  
         // Extract userId from userData
         const userId = userData?._id || ''; // Set it to an empty string if not available
-
+  
         const noteData: Omit<Note, '_id'> = {
           content: newNote,
           userId, // Use the extracted userId
@@ -149,7 +138,7 @@ const NotesModal: React.FC<NotesModalProps> = ({
           timestamp,
           status: selectedStatus,
         };
-
+  
         const response = await axios.post<Note>(
           `https://empireone-global-inc.uc.r.appspot.com/api/notes/${applicantId}`,
           noteData,
@@ -159,7 +148,7 @@ const NotesModal: React.FC<NotesModalProps> = ({
             },
           }
         );
-
+  
         if (response.status === 201) {
           const createdNote: Note = response.data;
           setNotes([...notes, createdNote]);
@@ -174,7 +163,8 @@ const NotesModal: React.FC<NotesModalProps> = ({
       }
     }
   };
-
+  
+  
   const handleModalClose = () => {
     onClose();
   };
@@ -196,31 +186,24 @@ const NotesModal: React.FC<NotesModalProps> = ({
           </svg>
         </div>
         <h2 className={styles['notes-label']}>Add Notes</h2>
-
-        {/* Conditional rendering based on isLoading */}
-        {isLoading ? (
-          <p>Loading notes...</p>
-        ) : (
-          <div className={styles['notes-list']}>
-            {notes.map((note, index) => (
-              <div className={`${styles['note']} ${styles[note.status]}`} key={note._id}>
-                {userData && (
-                  <div className={styles['user-info']}>
-                    <h4 className={styles['user-name']}>
-                      Interviewer: {userData.firstName} {userData.lastName}
-                    </h4>
-                  </div>
-                )}
-                <div className={styles['note-text']}>Notes: {note.content}</div>
-                <div className={styles['note-status']}>Status: {note.status}</div>
-                <div>
-                  <span className={styles['timestamp']}> {formatTimestamp(note.timestamp)}</span>
+        <div className={styles['notes-list']}>
+          {notes.map((note, index) => (
+            <div className={`${styles['note']} ${styles[note.status]}`} key={note._id}>
+              {userData && (
+                <div className={styles['user-info']}>
+                  <h4 className={styles['user-name']}>
+                    Interviewer: {userData.firstName} {userData.lastName}
+                  </h4>
                 </div>
+              )}
+              <div className={styles['note-text']}>Notes: {note.content}</div>
+              <div className={styles['note-status']}>Status: {note.status}</div>
+              <div>
+                <span className={styles['timestamp']}> {formatTimestamp(note.timestamp)}</span>
               </div>
-            ))}
-          </div>
-        )}
-
+            </div>
+          ))}
+        </div>
         <form className={styles['notes-data-area']} onSubmit={handleSubmit}>
           <input
             type="text"

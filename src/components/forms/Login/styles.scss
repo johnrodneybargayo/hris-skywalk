@@ -7,46 +7,45 @@ body {
     padding: 0;
 }
 
-.container {
+.custom-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-label#remeber {
+label#custom-remeber {
     position: absolute;
     top: 17.4rem;
     font-size: 25px;
     right: 160px;
 }
 
-input#remember-me {
+input#custom-remember-me {
     display: flex;
     align-items: center;
     margin-left: 36rem;
     margin-top: -18px;
 }
 
-.form_background {
+.custom-form_background {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-.form-container {
+.custom-form-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-
-.form-container label {
+.custom-form-container label {
     margin-bottom: 5px;
 }
 
-.form-container input {
+.custom-form-container input {
     margin-bottom: 10px;
 }
 
@@ -63,8 +62,7 @@ h1.title-hr {
     font-size: 60px;
 }
 
-
-.image-placeholder {
+.custom-image-placeholder {
     background-color: #ccc;
     width: 50%;
     height: 100vh;
@@ -73,7 +71,6 @@ h1.title-hr {
     background-position: center;
     transition: background-image 0.5s ease-in-out;
     animation: slideShow 15s infinite;
-
 }
 
 @keyframes slideShow {
@@ -94,7 +91,7 @@ h1.title-hr {
     }
 }
 
-.main {
+.custom-main {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -102,7 +99,7 @@ h1.title-hr {
     overflow: hidden;
 }
 
-.logo {
+.custom-logo {
     margin-left: 33%;
     margin-top: -42%;
     position: absolute;
@@ -113,7 +110,7 @@ img {
     max-width: 15%;
 }
 
-.form {
+.custom-form {
     display: flex;
     flex-direction: column;
     gap: 35px;
@@ -123,7 +120,7 @@ img {
     margin-top: 15px;
 }
 
-p.forgot-pass {
+p.custom-forgot-pass {
     font-size: 16px;
     font-family: 'Satoshi';
     font-weight: 300;
@@ -131,24 +128,24 @@ p.forgot-pass {
     margin-left: 20px;
 }
 
-/*checkbox to switch from sign up to login*/
+/* Checkbox to switch from sign up to login */
 #chk {
     display: none;
 }
 
-/*Login*/
-.login {
+/* Login */
+.custom-login {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.login label {
+.custom-login label {
     margin: 25% 0 5%;
     color: #fff;
 }
 
-p.error-login {
+p.custom-error-login {
     display: flex;
     position: absolute;
     justify-content: center;
@@ -158,21 +155,21 @@ p.error-login {
     color: #f22;
 }
 
-#passwd {
+#custom-passwd {
     margin-top: -26px;
 }
 
-label {
+.custom-label {
     color: #fff;
     font-size: 2rem;
     justify-content: center;
     display: flex;
     font-weight: bold;
     cursor: pointer;
-    transition: .5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
-.input {
+.custom-input {
     width: 75%;
     height: 35px;
     background: #e0dede;
@@ -183,36 +180,36 @@ label {
     margin-left: 95px;
 }
 
-/*Register*/
-.register {
+/* Register */
+.custom-register {
     background: #eee;
     border-radius: 90% / 10%;
     transform: translateY(5%);
-    transition: .8s ease-in-out;
+    transition: 0.8s ease-in-out;
 }
 
-.register label {
+.custom-register label {
     color: #573b8a;
     transform: scale(0.6);
     font-size: 2rem;
 }
 
-#chk:checked~.register {
+#chk:checked~.custom-register {
     transform: translateY(-60%);
 }
 
-#chk:checked~.register label {
+#chk:checked~.custom-register label {
     transform: scale(1);
     margin: 13% 0 5%;
 }
 
-#chk:checked~.login label {
-    transform: scale(.6);
+#chk:checked~.custom-login label {
+    transform: scale(0.6);
     margin: 5% 0 5%;
 }
 
-/*Button*/
-.form button {
+/* Button */
+.custom-form button {
     width: 25%;
     height: 50px;
     margin: 12px auto 10%;
@@ -223,19 +220,19 @@ label {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: .2s ease-in;
+    transition: 0.2s ease-in;
 }
 
-.form button:hover {
+.custom-form button:hover {
     background-color: #6d44b8;
 }
 
 @media only screen and (max-width: 390px) {
-    .image-placeholder {
+    .custom-image-placeholder {
         display: none;
     }
 
-    img.logo {
+    img.custom-logo {
         display: flex;
         z-index: 999;
         justify-content: center;
@@ -246,7 +243,7 @@ label {
         max-width: 30%;
     }
 
-    .form {
+    .custom-form {
         display: flex;
         flex-direction: column;
         gap: 35px;
@@ -256,37 +253,37 @@ label {
         margin-top: 78px;
     }
 
-    #chk:checked~.register label {
+    #chk:checked~.custom-register label {
         transform: scale(1);
         margin: 0 0 5%;
     }
 
-    .register label {
+    .custom-register label {
         font-size: 35px;
         font-family: 'Satoshi';
         font-weight: 700;
         line-height: 1.5;
     }
 
-    #chk:checked~.register {
+    #chk:checked~.custom-register {
         transform: translateY(-73%);
     }
 
-    label#remeber {
+    label#custom-remeber {
         position: absolute;
         top: 19rem;
         font-size: 15px;
         right: 4rem;
     }
 
-    input#remember-me {
+    input#custom-remember-me {
         display: flex;
         align-items: center;
         margin-left: 11rem;
         margin-top: -32.5px;
     }
 
-    .input {
+    .custom-input {
         width: 75%;
         height: 35px;
         background: #e0dede;
@@ -300,14 +297,14 @@ label {
 }
 
 @media screen and (min-width: 393px) and (max-width: 412px) {
-    label#remeber {
+    label#custom-remeber {
         position: absolute;
         top: 16.4rem;
         font-size: 25px;
         right: 92px;
     }
 
-    input#remember-me {
+    input#custom-remember-me {
         display: flex;
         align-items: center;
         margin-left: 36rem;
@@ -317,12 +314,12 @@ label {
         right: 15rem;
     }
 
-    #chk:checked~.register label {
+    #chk:checked~.custom-register label {
         transform: scale(1);
         margin: 20% 0 5%;
     }
 
-    .register {
+    .custom-register {
         background: #eee;
         border-radius: 90%/10%;
         transform: translateY(5%);
@@ -331,14 +328,14 @@ label {
 }
 
 @media screen and (min-width: 414px) and (max-width: 767px) {
-    label#remeber {
+    label#custom-remeber {
         position: absolute;
         top: 16.4rem;
         font-size: 25px;
         right: 92px;
     }
 
-    input#remember-me {
+    input#custom-remember-me {
         display: flex;
         align-items: center;
         margin-left: 36rem;
@@ -348,12 +345,12 @@ label {
         right: 15rem;
     }
 
-    #chk:checked~.register label {
+    #chk:checked~.custom-register label {
         transform: scale(1);
         margin: 20% 0 5%;
     }
 
-    .register {
+    .custom-register {
         background: #eee;
         border-radius: 90%/10%;
         transform: translateY(10%);
@@ -361,16 +358,12 @@ label {
     }
 }
 
-
-
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-
-
-    .image-placeholder {
+    .custom-image-placeholder {
         display: none;
     }
 
-    .form {
+    .custom-form {
         display: flex;
         flex-direction: column;
         gap: 35px;
@@ -380,7 +373,7 @@ label {
         margin-top: -8px;
     }
 
-    img.logo {
+    img.custom-logo {
         display: flex;
         z-index: 999;
         justify-content: center;
@@ -391,93 +384,37 @@ label {
         max-width: 20%;
     }
 
-    #chk:checked~.register label {
+    #chk:checked~.custom-register label {
         transform: scale(1);
         margin: 0 0 5%;
     }
 
-    .register label {
+    .custom-register label {
         font-size: 35px;
         font-family: 'Satoshi';
         font-weight: 700;
         line-height: 1.5;
     }
 
-    #chk:checked~.register {
+    #chk:checked~.custom-register {
         transform: translateY(-73%);
     }
 
-    label#remeber {
+    label#custom-remeber {
         position: absolute;
         top: 15rem;
         font-size: 25px;
         right: 7rem;
     }
 
-    input#remember-me {
+    input#custom-remember-me {
         display: flex;
         align-items: center;
         margin-left: 27rem;
         margin-top: -23px;
     }
 
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-
-    .image-placeholder {
-        width: 100%;
-    }
-
-    .logo {
-        margin-left: 33%;
-        margin-top: -42%;
-        position: absolute;
-        top: 28rem;
-    }
-
-
-    .form {
-        display: flex;
-        flex-direction: column;
-        gap: 35px;
-        padding: 20px;
-        margin-left: 5px;
-        margin-right: 20px;
-        margin-top: -8px;
-    }
-
-    #chk:checked~.register label {
-        transform: scale(1);
-        margin: 0 0 5%;
-    }
-
-    .register label {
-        font-size: 35px;
-        font-family: 'Satoshi';
-        font-weight: 700;
-        line-height: 1.5;
-    }
-
-    #chk:checked~.register {
-        transform: translateY(-73%);
-    }
-
-    label#remeber {
-        position: absolute;
-        top: 14rem;
-        font-size: 25px;
-        right: 3rem;
-    }
-
-    input#remember-me {
-        display: flex;
-        align-items: center;
-        margin-left: 15rem;
-        margin-top: -25.5px;
-    }
-
-    .register {
+    .custom-register {
         background: #eee;
         border-radius: 90%/10%;
         transform: translateY(15%);
@@ -486,18 +423,18 @@ label {
 }
 
 @media (min-width: 1326px) and (max-width: 1399px) {
-    .image-placeholder {
+    .custom-image-placeholder {
         width: 100%;
     }
 
-    label#remeber {
+    label#custom-remeber {
         position: absolute;
         top: 18.4rem;
         font-size: 25px;
         right: 90px;
     }
 
-    input#remember-me {
+    input#custom-remember-me {
         display: flex;
         align-items: center;
         margin-left: 36rem;
@@ -507,22 +444,22 @@ label {
         right: 14rem;
     }
 
-    .register {
+    .custom-register {
         background: #eee;
         border-radius: 90%/10%;
         transform: translateY(-10%);
         transition: 0.8s ease-in-out;
     }
 
-    .login label {
+    .custom-login label {
         margin: 5% 0 5%;
         color: #fff;
     }
 
-
-    .logo {
+    .custom-logo {
         margin-left: 33%;
         margin-top: -35%;
         position: absolute;
+        top: 28rem;
     }
 }

@@ -1,4 +1,4 @@
-const daysToMiliseconds = (days) => days * 24 * 3600 * 1000;
+const daysToMilliseconds = (days) => days * 24 * 3600 * 1000;
 
 export const getCookie = (key) => {
   const cookies = document.cookie.split(';');
@@ -17,7 +17,7 @@ export const getCookie = (key) => {
 export const setCookie = (key, value, days = 7) => {
   const key_value = `${key}=${value}`;
   const expiry_date = new Date();
-  expiry_date.setTime(expiry_date.getTime() + daysToMiliseconds(days));
+  expiry_date.setTime(expiry_date.getTime() + daysToMilliseconds(days));
   const expires = `expires=${expiry_date.toUTCString()}`;
   document.cookie = [key_value, expires, 'path=/'].join('; ');
 };

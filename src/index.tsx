@@ -2,15 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import Modal from 'react-modal'; // Import Modal from react-modal
-
-// Set the app element for react-modal
-Modal.setAppElement('#root');
+import { AuthProvider } from './components/Utils/authContext'; // Import the AuthProvider
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
   <Router>
-    <App />
+    <AuthProvider> {/* Wrap your App component with AuthProvider */}
+      <App />
+    </AuthProvider>
   </Router>,
   rootElement
 );

@@ -26,28 +26,28 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, isAuthenticated }) => {
   };
 
   return (
-    <div className="container">
-      <div className="form_background">
+    <div className="custom-container">
+      <div className="custom-form_background">
         <img
-          className="logo"
+          className="custom-logo"
           src="https://empireonecontactcenter.com/wp-content/uploads/2023/03/Contact-Center-logo.png"
           alt="Logo"
         />
-        <div className="image-placeholder"></div>
-        <div className="form-container">
-          <div className="main">
+        <div className="custom-image-placeholder"></div>
+        <div className="custom-form-container">
+          <div className="custom-main">
             <input type="checkbox" id="chk" aria-hidden="true" />
-            <div className="login">
+            <div className="custom-login">
               {isAuthenticated ? (
                 <p>Welcome, User!</p>
               ) : (
-                <form className="form" onSubmit={handleSubmit} method="POST">
-                  <label className="label-login" htmlFor="chk" aria-hidden="true">
+                <form className="custom-form" onSubmit={handleSubmit} method="POST">
+                  <label className="custom-label-login" htmlFor="chk" aria-hidden="true">
                     HRIS Sign in
                   </label>
                   <input
-                    id="email"
-                    className="input"
+                    id="custom-email"
+                    className="custom-input"
                     type="email"
                     name="email"
                     placeholder="Email"
@@ -56,8 +56,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, isAuthenticated }) => {
                     required
                   />
                   <input
-                    id="passwd"
-                    className="input"
+                    id="custom-passwd"
+                    className="custom-input"
                     type="password"
                     name="pswd"
                     placeholder="Password"
@@ -65,27 +65,27 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, isAuthenticated }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <div className="has-text-right margin-26">
-                    <label id="remeber" htmlFor="remember-me">
+                  <div className="custom-has-text-right margin-26">
+                    <label id="custom-remeber" htmlFor="custom-remember-me">
                       Remember me
                     </label>
-                    <input type="checkbox" id="remember-me" name="remember-me" />
+                    <input type="checkbox" id="custom-remember-me" name="remember-me" />
                   </div>
                   <button type="submit">Log in</button>
                 </form>
               )}
             </div>
 
-            <div className="register">
-              <form className="form">
-                <label htmlFor="chk" aria-hidden="true" className="label-forgot-pass">
+            <div className="custom-register">
+              <form className="custom-form">
+                <label htmlFor="chk" aria-hidden="true" className="custom-label-forgot-pass">
                   Password Reset
                 </label>
-                <p className="forgot-pass">
+                <p className="custom-forgot-pass">
                   Enter the email address or username associated with your account. A reset instruction will be provided
                   in the email to reset your password
                 </p>
-                <input className="input" type="email" name="email" placeholder="Email" required />
+                <input className="custom-input" type="email" name="email" placeholder="Email" required />
                 <button>Submit</button>
               </form>
             </div>
