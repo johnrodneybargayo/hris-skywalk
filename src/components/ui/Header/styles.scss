@@ -35,9 +35,7 @@
   padding: 5px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.266);
-  /* Add border with opacity */
 }
-
 
 .search-bar input[type="text"] {
   border: none;
@@ -67,10 +65,28 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin-left: 10px;
 }
 
-/* Additional styles for the icons (replace with your own) */
+.settings-icon {
+  position: relative;
+}
+
+button.notification-icon {
+  margin: 10px;
+  padding: 0 15px;
+} 
+
+.settings-users {
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-radius: 27px;
+  border: 1px solid var(--Blue-50, #e3f2fd);
+  padding: 3px 10px 0px 10px;
+}
+
+
+
 .side-panel-btn,
 .notification-icon,
 .profile-icon,
@@ -89,7 +105,6 @@
 
   .search-bar.show-search-bar input[type="text"] {
     display: block;
-
   }
 
   .search-bar {
@@ -112,7 +127,6 @@
     width: 357px;
     margin: 10px;
     top: 1px;
-
   }
 
   .logo-banner {
@@ -144,26 +158,24 @@
   }
 }
 
-
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-
   .dashboard.panel-open {
     max-width: 60%;
     transition: max-width 0.2s ease-in-out;
-}
+  }
 
   .logo-banner {
     height: 40px;
     margin-right: 10px;
     max-width: 45%;
-}
+  }
 
   .right-section {
     display: flex;
     align-items: center;
     margin-left: 23rem;
     padding-right: 15px;
-}
+  }
 
   .search-bar {
     display: flex;
@@ -173,16 +185,15 @@
     border: 1px solid rgba(0, 0, 0, 0.266);
     /* Add border with opacity */
   }
-  
+
   .search-bar input[type="text"] {
     border: none;
     outline: none;
     padding: 5px;
   }
-  
+
   .search-icon {
     margin-left: 5px;
     pointer-events: none; /* Disable click events */
   }
-  
 }

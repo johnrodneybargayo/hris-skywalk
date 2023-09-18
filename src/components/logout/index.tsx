@@ -1,25 +1,66 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { FaSignOutAlt } from 'react-icons/fa';
+import Loader from '../ui/Loader';
 
 const Logout: React.FC = () => {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  // Memoize the handleLogout function
-  const handleLogout = useCallback(() => {
-    // Assuming you are storing the authentication token in localStorage
-    localStorage.removeItem('accessToken');
-    // Redirect to the login page or any other desired route
-    history.push('/login');
+  const handleLogout = useCallback(async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+
+      if (accessToken) {
+        setLoading(true);
+
+        // Send a logout request to the backend
+        await axios.post(
+          'http://localhost:8080/api/logout',
+          {},
+          {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        // Remove the access token from local storage
+       
+
+        // Update the authentication state to false
+        setIsAuthenticated(false);
+        localStorage.removeItem('accessToken');
+
+        // Redirect to the sign-in page
+        history.push('/sign-in');
+        console.log('Logout successful');
+      } else {
+        console.error('Access token not found.');
+      }
+    } catch (error) {
+      console.error('Error logging out:', error);
+    } finally {
+      setLoading(false);
+    }
   }, [history]);
 
-  useEffect(() => {
-    handleLogout(); // Call the memoized function
-  }, [handleLogout]); // Include handleLogout in the dependency array
-
   return (
-    <div>
-      <p>Logging out...</p>
-      {/* You can add a loading spinner or message here */}
+    <div className="logout-container">
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {isAuthenticated ? (
+            <div>
+              <FaSignOutAlt className="logout-icon" onClick={handleLogout} /> Logout
+            </div>
+          ) : null}
+        </>
+      )}
     </div>
   );
 };

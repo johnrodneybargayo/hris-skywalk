@@ -1,0 +1,73 @@
+/* styles.scss */
+
+.settings-modal {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  z-index: 1000;
+  width: 265px;
+  display: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 25px 50px 0px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  transition: opacity 0.3s ease-in-out;
+  gap: 11px;
+}
+
+.settings-content {
+  position: relative;
+  padding: 12px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  right: 12px;
+}
+
+.settings-button-label {
+  display: block;
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: "Satoshi";
+  line-height: 0.5;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.settings-button {
+  display: block;
+  background-color: transparent;
+  border: none;
+  padding: 16px 10px;
+  cursor: pointer;
+  font-family: "Satoshi";
+  line-height: 0.5;
+  font-weight: 500;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.settings-button:hover {
+  width: 268px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--deep-purple-50, #ede7f6);
+}
+
+.settings-add-buttons {
+  position: relative;
+  right: -12px;
+}
+
+.settings-modal.open {
+  opacity: 1;
+  display: block;
+  pointer-events: auto;
+}

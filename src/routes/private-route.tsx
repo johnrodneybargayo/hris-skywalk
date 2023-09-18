@@ -1,6 +1,7 @@
+// PrivateRoute.tsx
 import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { getCookie } from '../components/Utils/cookieUtils'; // Import the cookie function
+import { getCookie } from '../components/Utils/cookieUtils';
 
 interface PrivateRouteProps extends RouteProps {
   component: React.ComponentType<any>;
@@ -10,19 +11,19 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const authToken = getCookie('authToken'); // Get the authentication token from cookie
+  const authToken = getCookie('authToken');
   const isAuthenticated = !!authToken;
 
   return (
     <Route
       {...rest}
-      render={props => {
-        if (isAuthenticated) {
-          return <Component {...props} />;
-        } else {
-          return <Redirect to="/login" />; // Redirect to login page if not authenticated
-        }
-      }}
+      render={(props) =>
+        isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/sign-in" />
+        )
+      }
     />
   );
 };

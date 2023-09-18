@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import LoginForm from '../../components/forms/Login';
@@ -7,11 +7,24 @@ import Cookies from 'js-cookie';
 const LoginPage: React.FC = () => {
   const history = useHistory();
   const [error, setError] = useState<string>('');
+  const [apiKey, setApiKey] = useState<string>('');
+
+  // Fetch the API key from the backend when the component mounts
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/get-api-key')
+      .then((response) => {
+        const { apiKey } = response.data;
+        setApiKey(apiKey);
+      })
+      .catch((error) => {
+        console.error('Error fetching API key:', error);
+      });
+  }, []);
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      const apiKey = 'AIzaSyAI1NsFZrRaBSRCtj8TkIxA3Mg-qYFDRzg'; // Replace with your actual API key
-      const loginUrl = 'https://empireone-global-inc.uc.r.appspot.com/api/login';
+   //  const loginUrl = 'https://empireone-global-inc.uc.r.appspot.com/api/login';
+     const loginUrl = 'http://localhost:8080/api/login';
 
       console.log('Attempting login...');
       const response = await axios.post(
@@ -23,7 +36,7 @@ const LoginPage: React.FC = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'X-API-Key': apiKey,
+            'X-API-Key': apiKey, // Use the API key obtained from the backend
           },
         }
       );
@@ -34,7 +47,7 @@ const LoginPage: React.FC = () => {
         const data = response.data;
         if (data.token) {
           // Set a cookie to store the user's authentication token
-          Cookies.set('accessToken', data.token);
+          Cookies.set('authToken', data.token);
 
           // Redirect the user to the dashboard
           history.push('/dashboard');
@@ -52,7 +65,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div>
-      <LoginForm onLogin={handleLogin} isAuthenticated={false} /> {/* Update isAuthenticated as needed */}
+      <LoginForm onLogin={handleLogin} isAuthenticated={false} />
       {error && <p className='error-login'>{error}</p>}
     </div>
   );
