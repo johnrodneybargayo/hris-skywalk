@@ -34,7 +34,7 @@
     "js-cookie": "^3.0.5",
     "mdb-react-ui-kit": "^6.2.0",
     "moment": "^2.29.4",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-confirm-alert": "^3.0.6",
